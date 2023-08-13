@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   fill="none"
+   version="1.1"
+   id="svg4833"
+   sodipodi:docname="logo-32.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview4835"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="16.453125"
+     inkscape:cx="10.362773"
+     inkscape:cy="17.20038"
+     inkscape:window-width="1440"
+     inkscape:window-height="900"
+     inkscape:window-x="1989"
+     inkscape:window-y="101"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g4826" />
+  <g
+     clip-path="url(#clip0_12_56)"
+     id="g4826">
+    <path
+       d="M4 0C2 0 -2e-06 2 0 4V28C0 30 2 32 4 32H28C30 32 32 30 32 28V4C32 2 30 0 28 0H4ZM4 2H28L30 4V28L28 30H4L2 28V4L4 2Z"
+       fill="#3B3B66"
+       id="path4816"
+       style="fill:#8edfff;fill-opacity:1" />
+    <path
+       opacity="0.4"
+       d="M10.6145 5.92444H22.3368C24.3663 5.92444 26.0001 7.55823 26.0001 9.58766C26.0001 11.6171 24.3663 13.2509 22.3368 13.2509H10.6145C8.58509 13.2509 6.95129 11.6171 6.95129 9.58766C6.95129 7.55823 8.58509 5.92444 10.6145 5.92444Z"
+       fill="#3B3B66"
+       id="path4818"
+       style="fill:#8edfff;fill-opacity:1" />
+    <path
+       opacity="0.4"
+       d="M10.1869 18.7746H21.8559C23.8761 18.7746 25.5025 20.4009 25.5025 22.4211C25.5025 24.4413 23.8761 26.0677 21.8559 26.0677H10.1869C8.16671 26.0677 6.54034 24.4413 6.54034 22.4211C6.54034 20.4009 8.16671 18.7746 10.1869 18.7746Z"
+       fill="#3B3B66"
+       id="path4820"
+       style="fill:#8edfff;fill-opacity:1" />
+    <path
+       d="M21.3697 27.5263C24.1892 27.5263 26.4749 25.2406 26.4749 22.4211C26.4749 19.6016 24.1892 17.3159 21.3697 17.3159C18.5502 17.3159 16.2645 19.6016 16.2645 22.4211C16.2645 25.2406 18.5502 27.5263 21.3697 27.5263Z"
+       fill="#3B3B66"
+       id="path4822"
+       style="fill:#8edfff;fill-opacity:1" />
+    <path
+       d="M11.1029 14.7161C13.9353 14.7161 16.2314 12.42 16.2314 9.58762C16.2314 6.75522 13.9353 4.45911 11.1029 4.45911C8.27054 4.45911 5.97443 6.75522 5.97443 9.58762C5.97443 12.42 8.27054 14.7161 11.1029 14.7161Z"
+       fill="#3B3B66"
+       id="path4824"
+       style="fill:#8edfff;fill-opacity:1" />
+  </g>
+  <defs
+     id="defs4831">
+    <clipPath
+       id="clip0_12_56">
+      <rect
+         width="32"
+         height="32"
+         fill="white"
+         id="rect4828" />
+    </clipPath>
+  </defs>
+</svg>

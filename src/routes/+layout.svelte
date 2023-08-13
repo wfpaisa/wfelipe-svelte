@@ -1,0 +1,103 @@
+<script>
+	import LayoutHeader from './layout-header.svelte';
+	import LayoutSidebarLeft from './layout-sidebar-left.svelte';
+	import LayoutSidebarRight from './layout-sidebar-right.svelte';
+	import '$lib/styles/normalize.css';
+	import '$lib/styles/font.css';
+	import '$lib/styles/font-icon.css';
+	import '$lib/styles/styles.css';
+	import '$lib/styles/animated.css';
+</script>
+
+<LayoutHeader />
+
+<div class="layout">
+	<LayoutSidebarLeft />
+
+	<main>
+		<slot />
+
+		<div class="palette">
+			<div class="swatch" />
+			<div class="swatch" />
+			<div class="swatch" />
+			<div class="swatch" />
+			<div class="swatch" />
+			<div class="swatch" />
+			<div class="swatch" />
+			<div class="swatch" />
+			<div class="swatch" />
+			<div class="swatch" />
+		</div>
+	</main>
+
+	<LayoutSidebarRight />
+
+	<footer>
+		<!--  -->
+	</footer>
+</div>
+
+<style>
+	.layout {
+		background-image: radial-gradient(500px 200px at 50% 0%, var(--bg-2) 0%, transparent 100%);
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		grid-template-rows: 1fr auto;
+		grid-template-areas:
+			'leftSide main rightSide'
+			'footer footer footer';
+		padding: 0rem;
+	}
+
+	main {
+		grid-area: main;
+		/* background: rgb(232, 232, 222, 0.3); */
+		/* overflow: auto; */
+	}
+
+	footer {
+		grid-area: footer;
+		--hue: 200;
+		background-color: var(--color-9);
+		height: var(--layout-footer);
+		/* padding: 1rem; */
+	}
+
+	.palette {
+		display: grid;
+		grid-auto-rows: 2rem;
+		grid-template-columns: 100%;
+	}
+
+	.swatch:nth-of-type(1) {
+		background: var(--color-1);
+	}
+	.swatch:nth-of-type(2) {
+		background: var(--color-2);
+	}
+	.swatch:nth-of-type(3) {
+		background: var(--color-3);
+	}
+	.swatch:nth-of-type(4) {
+		background: var(--color-4);
+	}
+	.swatch:nth-of-type(5) {
+		background: var(--color-5);
+	}
+	.swatch:nth-of-type(6) {
+		background: var(--color-6);
+	}
+	.swatch:nth-of-type(7) {
+		background: var(--color-7);
+	}
+	.swatch:nth-of-type(8) {
+		background: var(--color-8);
+	}
+	.swatch:nth-of-type(9) {
+		background: var(--color-9);
+	}
+	.swatch:nth-of-type(10) {
+		background: var(--color-10);
+	}
+</style>

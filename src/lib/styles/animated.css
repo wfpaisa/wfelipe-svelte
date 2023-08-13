@@ -1,0 +1,148 @@
+.animated {
+	animation-duration: var(--animate-duration);
+	animation-fill-mode: both;
+}
+
+.animated.delay-1 {
+	animation-delay: var(--animate-delay);
+}
+
+.animated.delay-2 {
+	animation-delay: calc(var(--animate-delay) * 1.4);
+}
+
+.animated.delay-3 {
+	animation-delay: calc(var(--animate-delay) * 1.8);
+}
+
+.animated.delay-4 {
+	animation-delay: calc(var(--animate-delay) * 2);
+}
+
+.animated.delay-5 {
+	animation-delay: calc(var(--animate-delay) * 2.2);
+}
+
+.animated.faster {
+	animation-duration: calc(var(--animate-duration) / 2);
+}
+
+.animated.fast {
+	animation-duration: calc(var(--animate-duration) * 0.8);
+}
+
+.animated.slow {
+	animation-duration: calc(var(--animate-duration) * 2);
+}
+
+.animated.slower {
+	animation-duration: calc(var(--animate-duration) * 3);
+}
+
+.animated.infinite {
+	animation-iteration-count: infinite;
+}
+
+.animated.repeat-1 {
+	animation-iteration-count: var(--animate-repeat);
+}
+
+.animated.repeat-2 {
+	animation-iteration-count: calc(var(--animate-repeat) * 2);
+}
+
+.animated.repeat-3 {
+	animation-iteration-count: calc(var(--animate-repeat) * 3);
+}
+
+/* Fade in left */
+
+@keyframes fadeInLeft {
+	from {
+		opacity: 0;
+		transform: translate3d(-10%, 0, 0);
+	}
+
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.fadeInLeft {
+	animation-name: fadeInLeft;
+}
+
+/* Fade in left v2 */
+@keyframes fadeInLeft2 {
+	from {
+		opacity: 0;
+		transform: translate3d(-5%, 0, 0);
+	}
+
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.fadeInLeft2 {
+	animation-name: fadeInLeft2;
+}
+
+@keyframes tada {
+	from {
+		transform: scale3d(1, 1, 1);
+	}
+
+	2.5%,
+	5% {
+		transform: scale3d(0.8, 0.8, 0.8) rotate3d(0, 0, 1, -6deg);
+	}
+
+	6%,
+	12.5%,
+	17.5%,
+	22.5% {
+		transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, 6deg);
+	}
+
+	10%,
+	15%,
+	20% {
+		transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, -6deg);
+	}
+
+	23%,
+	100% {
+		transform: scale3d(1, 1, 1);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+.tada {
+	animation-name: tada;
+	animation-duration: 6s;
+	animation-iteration-count: infinite;
+}
+
+.scrolldown {
+	animation-name: scrolldown;
+	animation-duration: 2s;
+}
+
+/* Fade in left */
+@keyframes scrolldown {
+	from {
+		opacity: 0;
+		transform: translate3d(-10%, 0, 0);
+	}
+
+	to {
+		opacity: 1;
+		transform: translate3d(0, -15px, 0);
+	}
+}

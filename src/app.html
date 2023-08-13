@@ -2,11 +2,21 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
+
+		<link rel=icon type=image/png sizes=128x128
+		href="%sveltekit.assets%/favicon/favicon-128x128.png"><link rel=icon type=image/png sizes=96x96
+		href="%sveltekit.assets%/favicon/favicon-96x96.png"><link rel=icon type=image/png sizes=32x32
+		href="%sveltekit.assets%/favicon/favicon-32x32.png"><link rel=icon type=image/png sizes=16x16
+		href="%sveltekit.assets%/favicon/favicon-16x16.png"><link rel=icon type=image/ico
+		href="%sveltekit.assets%/favicon/favicon.ico">
+
+		<meta
+			name="viewport"
+			content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width"
+		/>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
+		<div id="app" style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
