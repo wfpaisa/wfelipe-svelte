@@ -20,14 +20,14 @@
 			title: 'Projects',
 			caption: 'All projects',
 			icon: 'sym_r_code_blocks',
-			link: '#projects',
+			link: '#portfolio',
 			external: false
 		}
 	];
 </script>
 
 <header>
-	<div class="logo tada">
+	<div class="logo">
 		<span class="icon-logo" title="Change color">
 			<span class="path1" />
 			<span class="path2" />

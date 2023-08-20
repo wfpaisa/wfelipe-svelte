@@ -32,7 +32,7 @@
 <style>
 	.right-side {
 		grid-area: rightSide;
-		width: 2rem;
+		width: 2.5rem;
 		text-align: center;
 	}
 
@@ -43,7 +43,8 @@
 		justify-content: center;
 		row-gap: 0.5rem;
 		font-size: 1.5rem;
-		position: sticky;
+		position: fixed;
+		right: 0.25rem;
 		top: calc((100dvh / 2) - 4rem);
 	}
 

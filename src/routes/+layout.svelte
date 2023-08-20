@@ -32,21 +32,13 @@
 	</main>
 
 	<LayoutSidebarRight />
-
-	<footer>
-		<!--  -->
-	</footer>
 </div>
 
 <style>
 	.layout {
-		background-image: radial-gradient(500px 200px at 50% 0%, var(--bg-2) 0%, transparent 100%);
-		display: grid;
-		grid-template-columns: auto 1fr auto;
-		grid-template-rows: 1fr auto;
-		grid-template-areas:
-			'leftSide main rightSide'
-			'footer footer footer';
+		background-image: radial-gradient(500px 200px at 50% 0%, var(--color-9) 0%, transparent 100%);
+		display: flex;
+		flex-direction: column;
 		padding: 0rem;
 	}
 

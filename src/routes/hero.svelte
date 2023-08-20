@@ -1,11 +1,6 @@
 <script lang="ts">
 </script>
 
-<svelte:head>
-	<title>WFelipe</title>
-	<meta name="description" content="Felipe Uribe - Portfolio" />
-</svelte:head>
-
 <section id="intro">
 	<article class="container">
 		<div class="intro-info">
@@ -29,13 +24,12 @@
 
 <style>
 	#intro {
-		--dot-size: 2px;
-		padding-top: var(--layout-header);
+		padding: var(--layout-header) 2rem 0 2rem;
 		min-block-size: 100dvh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-size: 2rem 2rem;
+		background-size: 6rem 6rem;
 		background-image: radial-gradient(circle, var(--bg-2) var(--dot-size), transparent 0);
 		background-position: center 0;
 		background-attachment: fixed;
@@ -45,18 +39,17 @@
 	#intro::after {
 		content: '';
 		position: absolute;
-		border-top: 1px solid hsla(var(--color-acent-base), 70%, 0%);
-		border-bottom: 1px solid hsla(var(--color-acent-base), 70%, 0%);
-		width: calc(100% - 2rem);
+		width: 100%;
 		height: 0.5rem;
 		background-image: url('$lib/images/bg1.svg');
 		background-attachment: fixed;
-		bottom: -2rem;
-		margin-bottom: 1rem;
+		bottom: 0rem;
+		margin-bottom: -0.25rem;
+		z-index: 1;
 	}
 
 	.name {
-		color: var(--text-v-1);
+		color: var(--text-3);
 		letter-spacing: 0;
 		font-weight: normal;
 		display: inline-block;
@@ -68,10 +61,16 @@
 		margin: 0px;
 		line-height: var(--font-lineheight-md);
 		font-size: var(--font-size-xxxl);
+
+		background: linear-gradient(to right, var(--text-2), var(--text-v-2));
+		-webkit-background-clip: text;
+		background-attachment: fixed;
+		background-clip: text;
+		color: transparent;
 	}
 
 	b {
-		color: var(--text-v-1);
+		color: var(--text-3);
 	}
 
 	p {

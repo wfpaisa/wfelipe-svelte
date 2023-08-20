@@ -2,18 +2,13 @@
 	import ImgMe from '$lib/images/me.jpg';
 </script>
 
-<svelte:head>
-	<title>WFelipe</title>
-	<meta name="description" content="Felipe Uribe - Portfolio" />
-</svelte:head>
-
 <section id="about">
 	<div class="preloadimage" />
 
 	<div class="container">
 		<div class="flex-center">
 			<div>
-				<h2><span class="number">01</span>. About me</h2>
+				<h2><span class="number">01.</span> About me</h2>
 
 				<p>
 					Since I was very young, I have always been a curious person and I have loved understanding
@@ -52,7 +47,30 @@
 		display: flex;
 		align-items: center;
 		min-height: 100dvh;
+		padding-top: var(--layout-header);
+		padding-bottom: 2rem;
+		position: relative;
+		/* background-image: radial-gradient(400px 400px at 70% 50%, var(--color-9) 0%, transparent 100%); */
+		background-image: linear-gradient(
+			45deg,
+			oklch(80% 0.2 var(--hue) / 0%) 0%,
+			oklch(50% 0.27 var(--hue-v) / 6%) 80%
+		);
+		background-attachment: fixed;
 	}
+
+	/* separation bar */
+	/* #about::after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 0.5rem;
+		background-image: url('$lib/images/bg1.svg');
+		background-attachment: fixed;
+		bottom: 0rem;
+		margin-bottom: -0.25rem;
+		z-index: 1;
+	} */
 
 	.container {
 		display: flex;

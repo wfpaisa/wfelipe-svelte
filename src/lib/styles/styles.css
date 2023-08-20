@@ -19,9 +19,9 @@
 	--text-2: var(--color-3);
 	--text-3: var(--color-4);
 
-	--bg-1: oklch(16% 0.06 var(--hue));
-	--bg-2: oklch(22% 0.08 var(--hue));
-	--bg-3: oklch(26% 0.1 var(--hue));
+	--bg-1: oklch(12% 0.04 var(--hue));
+	--bg-2: oklch(26% 0.04 var(--hue));
+	--bg-3: oklch(32% 0.04 var(--hue));
 
 	/* Color varian */
 	--hue-v: 170;
@@ -85,22 +85,26 @@
 	--animate-duration: 1s;
 	--animate-delay: 400ms;
 	--animate-repeat: 1;
+
+	--dot-size: 3px;
 }
 
 /* Dark screen */
 @media (prefers-color-scheme: light) {
 	:root {
 		/* Color base */
+		--hue: 250;
 		--text-1: var(--color-8);
 		--text-2: var(--color-7);
 		--text-3: var(--color-6);
 
-		--bg-1: var(--color-1);
-		--bg-2: var(--color-2);
+		--bg-1: oklch(0.97 0.01 0);
+		--bg-2: oklch(0.9 0.01 0);
 		--bg-3: var(--color-3);
 
 		/* Color variant */
-		--hue-v: 60;
+		/* --hue-v: 60; */
+		--hue-v: 160;
 		--text-v-1: var(--color-v-8);
 		--text-v-2: var(--color-v-7);
 		--text-v-3: var(--color-v-6);
@@ -130,6 +134,7 @@ body {
 	padding: 0px;
 	scrollbar-gutter: stable;
 	overflow-wrap: break-word;
+	font-weight: 300;
 }
 
 xbody::after,
@@ -220,7 +225,7 @@ ul {
 	margin: 1rem 0;
 	padding: 0 0 0 1rem;
 
-	ul {
+	& ul {
 		padding: 0 0 0 2.65rem;
 		margin: 0;
 	}
@@ -231,11 +236,11 @@ ol {
 	counter-reset: li;
 	margin: 1rem 0;
 
-	ol {
+	& ol {
 		margin: 0;
 	}
 
-	li {
+	& li {
 		position: relative;
 
 		&::before {
@@ -308,6 +313,8 @@ a {
 
 .number {
 	font-family: var(--font-family-body);
+	color: var(--text-1);
+	font-weight: 300;
 }
 
 /* Global dialogs */
@@ -340,7 +347,7 @@ a {
 		height: calc(100% - 32px);
 		text-align: center;
 
-		img {
+		& img {
 			max-width: 100%;
 			height: auto;
 		}
@@ -348,25 +355,19 @@ a {
 }
 
 .tag {
-	background-color: var(--bg-2);
-	color: var(--text-1);
+	border: 1px solid var(--color-8);
+	color: var(--text-3);
 	display: inline-block;
-	padding: 1px 1rem 0 1.5rem;
-	border-radius: 0.25rem;
+	padding: 3px 1rem 2px 1rem;
+	border-radius: 99px;
 	position: relative;
 	display: inline-block;
-	box-shadow: 0px 0px 0px 1px var(--bg-3);
+	font-size: 90%;
+	letter-spacing: 1px;
+}
 
-	&::before {
-		content: '';
-		height: 8px;
-		width: 8px;
-		background: var(--bg-1);
-		position: absolute;
-		border-radius: 5px;
-		margin-top: -4px;
-		left: 8px;
-		top: 50%;
-		box-shadow: 0px 0px 0px 1px var(--bg-3);
-	}
+.tag:hover {
+	background-color: var(--color-6);
+	border-color: var(--color-6);
+	color: white;
 }

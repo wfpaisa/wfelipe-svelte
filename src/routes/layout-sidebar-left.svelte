@@ -8,7 +8,6 @@
 
 <style>
 	.left-side {
-		grid-area: leftSide;
 		width: 2rem;
 	}
 
@@ -17,9 +16,10 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		position: sticky;
+		position: fixed;
 		top: calc(100dvh - 20.25rem);
 		z-index: 1;
+		left: 0.5rem;
 	}
 
 	.link-content::after {
