@@ -8,7 +8,7 @@
 
 <article class="item transition item-{index}">
 	<div class="img">
-		<!-- <img src={item.preview} alt="" /> -->
+		<img src={item.preview} alt="" />
 	</div>
 
 	<h1 class="name">{item.name}</h1>
@@ -21,18 +21,13 @@
 
 	<div class="actions">
 		<!-- Fullscreen -->
-		<!-- <li @click="dialog = !dialog" v-if="item.dialog"> -->
-		{#if item.dialog}
-			<!-- <q-btn label="preview" class="btn-custom" icon="sym_r_photo" size="sm" /> -->
-			<span class="btn">Preview</span>
-		{/if}
-
 		<!-- video -->
 		{#if item.video}
-			<a href="/" target="_blank" class="btn">
-				<!-- <q-btn label="Video" class="btn-custom" icon="sym_r_movie" size="sm" /> -->
-				<span>Video</span>
-			</a>
+			<a href="/" target="_blank" class="btn">Video</a>
+		{/if}
+
+		{#if item.dialog}
+			<span class="btn">Preview</span>
 		{/if}
 	</div>
 
@@ -57,8 +52,10 @@
 		flex-direction: column;
 		padding: 0px;
 		transition: var(--transition);
-		/* background-color: var(--bg-2); */
 		box-shadow: inset 0 0 0 1px var(--bg-3);
+		overflow: auto;
+		margin-bottom: 1rem;
+		border-radius: 0.25rem;
 	}
 
 	.img {
@@ -77,6 +74,15 @@
 		width: 100%;
 		height: auto;
 		opacity: 0.4;
+		cursor: pointer;
+		transition: var(--transition);
+		border-radius: 0rem;
+	}
+
+	.item:hover .img img {
+		opacity: 1;
+		transform: scale(0.95);
+		border-radius: 0.5rem;
 	}
 
 	.name {
@@ -128,14 +134,15 @@
 	}
 
 	.btn {
-		background-color: var(--text-v-1);
+		background-color: var(--color-6);
 		color: var(--bg-1);
-		padding: 4px 1rem;
+		padding: 0.5rem 1.5rem;
+		color: var(--text-1);
 		/* border-radius: 88px; */
 		cursor: pointer;
 	}
 
 	.btn:hover {
-		box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+		box-shadow: 0 0 20px var(--color-6);
 	}
 </style>

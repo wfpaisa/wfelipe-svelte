@@ -24,14 +24,23 @@
 			external: false
 		}
 	];
+
+	const goHome = (e: MouseEvent) => {
+		e.preventDefault();
+
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+	};
 </script>
 
 <header>
 	<div class="logo">
-		<span class="icon-logo" title="Change color">
+		<a href="/" class="icon-logo" title="Change color" on:click={goHome}>
 			<span class="path1" />
 			<span class="path2" />
-		</span>
+		</a>
 	</div>
 
 	<nav>

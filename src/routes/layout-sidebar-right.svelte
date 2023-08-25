@@ -46,10 +46,11 @@
 		position: fixed;
 		right: 0.25rem;
 		top: calc((100dvh / 2) - 4rem);
+		z-index: 10;
 	}
 
 	.socials-icons a {
-		color: var(--text-v-1);
+		color: var(--color-v-2);
 	}
 
 	.socials-icons a:hover {

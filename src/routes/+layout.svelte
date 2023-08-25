@@ -48,18 +48,11 @@
 		/* overflow: auto; */
 	}
 
-	footer {
-		grid-area: footer;
-		--hue: 200;
-		background-color: var(--color-9);
-		height: var(--layout-footer);
-		/* padding: 1rem; */
-	}
-
 	.palette {
 		display: grid;
 		grid-auto-rows: 2rem;
 		grid-template-columns: 100%;
+		display: none;
 	}
 
 	.swatch:nth-of-type(1) {

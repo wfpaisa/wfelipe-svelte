@@ -2,6 +2,7 @@
 	import About from './about.svelte';
 	import Hero from './hero.svelte';
 	import Portfolio from './portfolio.svelte';
+	import Projects from './projects.svelte';
 	import Work from './work.svelte';
 </script>
 
@@ -20,6 +21,8 @@
 
 <Portfolio />
 
+<Projects />
+
 <style>
 	.dots {
 		width: 100%;
@@ -27,6 +30,5 @@
 		background-size: 6rem 6rem;
 		background-image: radial-gradient(circle, var(--bg-2) var(--dot-size), transparent 0);
 		background-position: center 0;
-		/* background-attachment: fixed; */
 	}
 </style>

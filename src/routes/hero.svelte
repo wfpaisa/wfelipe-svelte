@@ -85,7 +85,7 @@
 	.mouse {
 		background-color: var(--bg-2);
 		border-radius: 8px;
-		border: 1px solid var(--text-2);
+		border: 1px solid var(--text-1);
 		bottom: 40px;
 		box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
 		height: 30px;
@@ -99,7 +99,7 @@
 		display: inline-block;
 		height: 8px;
 		width: 4px;
-		background: var(--text-2);
+		background: var(--text-1);
 		position: absolute;
 		left: 50%;
 		bottom: 2px;

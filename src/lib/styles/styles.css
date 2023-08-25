@@ -127,6 +127,8 @@ html {
 	font-size: inherit;
 	font-weight: normal;
 	line-height: var(--font-lineheight-lg);
+
+	scroll-behavior: smooth;
 }
 
 body {
@@ -135,24 +137,6 @@ body {
 	scrollbar-gutter: stable;
 	overflow-wrap: break-word;
 	font-weight: 300;
-}
-
-xbody::after,
-xbody::before {
-	content: '';
-	height: 1rem;
-	width: 100%;
-	/* background: hsl(var(--color-bg-base), 21%); */
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	z-index: 10;
-	opacity: 0.4;
-}
-
-xbody::before {
-	bottom: 0px;
-	top: inherit;
 }
 
 /* Scroll */
@@ -188,7 +172,7 @@ h1 {
 }
 
 h2 {
-	color: var(--text-2);
+	color: var(--text-1);
 	font-family: var(--font-family-title);
 	font-size: var(--font-size-lg);
 	font-weight: 100;
@@ -199,7 +183,7 @@ h2 {
 }
 
 h3 {
-	color: var(--text-2);
+	color: var(--text-1);
 	font-size: var(--font-size-md);
 	font-weight: 300;
 	letter-spacing: normal;
@@ -224,33 +208,33 @@ ul {
 	list-style-position: outside;
 	margin: 1rem 0;
 	padding: 0 0 0 1rem;
+}
 
-	& ul {
-		padding: 0 0 0 2.65rem;
-		margin: 0;
-	}
+ul ul {
+	padding: 0 0 0 2.65rem;
+	margin: 0;
 }
 
 ol {
 	list-style: none;
 	counter-reset: li;
 	margin: 1rem 0;
+}
 
-	& ol {
-		margin: 0;
-	}
+ol ol {
+	margin: 0;
+}
 
-	& li {
-		position: relative;
+ol li {
+	position: relative;
+}
 
-		&::before {
-			position: absolute;
-			left: -2.65rem;
-			counter-increment: li;
-			content: counter(li, decimal-leading-zero) '.';
-			color: hsl(var(--color-acent-base), 74%);
-		}
-	}
+ol li::before {
+	position: absolute;
+	left: -2.65rem;
+	counter-increment: li;
+	content: counter(li, decimal-leading-zero) '.';
+	color: hsl(var(--color-acent-base), 74%);
 }
 
 hr {
@@ -277,22 +261,22 @@ a {
 	text-decoration: none;
 	transition: var(--transition);
 	display: inline-block;
+}
 
-	&.link::after {
-		content: '';
-		display: block;
-		width: 0px;
-		height: 1px;
-		position: relative;
-		bottom: 0;
-		background-color: var(--text-3);
-		transition: var(--transition);
-		opacity: 0.5;
-	}
+a.link::after {
+	content: '';
+	display: block;
+	width: 0px;
+	height: 1px;
+	position: relative;
+	bottom: 0;
+	background-color: var(--text-3);
+	transition: var(--transition);
+	opacity: 0.5;
+}
 
-	&.link:hover::after {
-		width: 100%;
-	}
+a.link:hover::after {
+	width: 100%;
 }
 
 /* Transitions */
@@ -313,7 +297,7 @@ a {
 
 .number {
 	font-family: var(--font-family-body);
-	color: var(--text-1);
+	color: var(--text-2);
 	font-weight: 300;
 }
 
@@ -364,10 +348,10 @@ a {
 	display: inline-block;
 	font-size: 90%;
 	letter-spacing: 1px;
+	transition: var(--transition);
 }
 
 .tag:hover {
-	background-color: var(--color-6);
-	border-color: var(--color-6);
-	color: white;
+	transform: scale(1.1);
+	z-index: 1;
 }
