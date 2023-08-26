@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import PortforlioItem from './portfolio-item.svelte';
 	import type { IPortfolioItem } from './types';
 
@@ -6,73 +7,107 @@
 		{
 			name: 'Monte',
 			tags: ['Javascript', 'Prestashop', 'CSS', 'HTML', 'PHP'],
-			preview: '/images/projects/monte/monte-preview.webp',
-			dialog: '<img src="/images/projects/monte/monte.webp" width="1878" height="12857"/>'
+			image: {
+				preview: '/images/projects/monte/monte-preview.webp',
+				big: '/images/projects/monte/monte.webp',
+				bigWidth: '1878',
+				bigHeight: '12857'
+			}
 		},
 		{
 			name: 'Ecomodisimos - landing',
 			tags: ['Javascript', 'Vtex', 'HTML', 'CSS'],
-			preview: '/images/projects/comodisimos/ecomodisimos-preview.webp',
-			dialog:
-				'<img src="/images/projects/comodisimos/ecomodisimos.webp" width="5120" height="9072"/>',
-			video: 'https://youtu.be/T8f0HNz8K1I'
+			image: {
+				preview: '/images/projects/comodisimos/ecomodisimos-preview.webp',
+				big: '/images/projects/comodisimos/ecomodisimos.webp',
+				bigWidth: '5120',
+				bigHeight: '9072'
+			},
+			youtubeId: 'T8f0HNz8K1I'
 		},
 		{
 			name: 'Hogar universal',
 			tags: ['Javascript', 'Drupal', 'CSS', 'HTML', 'PHP'],
-			preview: '/images/projects/universal/universal-preview.webp',
-			dialog: '<img src="/images/projects/universal/universal.webp" width="1400" height="9732"/>'
+			image: {
+				preview: '/images/projects/universal/universal-preview.webp',
+				big: '/images/projects/universal/universal.webp',
+				bigWidth: '1400',
+				bigHeight: '9732'
+			}
 		},
 		{
 			name: 'Comodisimos - Web',
 			tags: ['Javascript', 'React', 'Design', 'Vtex', 'HTML', 'CSS'],
-			preview: '/images/projects/comodisimos/comodisimos-preview.webp',
-			dialog:
-				'<img src="/images/projects/comodisimos/comodisimos.webp" width="3072" height="16153"/>',
-			video: 'https://youtu.be/tjfFMJEdKUs'
+			image: {
+				preview: '/images/projects/comodisimos/comodisimos-preview.webp',
+				big: '/images/projects/comodisimos/comodisimos.webp',
+				bigWidth: '3072',
+				bigHeight: '16153'
+			},
+			youtubeId: 'tjfFMJEdKUs'
 		},
 		{
 			name: 'Natalia Lafourcade',
 			tags: ['CSS', 'HTML', 'PHP'],
-			preview: '/images/projects/natalia/natalia-lafourcade-preview.webp',
-			dialog:
-				'<img src="/images/projects/natalia/natalia-lafourcade.webp" width="1280" height="5296"/>'
+			image: {
+				preview: '/images/projects/natalia/natalia-lafourcade-preview.webp',
+				big: '/images/projects/natalia/natalia-lafourcade.webp',
+				bigWidth: '1280',
+				bigHeight: '5296'
+			}
 		},
 		{
 			name: 'Codigital',
 			tags: ['Javascript', 'Prestashop', 'Drupal', 'CSS', 'HTML', 'Angular'],
-			preview: '/images/projects/codigital/codigital-preview.webp',
-			dialog: '<img src="/images/projects/codigital/codigital.webp" width="5120" height="11462"/>',
-			video: 'https://youtu.be/zJn9D0gBM9o'
+			image: {
+				preview: '/images/projects/codigital/codigital-preview.webp',
+				big: '/images/projects/codigital/codigital.webp',
+				bigWidth: '5120',
+				bigHeight: '11462'
+			},
+			youtubeId: 'zJn9D0gBM9o'
 		},
 		{
 			name: 'Ostinata',
 			tags: ['Javascript', 'CSS', 'HTML', 'PHP'],
-			preview: '/images/projects/ostinatta/ostinatta-preview.webp',
-			dialog: '<img src="/images/projects/ostinatta/ostinatta.webp" width="1400" height="10686"/>',
-			video: 'https://youtu.be/G6pcljDeQz0'
+			image: {
+				preview: '/images/projects/ostinatta/ostinatta-preview.webp',
+				big: '/images/projects/ostinatta/ostinatta.webp',
+				bigWidth: '1400',
+				bigHeight: '10686'
+			},
+			youtubeId: 'G6pcljDeQz0'
 		},
 		{
 			name: 'Todo en Artes',
 			tags: ['Docker', 'Javascript', 'Design', 'Prestashop', 'PHP', 'CSS'],
-			preview: '/images/projects/todo-en-artes/todoenartes-preview.webp',
-			dialog:
-				'<img src="/images/projects/todo-en-artes/todoenartes.webp" width="1916" height="8169"/>'
+			image: {
+				preview: '/images/projects/todo-en-artes/todoenartes-preview.webp',
+				big: '/images/projects/todo-en-artes/todoenartes.webp',
+				bigWidth: '1916',
+				bigHeight: '8169'
+			}
 		},
 		{
 			name: 'El Bellanita',
 			tags: ['Javascript', 'Drupal', 'CSS', 'HTML', 'PHP'],
-			preview: '/images/projects/el-bellanita/el-bellanita-preview.webp',
-			dialog:
-				'<img src="/images/projects/el-bellanita/el-bellanita.webp" width="2000" height="4683"/>'
+			image: {
+				preview: '/images/projects/el-bellanita/el-bellanita-preview.webp',
+				big: '/images/projects/el-bellanita/el-bellanita.webp',
+				bigWidth: '2000',
+				bigHeight: '4683'
+			}
 		},
 		{
 			name: 'Comodisimos - POS',
 			tags: ['Vue', 'Javascript', 'Docker', 'Design', 'HTML', 'CSS', 'InfluxDB'],
-			preview: '/images/projects/comodisimos/comodisimos-pos-preview.webp',
-			dialog:
-				'<img src="/images/projects/comodisimos/comodisimos-pos.webp" width="1920" height="9032"/>',
-			video: 'https://youtu.be/HPCiw_y72M4'
+			image: {
+				preview: '/images/projects/comodisimos/comodisimos-pos-preview.webp',
+				big: '/images/projects/comodisimos/comodisimos-pos.webp',
+				bigWidth: '1920',
+				bigHeight: '9032'
+			},
+			youtubeId: 'HPCiw_y72M4'
 		}
 	];
 </script>

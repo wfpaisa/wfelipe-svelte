@@ -35,7 +35,7 @@
 
 			<div>
 				<div class="me">
-					<img src={ImgMe} alt="Felipe Uribe" />
+					<img src={ImgMe} alt="Felipe Uribe" height="341" width="341" />
 				</div>
 			</div>
 		</div>
@@ -47,8 +47,7 @@
 		display: flex;
 		align-items: center;
 		min-height: 100dvh;
-		padding-top: var(--layout-header);
-		padding-bottom: 2rem;
+		padding: var(--layout-header) 2rem 2rem 2rem;
 		position: relative;
 		/* background-image: radial-gradient(400px 400px at 70% 50%, var(--color-9) 0%, transparent 100%); */
 		background-image: linear-gradient(
@@ -59,19 +58,6 @@
 		background-attachment: fixed;
 	}
 
-	/* separation bar */
-	/* #about::after {
-		content: '';
-		position: absolute;
-		width: 100%;
-		height: 0.5rem;
-		background-image: url('$lib/images/bg1.svg');
-		background-attachment: fixed;
-		bottom: 0rem;
-		margin-bottom: -0.25rem;
-		z-index: 1;
-	} */
-
 	.container {
 		display: flex;
 	}
@@ -79,8 +65,8 @@
 	.flex-center {
 		display: flex;
 		gap: 2rem;
-		align-items: center;
-		flex-direction: column;
+		align-items: start;
+		flex-direction: column-reverse;
 		justify-content: center;
 	}
 
@@ -111,6 +97,7 @@
 		mix-blend-mode: multiply;
 		background-color: var(--bg-1);
 		border-radius: 0.5rem;
+		height: auto;
 	}
 
 	.me img:hover {

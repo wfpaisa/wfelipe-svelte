@@ -2,8 +2,14 @@ export interface IPortfolioItem {
 	name: string;
 	tags: string[];
 	dialog?: string;
-	video?: string;
-	preview: string;
+	youtubeId?: string;
+	preview?: string;
+	image: {
+		preview: string;
+		big: string;
+		bigWidth: string;
+		bigHeight: string;
+	};
 }
 
 export interface ILinks {

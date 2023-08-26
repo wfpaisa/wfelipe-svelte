@@ -4,11 +4,61 @@
 	export let item: IPortfolioItem;
 
 	export let index: number;
+
+	import type { BiggerPictureInstance } from 'bigger-picture';
+	import { loadBp } from '$lib/bigger-picture/load-bp';
+	import { onMount } from 'svelte';
+
+	let bp: BiggerPictureInstance;
+
+	let previewElement: HTMLElement;
+
+	/**
+	 * Preview from image
+	 * @param e
+	 */
+	function openBiggerPicture() {
+		bp.open({
+			items: document.querySelectorAll('#portfolio .preview'),
+			el: previewElement
+		});
+	}
+
+	/**
+	 * Preview from video button
+	 * @param e
+	 */
+	function openVideo(e: Event) {
+		e.preventDefault();
+		const target = e.currentTarget as HTMLElement;
+
+		bp.open({
+			items: target,
+			el: target
+		});
+	}
+
+	onMount(async () => {
+		bp = await loadBp(); // use onMount to define variable so it runs only in the browser
+	});
 </script>
 
-<article class="item transition item-{index}">
-	<div class="img">
-		<img src={item.preview} alt="" />
+<article class="item transition item-{index} item-project">
+	<div
+		bind:this={previewElement}
+		class="preview"
+		data-img={item.image.big}
+		data-thumb={item.image.preview}
+		data-alt={item.name}
+		data-caption={item.name}
+		data-width={item.image.bigWidth}
+		data-height={item.image.bigHeight}
+		on:click={openBiggerPicture}
+		role="button"
+		tabindex="0"
+		on:keydown={(e) => e.key === 'Enter' && openBiggerPicture()}
+	>
+		<img src={item.image.preview} alt={item.name} width="1000" height="1200" />
 	</div>
 
 	<h1 class="name">{item.name}</h1>
@@ -20,30 +70,32 @@
 	</div>
 
 	<div class="actions">
-		<!-- Fullscreen -->
-		<!-- video -->
-		{#if item.video}
-			<a href="/" target="_blank" class="btn">Video</a>
-		{/if}
+		<div
+			class="btn"
+			on:click={openBiggerPicture}
+			role="button"
+			tabindex="0"
+			on:keydown={(e) => e.key === 'Enter' && openBiggerPicture()}
+		>
+			Preview
+		</div>
 
-		{#if item.dialog}
-			<span class="btn">Preview</span>
+		<!-- video -->
+		{#if item.youtubeId}
+			<a
+				target="_blank"
+				class="btn"
+				href="https://youtu.be/{item.youtubeId}"
+				data-width="1920"
+				data-height="1080"
+				data-thumb="/images/no-img.png"
+				data-iframe="https://www.youtube.com/embed/{item.youtubeId}"
+				on:click={openVideo}
+			>
+				Video
+			</a>
 		{/if}
 	</div>
-
-	<!-- Full screen image -->
-	<!-- <q-dialog v-model="dialog" maximized @show="onDialogShow()">
-    <q-card class="dialog-card">
-      <q-bar class="dialog-card-bar">
-        <q-space />
-        <q-btn dense flat icon="sym_r_close_fullscreen" v-close-popup />
-      </q-bar>
-
-      <q-card-section class="dialog-card-content">
-        <div ref="imgFullScreen" v-html="item.dialog"></div>
-      </q-card-section>
-    </q-card>
-  </q-dialog> -->
 </article>
 
 <style>
@@ -53,15 +105,14 @@
 		padding: 0px;
 		transition: var(--transition);
 		box-shadow: inset 0 0 0 1px var(--bg-3);
-		overflow: auto;
+		break-inside: avoid;
 		margin-bottom: 1rem;
 		border-radius: 0.25rem;
 	}
 
-	.img {
+	.preview {
 		width: 100%;
 		height: 22rem;
-		/* background-image: radial-gradient(400px 400px at 70% 50%, var(--color-9) 0%, transparent 100%); */
 		background-image: linear-gradient(
 			90deg,
 			rgba(131, 3, 190, 0.2) 0%,
@@ -70,7 +121,12 @@
 		overflow: hidden;
 	}
 
-	.img img {
+	.preview:focus-visible {
+		box-shadow: 0 0 2rem oklch(72% 0.25 var(--hue) / 40%);
+		outline: 0;
+	}
+
+	.preview img {
 		width: 100%;
 		height: auto;
 		opacity: 0.4;
@@ -79,9 +135,9 @@
 		border-radius: 0rem;
 	}
 
-	.item:hover .img img {
+	.item:hover .preview img {
 		opacity: 1;
-		transform: scale(0.95);
+		transform: scale(1.1);
 		border-radius: 0.5rem;
 	}
 
@@ -99,8 +155,8 @@
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
-		gap: 0.25rem;
+		justify-content: flex-start;
+		gap: 0.5rem;
 	}
 
 	.tag {
@@ -142,7 +198,9 @@
 		cursor: pointer;
 	}
 
-	.btn:hover {
+	.btn:hover,
+	.btn:focus-visible {
 		box-shadow: 0 0 20px var(--color-6);
+		outline: 0;
 	}
 </style>

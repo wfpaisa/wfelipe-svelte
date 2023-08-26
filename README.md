@@ -1,38 +1,38 @@
-# create-svelte
+# Felipe Uribe portfolio http://wfelipe.com
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+"This is the source code of Felipe Uribe's website portfolio. It's open-source, so you can use it if you want. Just remember to mention me if you use it. The website uses the following technologies: Quasar, Vue, Typescript, and Sass."
 
-## Creating a project
+Free software - MIT licensed. Do whatever you want with it, just don't be an asshole please.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Install the dependencies
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Node verision: v18.16.0
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm i
 ```
 
-## Building
-
-To create a production version of your app:
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
-npm run build
+pnpm l
+
 ```
 
-You can preview the production build with `npm run preview`.
+### Lint the files
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+pnpm lint
+```
+
+### Format the files
+
+```bash
+pnpm format
+```
+
+### Build the app for production
+
+```bash
+pnpm build
+```
