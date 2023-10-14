@@ -8,9 +8,9 @@
 	<div class="container">
 		<div class="flex-center">
 			<div>
-				<h2><span class="number">01.</span> About me</h2>
+				<h2 class="scroll-view sv-grow-up"><span class="number">01.</span> About me</h2>
 
-				<p>
+				<p class="scroll-view sv-grow-up">
 					Since I was very young, I have always been a curious person and I have loved understanding
 					how things work. Later, when I discovered the world of computers and familiarized myself
 					with the philosophy of "I am because we all are" (Ubuntu), my interest in open-source
@@ -19,8 +19,10 @@
 					exploring in this field.
 				</p>
 
-				<p>Here are a few *technologies I have been working with recently.</p>
-				<ul>
+				<p class="scroll-view sv-grow-up">
+					Here are a few *technologies I have been working with recently.
+				</p>
+				<ul class="scroll-view sv-grow-up">
 					<li><span class="tag">CSS/Sass</span></li>
 					<li><span class="tag">Javascript/NodeJs</span></li>
 					<li><span class="tag">Vue/React/Angular</span></li>
@@ -34,7 +36,7 @@
 			</div>
 
 			<div>
-				<div class="me">
+				<div class="me scroll-view">
 					<img src={ImgMe} alt="Felipe Uribe" height="341" width="341" />
 				</div>
 			</div>
@@ -83,6 +85,7 @@
 		border-radius: 0.5rem;
 		position: relative;
 		transition: var(--transition);
+		animation-name: sv-fade-in-right;
 	}
 
 	.me:hover {
@@ -113,13 +116,37 @@
 		margin: 0px;
 	}
 
+	li {
+		margin-bottom: 0.5rem;
+	}
+
+	@keyframes sv-fade-in-right {
+		from {
+			opacity: 0;
+			transform: translateX(-100px) scale(1.4);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateX(0) scale(1);
+		}
+	}
+
 	@media (min-width: 900px) {
 		ul {
 			column-count: 2;
 		}
-	}
 
-	li {
-		margin-bottom: 0.5rem;
+		/* @keyframes sv-fade-in-right {
+			from {
+				opacity: 0;
+				transform: translate3d(50px, -140px, 0) rotateZ(-10deg) scale(0.9);
+			}
+
+			to {
+				opacity: 1;
+				transform: translate3d(0, 0, 0) rotateZ(0deg) scale(1);
+			}
+		} */
 	}
 </style>

@@ -1,0 +1,50 @@
+@font-face {
+	font-family: 'Canela Deck';
+	src: local('CanelaDeck-Regular'), url('canela/CanelaDeck-Regular.woff2') format('woff2'),
+		url('canela/CanelaDeck-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Canela Deck';
+	src: local('CanelaDeck-Bold'), url('canela/CanelaDeck-Bold.woff2') format('woff2'),
+		url('canela/CanelaDeck-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Canela Deck';
+	src: local('CanelaDeck-Light'), url('canela/CanelaDeck-Light.woff2') format('woff2'),
+		url('canela/CanelaDeck-Light.woff') format('woff');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Plane';
+	src: url('plane/Plane-Bold.woff2') format('woff2'), url('plane/Plane-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Plane';
+	src: url('plane/Plane-Light.woff2') format('woff2'), url('plane/Plane-Light.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Plane';
+	src: url('plane/Plane.woff2') format('woff2'), url('plane/Plane.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}

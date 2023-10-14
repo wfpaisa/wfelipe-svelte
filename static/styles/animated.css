@@ -129,13 +129,13 @@
 	animation-iteration-count: infinite;
 }
 
-.scrolldown {
-	animation-name: scrolldown;
+.mouse-effect-scrolldown {
+	animation-name: mouse-effect-scrolldown;
 	animation-duration: 2s;
 }
 
 /* Fade in left */
-@keyframes scrolldown {
+@keyframes mouse-effect-scrolldown {
 	from {
 		opacity: 0;
 		transform: translate3d(-10%, 0, 0);
@@ -145,4 +145,47 @@
 		opacity: 1;
 		transform: translate3d(0, -15px, 0);
 	}
+}
+
+/* Scroll animations */
+.scroll-view {
+	animation-fill-mode: both;
+	animation-timing-function: linear;
+	animation-timeline: view(block);
+	animation-range: cover 0 cover 30%;
+	animation-duration: 1ms; /* Firefox requires this to apply the animation */
+}
+
+/* grow */
+@keyframes sv-grow-up {
+	from {
+		transform: translateY(100px) scale(0.9);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0) scale(1);
+		opacity: 1;
+	}
+}
+.sv-grow-up {
+	animation-name: sv-grow-up;
+}
+
+/* grow inline */
+
+@keyframes sv-grow-up-inline {
+	from {
+		transform: translate3d(-2rem, 2rem, 0) scale(0.9);
+		opacity: 0;
+	}
+
+	to {
+		transform: translate3d(0, 0, 0) scale(1);
+		opacity: 1;
+	}
+}
+
+.sv-grow-up-inline {
+	animation-name: sv-grow-up-inline;
 }

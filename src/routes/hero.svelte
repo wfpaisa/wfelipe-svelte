@@ -4,11 +4,11 @@
 <section id="intro">
 	<article class="container">
 		<div class="intro-info">
-			<span class="name animated fadeInLeft delay-1s"> Hi, my name is </span>
-			<h1 class="animated fadeInLeft2 delay-2s">
+			<span class="name animated fadeInLeft delay-2"> Hi, my name is </span>
+			<h1 class="animated fadeInLeft2 delay-3">
 				<b>Felipe Uribe</b>. Bringing ideas to life on the web through coding and design.
 			</h1>
-			<p class="animated fadeInLeft2 delay-3s">
+			<p class="animated fadeInLeft2 delay-4">
 				As a developer who enjoys creating digital experiences in both design and development, I am
 				constantly working on building products that are accessible and human-centered. I firmly
 				believe in the power of technology to improve people's lives, and I always strive to make it
@@ -18,7 +18,7 @@
 	</article>
 
 	<div class="mouse">
-		<span class="animated infinite scrolldown" />
+		<span class="animated infinite mouse-effect-scrolldown" />
 	</div>
 </section>
 
@@ -30,9 +30,26 @@
 		align-items: center;
 		justify-content: center;
 		background-size: 6rem 6rem;
-		background-image: radial-gradient(circle, var(--bg-2) var(--dot-size), transparent 0);
+		background-image: radial-gradient(circle, var(--bg-2) 3px, transparent 0);
 		background-position: center 0;
 		background-attachment: fixed;
+
+		animation-name: zoomAnimation;
+		animation-duration: 1ms;
+		animation-direction: alternate;
+		animation-timeline: scroll(block root);
+		animation-range: 0 100dvh;
+	}
+
+	@keyframes zoomAnimation {
+		0% {
+			background-size: 6rem 6rem;
+			background-position: center 0px;
+		}
+		100% {
+			background-size: 4.8rem 4.8rem;
+			background-position: center 4.8rem;
+		}
 	}
 
 	/* separation bar */

@@ -2,11 +2,7 @@
 	import LayoutHeader from './layout-header.svelte';
 	import LayoutSidebarLeft from './layout-sidebar-left.svelte';
 	import LayoutSidebarRight from './layout-sidebar-right.svelte';
-	import '$lib/styles/normalize.css';
-	import '$lib/styles/font.css';
-	import '$lib/styles/font-icon.css';
 	import '$lib/styles/styles.css';
-	import '$lib/styles/animated.css';
 </script>
 
 <LayoutHeader />
