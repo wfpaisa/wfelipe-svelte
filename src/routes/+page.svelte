@@ -15,6 +15,8 @@
 
 <About />
 
+<div class="dots" />
+
 <Work />
 
 <div class="dots" />
@@ -29,25 +31,26 @@
 		display: block;
 		width: 100%;
 		height: 300px;
-		background-size: 6rem 6rem;
-		background-image: radial-gradient(circle, var(--bg-2) var(--dot-size), transparent 0);
+		background-size: var(--dot-container) var(--dot-container);
+
+		--dot-color: oklch(26% 0.04 var(--hue));
+		background-image: radial-gradient(circle, var(--dot-color) var(--dot-size), transparent 0);
 		background-position: center 0;
 
 		animation-name: zoomAnimation;
 		animation-duration: 1ms;
-		/* animation-direction: alternate; */
-		/* animation-timeline: scroll(block root); */
-		/* animation-range: 0 300px; */
-		/* background-color: var(--color-4); */
-
 		animation: zoomAnimation linear both;
 		animation-timeline: view(block);
 		animation-range: cover 30 cover 70;
+
+		@media (prefers-color-scheme: light) {
+			background-color: black;
+		}
 	}
 
 	@keyframes zoomAnimation {
 		0% {
-			background-size: 6rem 6rem;
+			background-size: var(--dot-container) var(--dot-container);
 			background-position: center 0px;
 		}
 		100% {

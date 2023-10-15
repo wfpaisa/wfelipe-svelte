@@ -57,8 +57,9 @@
 		role="button"
 		tabindex="0"
 		on:keydown={(e) => e.key === 'Enter' && openBiggerPicture()}
+		style:background-image="url({item.image.preview})"
 	>
-		<img src={item.image.preview} alt={item.name} width="1000" height="1200" />
+		<!-- <img src={item.image.preview} alt={item.name} width="1000" height="1200" /> -->
 	</div>
 
 	<h1 class="name">{item.name}</h1>
@@ -104,21 +105,58 @@
 		flex-direction: column;
 		padding: 0px;
 		transition: var(--transition);
-		box-shadow: inset 0 0 0 1px var(--bg-3);
+		box-shadow: 0 0 0 1px var(--border-color-1);
 		break-inside: avoid;
 		margin-bottom: 1rem;
-		border-radius: 0.25rem;
+		border-radius: var(--border-radius-base);
+
+		animation-name: sv-grow-up;
+		animation-fill-mode: both;
+		animation-timing-function: linear;
+		animation-timeline: view(block);
+		animation-range: cover 0 cover 30%;
+		animation-duration: 1ms;
+	}
+
+	@keyframes sv-grow-up {
+		from {
+			transform: translate(0px, 200px) scale(0.9);
+			opacity: 0;
+		}
+
+		to {
+			transform: translate(0px, 0px) scale(1);
+			opacity: 1;
+		}
 	}
 
 	.preview {
 		width: 100%;
 		height: 22rem;
-		background-image: linear-gradient(
-			90deg,
-			rgba(131, 3, 190, 0.2) 0%,
-			rgba(0, 212, 255, 0.4) 100%
-		);
-		overflow: hidden;
+		/* overflow: hidden; */
+		border-radius: var(--border-radius-base);
+
+		background-size: 100% auto;
+		background-position: 0px -200px;
+		background-repeat: no-repeat;
+
+		animation-name: sv-grow-up2;
+		animation-fill-mode: both;
+		animation-timing-function: linear;
+		animation-timeline: view(block);
+		animation-range: cover 30% cover 80%;
+		animation-duration: 1ms; /* Firefox requires this to apply the animation */
+		cursor: pointer;
+	}
+
+	@keyframes sv-grow-up2 {
+		from {
+			background-position: 0px 0px;
+		}
+
+		to {
+			background-position: 0px -200px;
+		}
 	}
 
 	.preview:focus-visible {
@@ -126,25 +164,10 @@
 		outline: 0;
 	}
 
-	.preview img {
-		width: 100%;
-		height: auto;
-		opacity: 0.4;
-		cursor: pointer;
-		transition: var(--transition);
-		border-radius: 0rem;
-	}
-
-	.item:hover .preview img {
-		opacity: 1;
-		transform: scale(1.1);
-		border-radius: 0.5rem;
-	}
-
 	.name {
 		font-size: var(--font-size-base);
 		font-weight: 300;
-		color: var(--text-1);
+		color: var(--color-text);
 		font-family: var(--font-family-body);
 		margin-top: 1rem;
 		padding: 0 1rem;
@@ -172,35 +195,22 @@
 		width: 100%;
 		opacity: 1;
 		display: flex;
-		padding: 1rem 0 0 0;
+		padding: 0.5rem;
 		justify-content: flex-end;
 		gap: 1rem;
 	}
 
-	.btn-custom {
-		background-color: var(--color-complement);
-		color: black;
-		font-weight: bold;
-		letter-spacing: 2px;
-		transition: var(--transition);
-
-		&:hover {
-			transform: scale(1.05, 1.05);
-		}
-	}
-
 	.btn {
-		background-color: var(--color-6);
-		color: var(--bg-1);
+		background-color: var(--color-bg-highlight);
 		padding: 0.5rem 1.5rem;
-		color: var(--text-1);
-		/* border-radius: 88px; */
+		color: white;
+		border-radius: 2rem;
 		cursor: pointer;
 	}
 
 	.btn:hover,
 	.btn:focus-visible {
-		box-shadow: 0 0 20px var(--color-6);
+		box-shadow: 0 0 10px var(--color-bg-highlight);
 		outline: 0;
 	}
 </style>

@@ -50,10 +50,10 @@
 	}
 
 	.socials-icons a {
-		color: var(--color-v-2);
+		color: var(--color-text-highlight);
 	}
 
 	.socials-icons a:hover {
-		color: var(--text-3);
+		transform: scale(1.2);
 	}
 </style>

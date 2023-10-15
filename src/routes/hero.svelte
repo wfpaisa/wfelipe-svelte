@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<section id="intro">
+<section id="intro" class="bg-color">
 	<article class="container">
 		<div class="intro-info">
 			<span class="name animated fadeInLeft delay-2"> Hi, my name is </span>
@@ -29,8 +29,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-size: 6rem 6rem;
-		background-image: radial-gradient(circle, var(--bg-2) 3px, transparent 0);
+		background-size: var(--dot-container) var(--dot-container);
+		background-image: radial-gradient(circle, var(--dot-color) var(--dot-size), transparent 0);
 		background-position: center 0;
 		background-attachment: fixed;
 
@@ -43,7 +43,7 @@
 
 	@keyframes zoomAnimation {
 		0% {
-			background-size: 6rem 6rem;
+			background-size: var(--dot-container) var(--dot-container);
 			background-position: center 0px;
 		}
 		100% {
@@ -66,7 +66,7 @@
 	}
 
 	.name {
-		color: var(--text-3);
+		color: var(--neon-cyan);
 		letter-spacing: 0;
 		font-weight: normal;
 		display: inline-block;
@@ -78,17 +78,33 @@
 		margin: 0px;
 		line-height: var(--font-lineheight-md);
 		font-size: var(--font-size-xxxl);
-
-		background: linear-gradient(to right, var(--text-2), var(--text-v-2));
-		-webkit-background-clip: text;
 		background-attachment: fixed;
+		text-wrap: balance;
+		background: linear-gradient(
+			to top right,
+			var(--neon-green) calc(19% - 1px),
+			transparent 19%,
+			transparent calc(20% - 1px),
+			var(--neon-pink) 20%,
+			var(--neon-pink) calc(39% - 1px),
+			transparent 39%,
+			transparent calc(40% - 1px),
+			var(--neon-cyan) 40%,
+			var(--neon-cyan) calc(59% - 1px),
+			transparent 59%,
+			transparent calc(60% - 1px),
+			var(--neon-pink) 60%,
+			var(--neon-pink) calc(79% - 1px),
+			transparent 79%,
+			transparent calc(80% - 1px),
+			var(--neon-green) 80%
+		);
+		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
 	}
 
-	b {
-		color: var(--text-3);
-	}
+	/* b {} */
 
 	p {
 		font-size: var(--font-size-md);
@@ -100,9 +116,9 @@
 	}
 
 	.mouse {
-		background-color: var(--bg-2);
+		background-color: oklch(26% 0.04 var(--hue));
 		border-radius: 8px;
-		border: 1px solid var(--text-1);
+		border: 1px solid var(--color-text);
 		bottom: 40px;
 		box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
 		height: 30px;
@@ -116,7 +132,7 @@
 		display: inline-block;
 		height: 8px;
 		width: 4px;
-		background: var(--text-1);
+		background: var(--color-text);
 		position: absolute;
 		left: 50%;
 		bottom: 2px;

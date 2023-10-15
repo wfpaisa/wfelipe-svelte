@@ -101,6 +101,13 @@
 	article .project-img .project-img-in {
 		position: relative;
 		z-index: 1;
+		box-shadow: 0 0 1px 1px oklch(88% 0.04 var(--hue) / 20%);
+		border-radius: var(--border-radius-base);
+		transition: var(--transition);
+
+		&:hover {
+			transform: rotateZ(4deg);
+		}
 	}
 
 	article .project-img .project-img-in::after {
@@ -108,13 +115,16 @@
 		width: 100%;
 		height: 100%;
 		position: absolute;
-		box-shadow: 0 0 0 4px var(--color-6);
 		z-index: 1;
 		top: 0%;
 		left: 0%;
-		transform: skew(0deg, 4deg);
 		border-radius: 0.5rem;
-		background-color: var(--color-7);
+		background-color: oklch(88% 0.04 var(--hue) / 20%);
+		transition: var(--transition);
+	}
+
+	article .project-img:hover .project-img-in::after {
+		transform: rotateZ(-8deg);
 	}
 
 	article .project-img .project-img-in img {
@@ -160,7 +170,7 @@
 	}
 
 	article .project-info .project-info-in .project-desc a {
-		color: var(--text-2);
+		color: var(--color-text-highlight);
 		display: inline-block;
 		font-size: var(--font-size-md);
 		margin: 0.5rem 0;
@@ -192,7 +202,7 @@
 	}
 
 	.dir-lf .project-info-in {
-		border-bottom: 1px solid rgba(18, 3, 3);
+		/* border-bottom: 1px solid rgba(18, 3, 3); */
 		/* box-shadow: 0 0.2rem 0.5rem var(--color-8); */
 	}
 
@@ -202,7 +212,7 @@
 
 	.dir-rl .project-info-in {
 		text-align: right;
-		border-bottom: 1px solid rgba(18, 3, 3);
+		/* border-bottom: 1px solid rgba(18, 3, 3); */
 		/* box-shadow: 0 0.2rem 0.5rem var(--color-8); */
 	}
 
@@ -218,9 +228,9 @@
 		}
 
 		.dir-lf .project-info-in {
-			border-left: 1px solid rgba(18, 3, 3);
+			/* border-left: 1px solid rgba(18, 3, 3); */
 			border-bottom: none;
-			box-shadow: -0.2rem 0 0.5rem var(--color-8);
+			/* box-shadow: 0 0 1px 1px oklch(88% 0.04 var(--hue) / 20%); */
 		}
 
 		.dir-rl {
@@ -228,9 +238,9 @@
 		}
 
 		.dir-rl .project-info-in {
-			border-right: 1px solid rgba(18, 3, 3);
+			/* border-right: 1px solid rgba(18, 3, 3); */
 			border-bottom: none;
-			box-shadow: 0.2rem 0 0.5rem var(--color-8);
+			/* box-shadow: 0 0 1px 1px oklch(88% 0.04 var(--hue) / 20%); */
 		}
 	}
 </style>

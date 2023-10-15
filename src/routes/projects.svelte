@@ -94,24 +94,6 @@
 		position: relative;
 		z-index: 1;
 
-		/* &::after {
-			padding-top: 0rem;
-			content: 'Projects';
-			font-size: 18rem;
-			position: absolute;
-			text-align: center;
-			z-index: -1;
-			top: 0px;
-			width: 80%;
-			height: 100%;
-			overflow: hidden;
-			left: 10%;
-			line-break: anywhere;
-			color: var(--bg-3);
-			font-family: var(--font-family-title);
-			opacity: 0.2;
-		} */
-
 		&::before {
 			content: '';
 			position: absolute;
@@ -121,13 +103,7 @@
 			height: 90%;
 			left: 0px;
 			line-break: anywhere;
-			/* background-image: linear-gradient(
-				45deg,
-				oklch(80% 0.2 var(--hue) / 0%) 0%,
-				oklch(50% 0.27 var(--hue-v) / 6%) 80%
-			); */
-			background-color: oklch(40% 0.2 var(--hue) / 10%);
-
+			background-color: oklch(48% 0.04 var(--hue) / 10%);
 			transform: skew(0, 3deg);
 		}
 

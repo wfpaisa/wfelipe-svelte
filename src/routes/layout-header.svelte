@@ -66,6 +66,10 @@
 		padding: 0 1rem;
 		column-gap: 1rem;
 		width: 100vw;
+
+		@media (prefers-color-scheme: light) {
+			background-color: rgba(255, 255, 255, 0.4);
+		}
 	}
 
 	.logo {
@@ -75,14 +79,14 @@
 	.logo .icon-logo {
 		font-size: 2rem;
 		transition: var(--transition);
-		color: var(--text-2);
+		color: var(--color-text-highlight);
 		cursor: pointer;
 		display: inline-flex;
 		position: relative;
 	}
 
 	.logo .icon-logo:hover {
-		color: var(--text-3);
+		transform: scale(1.2);
 	}
 
 	nav {
@@ -91,7 +95,7 @@
 
 	nav a {
 		border-bottom: 1px solid transparent;
-		color: var(--text-1);
+		color: var(--color-text);
 		display: inline-block;
 		font-size: var(--font-size-sm);
 		font-weight: 300;
@@ -108,7 +112,7 @@
 	}
 
 	nav a:hover {
-		color: var(--text-2);
+		color: var(--color-text-highlight);
 	}
 
 	nav a::after {
@@ -134,7 +138,7 @@
 	}
 
 	nav a span {
-		color: var(--text-2);
+		color: var(--color-text-highlight);
 		margin-right: -4px;
 	}
 

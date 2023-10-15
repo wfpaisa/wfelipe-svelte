@@ -77,7 +77,7 @@
 		content: '';
 		height: 100%;
 		width: 1px;
-		background-color: var(--text-2);
+		background-color: var(--color-text-highlight);
 		position: absolute;
 		left: 1.5rem;
 		z-index: 1;
@@ -89,7 +89,7 @@
 	}
 
 	p i {
-		color: var(--text-2);
+		color: var(--color-text-highlight);
 		margin-right: 0.5rem;
 		position: absolute;
 		top: 0.3rem;
@@ -101,8 +101,8 @@
 	}
 
 	p i::after {
-		background: var(--bg-1);
-		border: 1px solid var(--text-2);
+		backdrop-filter: blur(8px);
+		border: 1px solid var(--color-text-highlight);
 		border-left-width: 4px;
 		border-radius: 0.2rem;
 		content: '';

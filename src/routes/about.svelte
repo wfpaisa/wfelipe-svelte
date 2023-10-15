@@ -51,13 +51,6 @@
 		min-height: 100dvh;
 		padding: var(--layout-header) 2rem 2rem 2rem;
 		position: relative;
-		/* background-image: radial-gradient(400px 400px at 70% 50%, var(--color-9) 0%, transparent 100%); */
-		background-image: linear-gradient(
-			45deg,
-			oklch(80% 0.2 var(--hue) / 0%) 0%,
-			oklch(50% 0.27 var(--hue-v) / 6%) 80%
-		);
-		background-attachment: fixed;
 	}
 
 	.container {
@@ -79,7 +72,7 @@
 	}
 
 	.me {
-		background-color: var(--text-2);
+		background-color: var(--color-text-highlight);
 		display: inline-block;
 		opacity: 0.4;
 		border-radius: 0.5rem;
@@ -98,7 +91,6 @@
 		filter: grayscale(100%);
 		display: block;
 		mix-blend-mode: multiply;
-		background-color: var(--bg-1);
 		border-radius: 0.5rem;
 		height: auto;
 	}
@@ -110,7 +102,7 @@
 
 	ul {
 		font-size: var(--font-size-sm);
-		color: var(--text-2);
+		color: var(--color-text-highlight);
 		list-style: none;
 		padding: 0px;
 		margin: 0px;
@@ -148,5 +140,14 @@
 				transform: translate3d(0, 0, 0) rotateZ(0deg) scale(1);
 			}
 		} */
+	}
+
+	h2 + p::first-letter {
+		font-size: 3.5rem;
+		font-weight: bold;
+		/* color: var(--neon-pink); */
+		float: left;
+		line-height: 3rem;
+		margin-right: 0.25rem;
 	}
 </style>

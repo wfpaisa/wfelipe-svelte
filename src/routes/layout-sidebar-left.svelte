@@ -23,7 +23,7 @@
 	}
 
 	.link-content::after {
-		border-left: 1px solid var(--text-v-1);
+		border-left: 1px solid var(--color-text-highlight);
 		content: '';
 		display: inline-block;
 		height: 8rem;
@@ -32,7 +32,7 @@
 	}
 
 	.link-email {
-		color: var(--text-v-1);
+		color: var(--color-text-highlight);
 		font-size: var(--font-size-sm);
 		font-weight: 300;
 		letter-spacing: 0.2rem;
