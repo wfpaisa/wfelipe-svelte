@@ -9,8 +9,8 @@
 	const i18n = getI18n();
 	const item = $derived(items[index]);
 
-	function openFromFrame(progress: number, origin: HTMLElement) {
-		openReader(items, index, { progress, origin });
+	function openFromFrame(offset: number, origin: HTMLElement) {
+		openReader(items, index, { offset, origin });
 	}
 
 	function openVideo(e: MouseEvent) {

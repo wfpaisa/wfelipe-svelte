@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getI18n } from '$lib/i18n';
-	import type { ReaderItem } from './reader';
+	import { prefetch, type ReaderItem } from './reader';
 
 	const i18n = getI18n();
 
@@ -12,7 +12,8 @@
 		item: ReaderItem;
 		/** Frame height / width */
 		aspect?: number;
-		onopen: (progress: number, origin: HTMLElement) => void;
+		/** offset: 0..1 of the screenshot's height at the top edge of the frame */
+		onopen: (offset: number, origin: HTMLElement) => void;
 	} = $props();
 
 	let frame: HTMLAnchorElement | undefined = $state();
@@ -41,15 +42,23 @@
 		scrub = null;
 	}
 
-	/** Where the frame is showing the site right now; the ambient drift counts as the top */
-	function currentProgress() {
-		return scrub ?? 0;
+	/** Where the frame is showing the site right now, drift and scrub included */
+	function currentOffset() {
+		const img = frame?.querySelector('img');
+		if (!frame || !img) return 0;
+		const shift = frame.getBoundingClientRect().top - img.getBoundingClientRect().top;
+		return Math.max(0, shift / img.getBoundingClientRect().height);
+	}
+
+	/** Intent to open: start fetching the full screenshot so the zoom lands on it */
+	function warm() {
+		prefetch(item.full.src);
 	}
 
 	function onclick(e: MouseEvent) {
 		if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || !frame) return;
 		e.preventDefault();
-		onopen(currentProgress(), frame);
+		onopen(currentOffset(), frame);
 	}
 </script>
 
@@ -65,6 +74,8 @@
 	aria-label={i18n.t.reader.readFull(item.name)}
 	{onpointermove}
 	{onpointerleave}
+	onpointerenter={warm}
+	onfocus={warm}
 	{onclick}
 >
 	<img

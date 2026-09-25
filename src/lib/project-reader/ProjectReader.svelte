@@ -2,7 +2,14 @@
 	import { flushSync, onMount } from 'svelte';
 	import Icon from './Icon.svelte';
 	import { getI18n } from '$lib/i18n';
-	import { registerReader, type OpenOptions, type ReaderItem, type ReaderTab } from './reader';
+	import {
+		decoded,
+		prefetch,
+		registerReader,
+		type OpenOptions,
+		type ReaderItem,
+		type ReaderTab
+	} from './reader';
 
 	const i18n = getI18n();
 	const t = $derived(i18n.t.reader);
@@ -16,9 +23,20 @@
 	let index = $state(0);
 	let tab: ReaderTab = $state('site');
 	let loaded = $state(false);
-	/** Drops the stage's transition name while the dialog fades out, so the card can take it */
-	let closing = $state(false);
 	let failed = $state(false);
+	/**
+	 * Stand-in for the visible part of the screenshot while the card morphs in or out.
+	 * The scrolling stage is wider and taller than what shows of the site, so it cannot
+	 * be the morph target itself without distorting the zoom.
+	 */
+	let morph: {
+		top: number;
+		left: number;
+		width: number;
+		height: number;
+		offset: number;
+		src: string;
+	} | null = $state(null);
 	/** Visible part of the screenshot, as fractions of its height */
 	let lens = $state({ top: 0, height: 1 });
 
@@ -61,52 +79,93 @@
 		frameRequest = requestAnimationFrame(updateLens);
 	}
 
-	function scrollToProgress(progress: number) {
+	/** offset: 0..1 of the screenshot's height at the top of the stage */
+	function scrollToOffset(offset: number) {
 		if (!stage || !shot) return;
-		const range = Math.max(0, shot.offsetHeight - stage.clientHeight);
-		stage.scrollTop = shot.offsetTop + progress * range;
+		stage.scrollTop = shot.offsetTop + offset * shot.offsetHeight;
 		updateLens();
+	}
+
+	/** The part of the screenshot on screen right now, with what it is painting */
+	function measureMorph() {
+		if (!stage || !shot || !item) return null;
+		const view = stage.getBoundingClientRect();
+		const box = shot.getBoundingClientRect();
+		const top = Math.max(box.top, view.top);
+		const bottom = Math.min(box.bottom, view.bottom);
+		if (bottom <= top) return null;
+		return {
+			top,
+			left: box.left,
+			width: box.width,
+			height: bottom - top,
+			offset: box.top - top,
+			src: loaded ? item.full.src : item.strip
+		};
 	}
 
 	function show(list: ReaderItem[], i: number, options: OpenOptions) {
 		items = list;
 		index = i;
-		closing = false;
 		tab = options.tab ?? 'site';
-		loaded = false;
+		loaded = decoded.has(list[i].full.src);
 		failed = false;
 		flushSync();
 		if (origin) origin.style.viewTransitionName = '';
 		if (!dialog?.open) dialog?.showModal();
 		document.documentElement.classList.add('reader-open');
-		scrollToProgress(options.progress ?? 0);
+		scrollToOffset(options.offset ?? 0);
 		stage?.focus({ preventScroll: true });
 	}
 
-	function open(list: ReaderItem[], i: number, options: OpenOptions) {
+	/** Longest wait for the full screenshot before the zoom starts anyway */
+	const DECODE_BUDGET = 250;
+
+	async function open(list: ReaderItem[], i: number, options: OpenOptions) {
 		origin = options.origin ?? null;
 		originIndex = i;
+		const site = (options.tab ?? 'site') === 'site';
 
-		if (origin && canAnimate()) {
-			// Preserve the source frame so the view transition can morph it into the reader stage.
-			origin.style.viewTransitionName = 'reader-shot';
-			transition(() => show(list, i, options));
-		} else {
+		if (!origin || !canAnimate()) {
 			show(list, i, options);
+			return;
 		}
+
+		// Zoom into the sharp screenshot instead of swapping it in halfway
+		if (site) {
+			await Promise.race([
+				prefetch(list[i].full.src),
+				new Promise((resolve) => setTimeout(resolve, DECODE_BUDGET))
+			]);
+		}
+
+		const source = origin;
+		source.style.viewTransitionName = 'reader-shot';
+		transition(() => {
+			show(list, i, options);
+			morph = site ? measureMorph() : null;
+			flushSync();
+		}).finally(() => {
+			source.style.viewTransitionName = '';
+			morph = null;
+		});
 	}
 
 	function close() {
 		const target = index === originIndex ? origin : null;
 		const hide = () => {
-			closing = true;
+			morph = null;
 			flushSync();
 			dialog?.close();
 			document.documentElement.classList.remove('reader-open');
 			if (target) target.style.viewTransitionName = 'reader-shot';
 		};
 
-		if (target && tab === 'site' && canAnimate()) {
+		const from = target && tab === 'site' && canAnimate() ? measureMorph() : null;
+		if (target && from) {
+			// The visible part of the site shrinks back into the card
+			morph = from;
+			flushSync();
 			transition(hide).finally(() => {
 				target.style.viewTransitionName = '';
 				target.focus({ preventScroll: true });
@@ -121,7 +180,7 @@
 	function change(update: () => void) {
 		const run = () => {
 			update();
-			loaded = false;
+			loaded = decoded.has(items[index].full.src);
 			failed = false;
 			flushSync();
 			if (stage) stage.scrollTop = 0;
@@ -257,7 +316,7 @@
 			<Icon name="close" />
 		</button>
 
-		<div class="body" class:with-video={tab === 'video'} class:closing>
+		<div class="body" class:with-video={tab === 'video'}>
 			{#if tab === 'site'}
 				<!-- Focusable so the screenshot scrolls with the keyboard (WCAG 2.1.1) -->
 				<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -285,7 +344,10 @@
 								width={item.full.width}
 								height={item.full.height}
 								decoding="async"
-								onload={() => (loaded = true)}
+								onload={() => {
+									decoded.add(item.full.src);
+									loaded = true;
+								}}
 								onerror={() => (failed = true)}
 							/>
 						</figure>
@@ -351,7 +413,7 @@
 					<span class="mini-read">{read}%</span>
 				</div>
 			{:else}
-				<div class="video">
+				<div class="video" class:morph-target={!morph}>
 					<iframe
 						src="https://www.youtube-nocookie.com/embed/{item.youtubeId}?autoplay=1&rel=0"
 						title={t.videoTitle(item.name)}
@@ -362,23 +424,45 @@
 			{/if}
 		</div>
 	{/if}
+
+	{#if morph}
+		<div
+			class="morph"
+			aria-hidden="true"
+			style:top="{morph.top}px"
+			style:left="{morph.left}px"
+			style:width="{morph.width}px"
+			style:height="{morph.height}px"
+		>
+			<img src={morph.src} alt="" style:translate="0 {morph.offset}px" />
+		</div>
+	{/if}
 </dialog>
 
 <style>
+	/* Keep the scrollbar's space: if the viewport width changes, the browser drops
+	   the view transition (and the page behind would jump sideways) */
 	:global(html.reader-open) {
 		overflow: hidden;
+		scrollbar-gutter: stable;
 	}
 
+	/* Card and reader show the same page at the same spot, only wider: both images
+	   scale by width from the top, and the group clips them, so the zoom is a window
+	   opening onto the page instead of two pictures swapping. */
 	:global(::view-transition-group(reader-shot)) {
-		animation-duration: 0.55s;
+		overflow: clip;
+		border-radius: var(--border-radius-base);
+		animation-duration: 0.5s;
 		animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
 	:global(::view-transition-old(reader-shot)),
 	:global(::view-transition-new(reader-shot)) {
-		height: 100%;
-		object-fit: cover;
-		object-position: top;
+		width: 100%;
+		height: auto;
+		animation-duration: 0.3s;
+		animation-timing-function: ease-out;
 	}
 
 	.reader {
@@ -572,13 +656,8 @@
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) 9rem;
 		min-height: 0;
-		view-transition-name: reader-shot;
 		background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 0);
 		background-size: 2rem 2rem;
-	}
-
-	.body.closing {
-		view-transition-name: none;
 	}
 
 	.body.with-video {
@@ -586,6 +665,8 @@
 	}
 
 	.stage {
+		/* offsetParent for the screenshot, so offsetTop is measured inside the scroll */
+		position: relative;
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		scroll-behavior: auto;
@@ -620,13 +701,34 @@
 		max-width: none;
 	}
 
-	/* Light strip fills the box while the full screenshot loads */
+	/* Light strip fills the box while the full screenshot loads: the same image the
+	   card shows, so the zoom never lands on a blur */
 	.shot-light {
 		position: absolute;
 		inset: 0;
+		width: 100%;
 		height: 100%;
-		filter: blur(6px);
-		transform: scale(1.02);
+	}
+
+	.morph {
+		position: fixed;
+		z-index: 1;
+		overflow: hidden;
+		border-radius: var(--border-radius-base) var(--border-radius-base) 0 0;
+		pointer-events: none;
+		view-transition-name: reader-shot;
+	}
+
+	.morph img {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-width: none;
+	}
+
+	/* Without a screenshot to zoom into (video tab), the card morphs into the player */
+	.video.morph-target {
+		view-transition-name: reader-shot;
 	}
 
 	.shot-full {

@@ -22,8 +22,8 @@ export type ReaderTab = 'site' | 'video';
 
 export interface OpenOptions {
 	tab?: ReaderTab;
-	/** 0..1, where the card was showing the site; the reader opens at the same place */
-	progress?: number;
+	/** 0..1 of the screenshot's height at the top edge of the card; the reader opens at the same place */
+	offset?: number;
 	/** Element that morphs into the reader (view transition) and gets focus back on close */
 	origin?: HTMLElement | null;
 }
@@ -35,6 +35,26 @@ let handler: OpenHandler | null = null;
 /** Called once by <ProjectReader /> so cards can open it without prop drilling. */
 export function registerReader(fn: OpenHandler | null) {
 	handler = fn;
+}
+
+const decodes = new Map<string, Promise<void>>();
+/** Screenshots ready to paint without a decode */
+export const decoded = new Set<string>();
+
+/** Downloads and decodes a full screenshot ahead of time (hover, focus, open) */
+export function prefetch(src: string): Promise<void> {
+	let task = decodes.get(src);
+	if (!task) {
+		const img = new Image();
+		img.decoding = 'async';
+		img.src = src;
+		task = img.decode().then(
+			() => void decoded.add(src),
+			() => void decodes.delete(src)
+		);
+		decodes.set(src, task);
+	}
+	return task;
 }
 
 export function openReader(items: ReaderItem[], index: number, options: OpenOptions = {}) {

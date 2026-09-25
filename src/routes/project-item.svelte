@@ -8,8 +8,8 @@
 
 	const small = $derived(project.images.small);
 
-	function onopen(progress: number, origin: HTMLElement) {
-		openReader(items, index, { progress, origin });
+	function onopen(offset: number, origin: HTMLElement) {
+		openReader(items, index, { offset, origin });
 	}
 </script>
 
