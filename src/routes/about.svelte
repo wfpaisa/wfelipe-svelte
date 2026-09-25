@@ -18,7 +18,7 @@
 				<p class="scroll-view sv-grow-up">{i18n.t.about.stack}</p>
 				<ul class="scroll-view sv-grow-up">
 					<li><span class="tag">CSS/Sass</span></li>
-					<li><span class="tag">Javascript/NodeJs</span></li>
+					<li><span class="tag">JavaScript/Node.js</span></li>
 					<li><span class="tag">Vue/React/Angular</span></li>
 					<li><span class="tag">Strapi</span></li>
 					<li><span class="tag">HTML</span></li>

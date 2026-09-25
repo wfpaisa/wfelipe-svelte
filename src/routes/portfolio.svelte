@@ -9,7 +9,7 @@
 	const items: IPortfolioItem[] = [
 		{
 			name: 'Monte',
-			tags: ['Javascript', 'Prestashop', 'CSS', 'HTML', 'PHP'],
+			tags: ['JavaScript', 'PrestaShop', 'CSS', 'HTML', 'PHP'],
 			image: {
 				preview: '/images/projects/monte/monte-preview.webp',
 				big: '/images/projects/monte/monte.webp',
@@ -20,7 +20,7 @@
 		},
 		{
 			name: 'Ecomodisimos - landing',
-			tags: ['Javascript', 'Vtex', 'HTML', 'CSS'],
+			tags: ['JavaScript', 'VTEX', 'HTML', 'CSS'],
 			image: {
 				preview: '/images/projects/comodisimos/ecomodisimos-preview.webp',
 				big: '/images/projects/comodisimos/ecomodisimos.webp',
@@ -32,7 +32,7 @@
 		},
 		{
 			name: 'Hogar universal',
-			tags: ['Javascript', 'Drupal', 'CSS', 'HTML', 'PHP'],
+			tags: ['JavaScript', 'Drupal', 'CSS', 'HTML', 'PHP'],
 			image: {
 				preview: '/images/projects/universal/universal-preview.webp',
 				big: '/images/projects/universal/universal.webp',
@@ -43,7 +43,7 @@
 		},
 		{
 			name: 'Comodisimos - Web',
-			tags: ['Javascript', 'React', 'Design', 'Vtex', 'HTML', 'CSS'],
+			tags: ['JavaScript', 'React', 'Design', 'VTEX', 'HTML', 'CSS'],
 			image: {
 				preview: '/images/projects/comodisimos/comodisimos-preview.webp',
 				big: '/images/projects/comodisimos/comodisimos.webp',
@@ -66,7 +66,7 @@
 		},
 		{
 			name: 'Codigital',
-			tags: ['Javascript', 'Prestashop', 'Drupal', 'CSS', 'HTML', 'Angular'],
+			tags: ['JavaScript', 'PrestaShop', 'Drupal', 'CSS', 'HTML', 'Angular'],
 			image: {
 				preview: '/images/projects/codigital/codigital-preview.webp',
 				big: '/images/projects/codigital/codigital.webp',
@@ -78,7 +78,7 @@
 		},
 		{
 			name: 'Ostinata',
-			tags: ['Javascript', 'CSS', 'HTML', 'PHP'],
+			tags: ['JavaScript', 'CSS', 'HTML', 'PHP'],
 			image: {
 				preview: '/images/projects/ostinatta/ostinatta-preview.webp',
 				big: '/images/projects/ostinatta/ostinatta.webp',
@@ -90,7 +90,7 @@
 		},
 		{
 			name: 'Todo en Artes',
-			tags: ['Docker', 'Javascript', 'Design', 'Prestashop', 'PHP', 'CSS'],
+			tags: ['Docker', 'JavaScript', 'Design', 'PrestaShop', 'PHP', 'CSS'],
 			image: {
 				preview: '/images/projects/todo-en-artes/todoenartes-preview.webp',
 				big: '/images/projects/todo-en-artes/todoenartes.webp',
@@ -101,7 +101,7 @@
 		},
 		{
 			name: 'El Bellanita',
-			tags: ['Javascript', 'Drupal', 'CSS', 'HTML', 'PHP'],
+			tags: ['JavaScript', 'Drupal', 'CSS', 'HTML', 'PHP'],
 			image: {
 				preview: '/images/projects/el-bellanita/el-bellanita-preview.webp',
 				big: '/images/projects/el-bellanita/el-bellanita.webp',
@@ -112,7 +112,7 @@
 		},
 		{
 			name: 'Comodisimos - POS',
-			tags: ['Vue', 'Javascript', 'Docker', 'Design', 'HTML', 'CSS', 'InfluxDB'],
+			tags: ['Vue', 'JavaScript', 'Docker', 'Design', 'HTML', 'CSS', 'InfluxDB'],
 			image: {
 				preview: '/images/projects/comodisimos/comodisimos-pos-preview.webp',
 				big: '/images/projects/comodisimos/comodisimos-pos.webp',

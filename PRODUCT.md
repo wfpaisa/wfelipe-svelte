@@ -8,26 +8,26 @@ web
 
 ## Users
 
-Primary: potential freelance clients looking for someone to design and build their website. They arrive at the portfolio to judge whether Felipe's past work matches what they need, then decide whether to get in touch.
+Primary: potential clients looking for someone to design and build their website. They visit the portfolio to decide whether Felipe's previous work matches their needs and whether to get in touch.
 
 ## Product Purpose
 
-Personal portfolio of Felipe Uribe (wfelipe.com): a web developer and designer who works on both design and development. Success is a freelance client contacting him (hi@wfelipe.com) after seeing the work.
+Felipe Uribe's personal portfolio (wfelipe.com). Felipe is a web developer and designer who handles both design and development. Success means a potential client contacts him at hi@wfelipe.com after reviewing his work.
 
 ## Positioning
 
-One person who designs and builds the whole thing: UI design, front-end, servers and launch. The work spans 14 years and more than 300 websites (stated in site copy), plus open-source desktop design (Plane icon theme, Plane GTK theme).
+One person who handles the entire process: interface design, front-end development, servers, and launch. His experience spans 14 years and more than 300 websites, as stated on the site, plus open-source desktop design projects such as Plane Icon Theme and Plane GTK Theme.
 
 ## Capabilities and Constraints
 
 - Single-page SvelteKit 2 / Svelte 5 site, prerendered, deployed on Cloudflare.
 - Sections: hero, 01. About, 02. Work, 03. Projects (client work), open-source projects.
-- Content is in English.
+- Content is available in English and Spanish.
 
 ## Evidence on Hand
 
-- 10 client projects, each with name, technology tags, a preview crop and a full-page screenshot (`static/images/projects/*`, very tall, e.g. 1878×12857), and for 5 of them a YouTube walkthrough video.
-- 2 open-source projects (Icon theme, Plane GTK theme) with description, tags, preview + full image, GitHub and gnome-look links.
+- 10 client projects, each with a name, technology tags, a preview crop, and a full-page screenshot (`static/images/projects/*`; some are very tall, such as 1878 × 12857). Five projects also include a YouTube walkthrough video.
+- 2 open-source projects (Icon Theme and Plane GTK Theme), each with a description, tags, preview and full-size images, and links to GitHub and GNOME-Look.org.
 - Not available, do not fabricate: project year, role per project, live URLs, client names beyond project names, testimonials, results or metrics.
 
 ## Product Principles

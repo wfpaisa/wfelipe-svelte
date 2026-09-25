@@ -19,7 +19,7 @@
 		}
 	});
 
-	// Keep <html lang> right when switching language without a full reload
+	// Keep <html lang> in sync when switching languages without a full reload.
 	$effect(() => {
 		document.documentElement.lang = locale;
 	});

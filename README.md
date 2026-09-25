@@ -1,37 +1,37 @@
-# Felipe Uribe portfolio http://wfelipe.com
+# Felipe Uribe's portfolio
 
-"This is the source code of Felipe Uribe's website portfolio. It's open-source, so you can use it if you want. Just remember to mention me if you use it. The website uses the following technologies: Quasar, Vue, Typescript, and Sass."
+This repository contains the source code for [Felipe Uribe's portfolio](http://wfelipe.com). It is open source, so you may reuse it with attribution. The site is built with SvelteKit, Svelte, TypeScript, and CSS.
 
-Free software - MIT licensed. Do whatever you want with it, just don't be an asshole please.
+This project is free software released under the MIT License. You may use and modify it, but please be respectful and provide attribution.
 
-## Install the dependencies
+## Install dependencies
 
-Node version: >= 22.12 (required by Vite 8)
+Node.js 22.13 or later is required.
 
 ```bash
 bun install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Start the development server
 
 ```bash
 bun run l
 
 ```
 
-### Lint the files
+### Check code quality
 
 ```bash
 bun run lint
 ```
 
-### Format the files
+### Format the code
 
 ```bash
 bun run format
 ```
 
-### Build the app for production
+### Build for production
 
 ```bash
 bun run build

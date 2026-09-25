@@ -26,7 +26,7 @@
 					icon: 'icon-logo-tux'
 				}
 			],
-			tags: ['Design', 'SVG', 'Javascript'],
+			tags: ['Design', 'SVG', 'JavaScript'],
 			images: {
 				small: {
 					src: '/images/projects/icon-theme/icon-theme.webp',
@@ -48,7 +48,7 @@
 			name: 'Plane GTK theme',
 			position: 'dir-rl',
 			description: i18n.t.projects.planeTheme,
-			tags: ['CSS', 'SASS', 'Javascript', 'Svg', 'Design'],
+			tags: ['CSS', 'Sass', 'JavaScript', 'SVG', 'Design'],
 			images: {
 				small: {
 					src: '/images/projects/plane-theme/plane-theme-s.webp',

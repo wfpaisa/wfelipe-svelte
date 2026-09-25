@@ -23,33 +23,33 @@ export const en = {
 	},
 	hero: {
 		greeting: 'Hi, my name is',
-		title: 'Bringing ideas to life on the web through coding and design.',
+		title: 'I bring ideas to life on the web through code and design.',
 		intro:
-			"As a developer who enjoys creating digital experiences in both design and development, I am constantly working on building products that are accessible and human-centered. I firmly believe in the power of technology to improve people's lives, and I always strive to make it more inclusive and user-friendly."
+			"I am a developer who enjoys designing and building digital experiences. I create accessible, human-centered products because I believe technology can improve people's lives when it is inclusive and easy to use."
 	},
 	about: {
 		title: 'About me',
-		body: 'Since I was very young, I have always been a curious person and I have loved understanding how things work. Later, when I discovered the world of computers and familiarized myself with the philosophy of "I am because we all are" (Ubuntu), my interest in open-source software became a true passion. I love the idea of being able to modify and adapt technology to my needs and preferences, and that drives me to continue learning and exploring in this field.',
-		stack: 'Here are a few *technologies I have been working with recently.'
+		body: 'I have been curious about how things work from an early age. When I discovered computers and the Ubuntu philosophy—“I am because we all are”—my interest in open-source software became a passion. The freedom to modify technology and adapt it to my needs inspires me to keep learning and exploring.',
+		stack: 'Here are some of the *technologies I have worked with recently.'
 	},
 	work: {
 		title: 'Work',
 		items: [
-			'Currently, in my free time, I experiment with new technologies, decorate interfaces and iconography for Linux operating systems, and contribute to open-source. Professionally, I contribute to the development of web application interfaces for PuntosColombia.',
-			'Previously, I created the design for the web, implemented servers in containers, and created the design and front-end development for the sales and commercial management system for Comodisimos.',
-			'Before that, I created the design, strategy, development, server implementation, and production launch for the website for Todo en Artes.',
-			'Before all of this, I worked at two digital marketing agencies: the first, "WebCreativa," where I honed my web development skills, discovered my passion for user interfaces, and learned a lot about design and user experience. At the second agency I worked at, "CoDigital," I was able to apply much of my knowledge by developing products in more detail and focusing on experiences.',
-			'However, during these 14 years, when work allowed me, I have worked as a freelancer, discovering and applying all my motivation in the projects I have been involved in.'
+			'In my free time, I experiment with new technologies, customize interfaces and icons for Linux, and contribute to open-source projects. Professionally, I help develop web application interfaces for PuntosColombia.',
+			'Previously, I designed the website, deployed containerized servers, and designed and developed the front end of the sales and business management system for Comodisimos.',
+			'Before that, I handled the strategy, design, development, server deployment, and production launch of the Todo en Artes website.',
+			'Earlier in my career, I worked at two digital marketing agencies. At WebCreativa, I honed my web development skills, discovered my passion for user interfaces, and learned about design and user experience. At CoDigital, I applied that knowledge to build more polished, experience-focused products.',
+			'Throughout these 14 years, I have also worked as a freelancer whenever time allowed, bringing dedication and enthusiasm to every project.'
 		]
 	},
 	projects: {
 		title: 'Projects',
 		intro:
-			'In these 14 years, I have helped bring to life more than 300 websites, here are some of the highlights.',
+			'Over the past 14 years, I have helped bring more than 300 websites to life. Here are some highlights.',
 		iconTheme:
-			'A simple and modern set of icons, designed in Inkscape in the sizes: 16px, 24px, 32px, 48px, 64px, 96px, 128px, uses JavaScript to generate each file in different sizes.',
+			'A simple, modern icon set designed in Inkscape. JavaScript generates each icon at 16, 24, 32, 48, 64, 96, and 128 pixels.',
 		planeTheme:
-			'A beautiful dark theme for Gnome Linux with a modern and minimalistic design, easy on the eyes and providing a sleek look for your desktop.',
+			'A modern, minimalist dark theme for GNOME. It is easy on the eyes and gives your Linux desktop a polished look.',
 		github: (name: string) => `${name} repository on GitHub`,
 		gnomeLook: (name: string) => `${name} on gnome-look`
 	},
@@ -66,9 +66,10 @@ export const en = {
 		previousHint: 'Previous (←)',
 		nextHint: 'Next (→)',
 		close: 'Close project',
-		stage: (name: string) => `${name}, full page screenshot`,
-		screenshot: (name: string) => `Full page screenshot of ${name}`,
-		failed: 'The full-resolution screenshot did not load. You are seeing a lighter version.',
+		stage: (name: string) => `${name}, full-page screenshot`,
+		screenshot: (name: string) => `Full-page screenshot of ${name}`,
+		failed:
+			'The full-resolution screenshot could not be loaded. A smaller version is shown instead.',
 		cta: 'Want a site like this one?',
 		nextShort: (name: string) => `Next: ${name}`,
 		videoTitle: (name: string) => `${name} video walkthrough`
@@ -102,23 +103,23 @@ export const es: Messages = {
 	},
 	hero: {
 		greeting: 'Hola, mi nombre es',
-		title: 'Doy vida a las ideas en la web a través del código y el diseño.',
+		title: 'Doy vida a las ideas en la web con código y diseño.',
 		intro:
-			'Como desarrollador que disfruta crear experiencias digitales tanto en diseño como en desarrollo, trabajo constantemente en productos accesibles y centrados en las personas. Creo firmemente en el poder de la tecnología para mejorar la vida de la gente, y siempre busco que sea más inclusiva y fácil de usar.'
+			'Soy desarrollador y disfruto diseñar y crear experiencias digitales. Desarrollo productos accesibles y centrados en las personas porque creo que la tecnología puede mejorar sus vidas cuando es inclusiva y fácil de usar.'
 	},
 	about: {
 		title: 'Sobre mí',
-		body: 'Desde muy pequeño he sido una persona curiosa y me ha encantado entender cómo funcionan las cosas. Más tarde, cuando descubrí el mundo de los computadores y me familiaricé con la filosofía de "soy porque todos somos" (Ubuntu), mi interés por el software libre se convirtió en una verdadera pasión. Me encanta la idea de poder modificar y adaptar la tecnología a mis necesidades y preferencias, y eso me impulsa a seguir aprendiendo y explorando en este campo.',
+		body: 'Desde pequeño siento curiosidad por entender cómo funcionan las cosas. Cuando descubrí el mundo de los computadores y la filosofía Ubuntu —«soy porque todos somos»—, mi interés por el software libre se convirtió en una pasión. La posibilidad de modificar la tecnología y adaptarla a mis necesidades me impulsa a seguir aprendiendo y explorando.',
 		stack: 'Estas son algunas *tecnologías con las que he trabajado recientemente.'
 	},
 	work: {
 		title: 'Experiencia',
 		items: [
-			'Actualmente, en mi tiempo libre, experimento con nuevas tecnologías, decoro interfaces e iconografía para sistemas operativos Linux y contribuyo al software libre. Profesionalmente, participo en el desarrollo de interfaces de aplicaciones web para PuntosColombia.',
-			'Antes, creé el diseño de la web, implementé servidores en contenedores y realicé el diseño y el desarrollo front-end del sistema de ventas y gestión comercial de Comodisimos.',
-			'Antes de eso, hice el diseño, la estrategia, el desarrollo, la implementación del servidor y la puesta en producción del sitio web de Todo en Artes.',
-			'Antes de todo esto, trabajé en dos agencias de marketing digital: en la primera, "WebCreativa", perfeccioné mis habilidades de desarrollo web, descubrí mi pasión por las interfaces de usuario y aprendí mucho sobre diseño y experiencia de usuario. En la segunda, "CoDigital", pude aplicar gran parte de mis conocimientos desarrollando productos con más detalle y enfocándome en las experiencias.',
-			'Además, durante estos 14 años, cuando el trabajo me lo permitía, he trabajado como freelance, descubriendo y poniendo toda mi motivación en los proyectos en los que he participado.'
+			'En mi tiempo libre, experimento con nuevas tecnologías, personalizo interfaces e íconos para Linux y contribuyo a proyectos de software libre. Profesionalmente, participo en el desarrollo de interfaces para aplicaciones web de PuntosColombia.',
+			'Antes, diseñé el sitio web, implementé servidores en contenedores y realicé el diseño de interfaces y el desarrollo front-end del sistema de ventas y gestión comercial de Comodisimos.',
+			'Anteriormente, me encargué de la estrategia, el diseño, el desarrollo, la implementación del servidor y la puesta en producción del sitio web de Todo en Artes.',
+			'Al comienzo de mi carrera trabajé en dos agencias de marketing digital. En WebCreativa perfeccioné mis habilidades de desarrollo web, descubrí mi pasión por las interfaces y aprendí sobre diseño y experiencia de usuario. En CoDigital apliqué esos conocimientos para crear productos más detallados y centrados en la experiencia.',
+			'Durante estos 14 años también he trabajado como independiente cuando el tiempo me lo ha permitido, aportando dedicación y entusiasmo a cada proyecto.'
 		]
 	},
 	projects: {
@@ -126,9 +127,9 @@ export const es: Messages = {
 		intro:
 			'En estos 14 años he ayudado a dar vida a más de 300 sitios web; estos son algunos de los más destacados.',
 		iconTheme:
-			'Un conjunto de íconos simple y moderno, diseñado en Inkscape en los tamaños 16px, 24px, 32px, 48px, 64px, 96px y 128px; usa JavaScript para generar cada archivo en los distintos tamaños.',
+			'Un conjunto de íconos sencillo y moderno, diseñado en Inkscape. JavaScript genera cada ícono en tamaños de 16, 24, 32, 48, 64, 96 y 128 píxeles.',
 		planeTheme:
-			'Un tema oscuro para Gnome en Linux, con un diseño moderno y minimalista, cómodo para la vista y que le da un aspecto elegante a tu escritorio.',
+			'Un tema oscuro, moderno y minimalista para GNOME. Es cómodo para la vista y le da un aspecto elegante al escritorio de Linux.',
 		github: (name: string) => `Repositorio de ${name} en GitHub`,
 		gnomeLook: (name: string) => `${name} en gnome-look`
 	},
@@ -147,7 +148,8 @@ export const es: Messages = {
 		close: 'Cerrar proyecto',
 		stage: (name: string) => `${name}, captura de página completa`,
 		screenshot: (name: string) => `Captura de página completa de ${name}`,
-		failed: 'La captura en alta resolución no cargó. Estás viendo una versión más liviana.',
+		failed:
+			'No se pudo cargar la captura en alta resolución. En su lugar, se muestra una versión más liviana.',
 		cta: '¿Quieres un sitio como este?',
 		nextShort: (name: string) => `Siguiente: ${name}`,
 		videoTitle: (name: string) => `Video de recorrido de ${name}`

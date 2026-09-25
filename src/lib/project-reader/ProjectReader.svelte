@@ -88,7 +88,7 @@
 		originIndex = i;
 
 		if (origin && canAnimate()) {
-			// The card's frame morphs into the reader's stage
+			// Preserve the source frame so the view transition can morph it into the reader stage.
 			origin.style.viewTransitionName = 'reader-shot';
 			transition(() => show(list, i, options));
 		} else {
