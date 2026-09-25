@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ProjectReader from '$lib/project-reader/ProjectReader.svelte';
 	import About from './about.svelte';
 	import Hero from './hero.svelte';
 	import Portfolio from './portfolio.svelte';
@@ -24,6 +25,8 @@
 <Portfolio />
 
 <Projects />
+
+<ProjectReader />
 
 <style>
 	.dots {

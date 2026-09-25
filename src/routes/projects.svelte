@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { ReaderItem } from '$lib/project-reader/reader';
 	import ProjectItem from './project-item.svelte';
 	import type { IProject } from './types';
 
@@ -31,6 +32,7 @@
 					width: '1600',
 					height: '1000'
 				},
+				strip: '/images/projects/icon-theme/icon-theme-full-strip.webp',
 				fullscreen: {
 					src: '/images/projects/icon-theme/icon-theme-full.webp',
 					alt: 'plane icon theme',
@@ -53,6 +55,7 @@
 					width: '1920',
 					height: '1200'
 				},
+				strip: '/images/projects/plane-theme/plane-theme-fullscreen-strip.webp',
 				fullscreen: {
 					src: '/images/projects/plane-theme/plane-theme-fullscreen.webp',
 					alt: 'plane theme',
@@ -76,12 +79,25 @@
 			]
 		}
 	];
+
+	const readerItems: ReaderItem[] = projects.map((project) => ({
+		name: project.name,
+		tags: project.tags,
+		full: {
+			src: project.images.fullscreen.src,
+			width: Number(project.images.fullscreen.width),
+			height: Number(project.images.fullscreen.height)
+		},
+		strip: project.images.strip,
+		description: project.description,
+		links: project.links
+	}));
 </script>
 
 <section id="projects">
 	<div class="container">
 		{#each projects as project, index (project.name)}
-			<ProjectItem {project} {index} />
+			<ProjectItem {project} items={readerItems} {index} />
 		{/each}
 	</div>
 </section>

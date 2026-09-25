@@ -7,6 +7,8 @@ export interface IPortfolioItem {
 	image: {
 		preview: string;
 		big: string;
+		/** `big` resized to 600px wide, for cards and the minimap */
+		strip: string;
 		bigWidth: string;
 		bigHeight: string;
 	};
@@ -31,6 +33,8 @@ export interface IProject {
 			width: string;
 			height: string;
 		};
+		/** `fullscreen` resized to 600px wide, for cards and the minimap */
+		strip: string;
 		fullscreen: {
 			src: string;
 			alt: string;

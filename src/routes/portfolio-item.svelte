@@ -1,97 +1,58 @@
 <script lang="ts">
-	import type { IPortfolioItem } from './types';
+	import Icon from '$lib/project-reader/Icon.svelte';
+	import ScrollFrame from '$lib/project-reader/ScrollFrame.svelte';
+	import { openReader, type ReaderItem } from '$lib/project-reader/reader';
 
-	let { item, index }: { item: IPortfolioItem; index: number } = $props();
+	let { items, index }: { items: ReaderItem[]; index: number } = $props();
 
-	import type { BiggerPictureInstance } from 'bigger-picture';
-	import { loadBp } from '$lib/bigger-picture/load-bp';
-	import { onMount } from 'svelte';
+	const item = $derived(items[index]);
 
-	let bp: BiggerPictureInstance;
-
-	let previewElement: HTMLElement | undefined = $state();
-
-	/**
-	 * Preview from image
-	 * @param e
-	 */
-	function openBiggerPicture() {
-		bp.open({
-			items: document.querySelectorAll('#portfolio .preview'),
-			el: previewElement
-		});
+	function openFromFrame(progress: number, origin: HTMLElement) {
+		openReader(items, index, { progress, origin });
 	}
 
-	/**
-	 * Preview from video button
-	 * @param e
-	 */
-	function openVideo(e: Event) {
+	function openVideo(e: MouseEvent) {
+		if (e.metaKey || e.ctrlKey || e.shiftKey) return;
 		e.preventDefault();
-		const target = e.currentTarget as HTMLElement;
-
-		bp.open({
-			items: target,
-			el: target
-		});
+		const frame = (e.currentTarget as HTMLElement).closest('article')?.querySelector('a');
+		openReader(items, index, { tab: 'video', origin: frame ?? null });
 	}
 
-	onMount(async () => {
-		bp = await loadBp(); // use onMount to define variable so it runs only in the browser
-	});
+	function openSite(e: MouseEvent) {
+		if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+		e.preventDefault();
+		const frame = (e.currentTarget as HTMLElement).closest('article')?.querySelector('a');
+		openReader(items, index, { origin: frame ?? null });
+	}
 </script>
 
-<article class="item transition item-{index} item-project">
-	<div
-		bind:this={previewElement}
-		class="preview"
-		data-img={item.image.big}
-		data-thumb={item.image.preview}
-		data-alt={item.name}
-		data-caption={item.name}
-		data-width={item.image.bigWidth}
-		data-height={item.image.bigHeight}
-		onclick={openBiggerPicture}
-		role="button"
-		tabindex="0"
-		onkeydown={(e) => e.key === 'Enter' && openBiggerPicture()}
-		style:background-image="url({item.image.preview})"
-	>
-		<!-- <img src={item.image.preview} alt={item.name} width="1000" height="1200" /> -->
-	</div>
+<article class="item item-{index}">
+	<ScrollFrame {item} onopen={openFromFrame} />
 
-	<h1 class="name">{item.name}</h1>
+	<div class="meta">
+		<h3 class="name">{item.name}</h3>
 
-	<div class="tags">
-		{#each item.tags as tag (tag)}
-			<div class="tag">{tag}</div>
-		{/each}
+		<ul class="tags" aria-label="Technologies">
+			{#each item.tags as tag (tag)}
+				<li class="tag">{tag}</li>
+			{/each}
+		</ul>
 	</div>
 
 	<div class="actions">
-		<div
-			class="btn"
-			onclick={openBiggerPicture}
-			role="button"
-			tabindex="0"
-			onkeydown={(e) => e.key === 'Enter' && openBiggerPicture()}
-		>
-			Preview
-		</div>
+		<a class="btn" href={item.full.src} onclick={openSite}>
+			<Icon name="page" size={18} /> Read site
+		</a>
 
-		<!-- video -->
 		{#if item.youtubeId}
 			<a
-				target="_blank"
-				class="btn"
+				class="btn ghost"
 				href="https://youtu.be/{item.youtubeId}"
-				data-width="1920"
-				data-height="1080"
-				data-thumb="/images/no-img.png"
-				data-iframe="https://www.youtube.com/embed/{item.youtubeId}"
+				target="_blank"
+				rel="noopener"
 				onclick={openVideo}
 			>
-				Video
+				<Icon name="play" size={18} /> Video
 			</a>
 		{/if}
 	</div>
@@ -101,12 +62,12 @@
 	.item {
 		display: flex;
 		flex-direction: column;
-		padding: 0px;
-		transition: var(--transition);
-		box-shadow: 0 0 0 1px var(--border-color-1);
+		padding: 0.5rem;
 		break-inside: avoid;
 		margin-bottom: 1rem;
-		border-radius: var(--border-radius-base);
+		border-radius: calc(var(--border-radius-base) + 0.5rem);
+		box-shadow: 0 0 0 1px var(--border-color-1);
+		transition: var(--transition);
 
 		animation-name: sv-grow-up;
 		animation-fill-mode: both;
@@ -116,9 +77,13 @@
 		animation-duration: 1ms;
 	}
 
+	.item:hover {
+		box-shadow: 0 0 0 1px oklch(50% 0.2 var(--hue) / 60%);
+	}
+
 	@keyframes sv-grow-up {
 		from {
-			transform: translate(0px, 200px) scale(0.9);
+			transform: translate(0px, 3rem) scale(0.97);
 			opacity: 0;
 		}
 
@@ -128,87 +93,69 @@
 		}
 	}
 
-	.preview {
-		width: 100%;
-		height: 22rem;
-		/* overflow: hidden; */
-		border-radius: var(--border-radius-base);
-
-		background-size: 100% auto;
-		background-position: 0px -200px;
-		background-repeat: no-repeat;
-
-		animation-name: sv-grow-up2;
-		animation-fill-mode: both;
-		animation-timing-function: linear;
-		animation-timeline: view(block);
-		animation-range: cover 30% cover 80%;
-		animation-duration: 1ms; /* Firefox requires this to apply the animation */
-		cursor: pointer;
-	}
-
-	@keyframes sv-grow-up2 {
-		from {
-			background-position: 0px 0px;
-		}
-
-		to {
-			background-position: 0px -200px;
-		}
-	}
-
-	.preview:focus-visible {
-		box-shadow: 0 0 2rem oklch(72% 0.25 var(--hue) / 40%);
-		outline: 0;
+	.meta {
+		padding: 1.25rem 0.5rem 0.5rem;
 	}
 
 	.name {
-		font-size: var(--font-size-base);
+		margin: 0 0 0.75rem;
+		font-family: var(--font-family-title);
+		font-size: var(--font-size-lg);
 		font-weight: 300;
-		color: var(--color-text);
-		font-family: var(--font-family-body);
-		margin-top: 1rem;
-		padding: 0 1rem;
+		line-height: var(--font-lineheight-md);
 	}
 
 	.tags {
-		padding: 1rem;
-		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: flex-start;
-		gap: 0.5rem;
+		gap: 0.375rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
 	}
 
 	.tag {
-		font-size: 80%;
-	}
-
-	.dialog-card {
-		width: 80%;
-		max-width: 100%;
+		font-size: 0.75rem;
 	}
 
 	.actions {
-		width: 100%;
-		opacity: 1;
 		display: flex;
-		padding: 0.5rem;
+		flex-wrap: wrap;
 		justify-content: flex-end;
-		gap: 1rem;
+		gap: 0.5rem;
+		padding: 0.75rem 0.5rem 0.5rem;
 	}
 
 	.btn {
-		background-color: var(--color-bg-highlight);
-		padding: 0.5rem 1.5rem;
-		color: white;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 1.25rem;
 		border-radius: 2rem;
+		white-space: nowrap;
+		background-color: var(--color-bg-highlight);
+		color: #fff;
 		cursor: pointer;
 	}
 
-	.btn:hover,
+	.btn:hover {
+		background-color: oklch(56% 0.27 var(--hue));
+		box-shadow: 0 0.25rem 1rem -0.25rem oklch(50% 0.27 var(--hue) / 60%);
+	}
+
+	.btn.ghost {
+		background: none;
+		color: var(--color-text);
+		box-shadow: inset 0 0 0 1px var(--color-bg-highlight);
+	}
+
+	.btn.ghost:hover {
+		color: var(--color-text-highlight);
+		background-color: oklch(50% 0.27 var(--hue) / 12%);
+	}
+
 	.btn:focus-visible {
-		box-shadow: 0 0 10px var(--color-bg-highlight);
-		outline: 0;
+		outline: 2px solid var(--neon-cyan);
+		outline-offset: 2px;
 	}
 </style>

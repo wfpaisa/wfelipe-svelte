@@ -13,3 +13,4 @@ bun.lock
 package-lock.json
 yarn.lock
 /static
+.impeccable

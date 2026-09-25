@@ -1,70 +1,38 @@
 <script lang="ts">
+	import ScrollFrame from '$lib/project-reader/ScrollFrame.svelte';
+	import { openReader, type ReaderItem } from '$lib/project-reader/reader';
 	import type { IProject } from './types';
 
-	let { project, index }: { project: IProject; index: number } = $props();
+	let { project, items, index }: { project: IProject; items: ReaderItem[]; index: number } =
+		$props();
 
-	import type { BiggerPictureInstance } from 'bigger-picture';
-	import { loadBp } from '$lib/bigger-picture/load-bp';
-	import { onMount } from 'svelte';
+	const small = $derived(project.images.small);
 
-	let bp: BiggerPictureInstance;
-
-	/**
-	 * Preview from image
-	 * @param e
-	 */
-	function openBiggerPicture(e: Event) {
-		if (!e.currentTarget) return;
-
-		bp.open({
-			items: e.currentTarget as HTMLElement,
-			el: e.currentTarget
-		});
+	function onopen(progress: number, origin: HTMLElement) {
+		openReader(items, index, { progress, origin });
 	}
-
-	onMount(async () => {
-		bp = await loadBp(); // use onMount to define variable so it runs only in the browser
-	});
 </script>
 
 <article class="project project-{index} {project.position}">
 	<div class="project-img">
-		<div
-			class="project-img-in"
-			data-img={project.images.fullscreen.src}
-			data-thumb={project.images.small.src}
-			data-alt={project.name}
-			data-caption={project.name}
-			data-width={project.images.fullscreen.width}
-			data-height={project.images.fullscreen.height}
-			onclick={openBiggerPicture}
-			role="button"
-			tabindex="0"
-			onkeydown={(e) => e.key === 'Enter' && openBiggerPicture(e)}
-		>
-			<!-- Preview image -->
-			<img
-				src={project.images.small.src}
-				alt={project.images.small.alt}
-				width={project.images.small.width}
-				height={project.images.small.height}
+		<div class="project-img-in">
+			<ScrollFrame
+				item={items[index]}
+				aspect={Number(small.height) / Number(small.width)}
+				{onopen}
 			/>
 		</div>
 	</div>
 
 	<div class="project-info">
 		<div class="project-info-in">
-			<div class="icons">
-				<!-- <q-icon name="sym_r_stars" v-for="n in 3" :key="n" /> -->
-			</div>
-
 			<h2>{project.name}</h2>
 
 			<div class="project-desc">
 				{project.description}
 				<br />
 				{#each project.links as link (link.link)}
-					<a href={link.link} target={link.target} aria-label={link.aria}>
+					<a href={link.link} target={link.target} rel="noopener" aria-label={link.aria}>
 						<i class={link.icon}></i>
 					</a>
 				{/each}
@@ -100,10 +68,6 @@
 		box-shadow: 0 0 1px 1px oklch(88% 0.04 var(--hue) / 20%);
 		border-radius: var(--border-radius-base);
 		transition: var(--transition);
-
-		&:hover {
-			transform: rotateZ(4deg);
-		}
 	}
 
 	article .project-img .project-img-in::after {
@@ -120,19 +84,12 @@
 	}
 
 	article .project-img:hover .project-img-in::after {
-		transform: rotateZ(-8deg);
+		transform: rotateZ(-4deg);
 	}
 
-	article .project-img .project-img-in img {
+	article .project-img .project-img-in :global(.frame) {
 		position: relative;
-		object-fit: cover;
-		width: 100%;
-		display: block;
-		margin: auto;
-		border-radius: 0.5rem;
-		transition: var(--transition);
 		z-index: 2;
-		cursor: pointer;
 	}
 
 	article .project-info {
@@ -144,16 +101,6 @@
 	article .project-info .project-info-in {
 		padding: 1rem;
 		border-radius: var(--border-radius-base);
-	}
-
-	article .project-info .project-info-in .icons {
-		color: var(--color-green);
-		font-size: var(--font-size-lg);
-		margin: 0 -0.4rem;
-	}
-
-	article .project-info .project-info-in .icons i {
-		margin: 0 0.15rem;
 	}
 
 	article .project-info .project-info-in h2 {
@@ -190,11 +137,6 @@
 		display: flex;
 		flex-direction: row;
 		gap: 1rem;
-	}
-
-	article img {
-		max-width: 100%;
-		height: auto;
 	}
 
 	.dir-lf .project-info-in {

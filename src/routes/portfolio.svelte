@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { ReaderItem } from '$lib/project-reader/reader';
 	import PortforlioItem from './portfolio-item.svelte';
 	import type { IPortfolioItem } from './types';
 
@@ -9,6 +10,7 @@
 			image: {
 				preview: '/images/projects/monte/monte-preview.webp',
 				big: '/images/projects/monte/monte.webp',
+				strip: '/images/projects/monte/monte-strip.webp',
 				bigWidth: '1878',
 				bigHeight: '12857'
 			}
@@ -19,6 +21,7 @@
 			image: {
 				preview: '/images/projects/comodisimos/ecomodisimos-preview.webp',
 				big: '/images/projects/comodisimos/ecomodisimos.webp',
+				strip: '/images/projects/comodisimos/ecomodisimos-strip.webp',
 				bigWidth: '5120',
 				bigHeight: '9072'
 			},
@@ -30,6 +33,7 @@
 			image: {
 				preview: '/images/projects/universal/universal-preview.webp',
 				big: '/images/projects/universal/universal.webp',
+				strip: '/images/projects/universal/universal-strip.webp',
 				bigWidth: '1400',
 				bigHeight: '9732'
 			}
@@ -40,6 +44,7 @@
 			image: {
 				preview: '/images/projects/comodisimos/comodisimos-preview.webp',
 				big: '/images/projects/comodisimos/comodisimos.webp',
+				strip: '/images/projects/comodisimos/comodisimos-strip.webp',
 				bigWidth: '3072',
 				bigHeight: '16153'
 			},
@@ -51,6 +56,7 @@
 			image: {
 				preview: '/images/projects/natalia/natalia-lafourcade-preview.webp',
 				big: '/images/projects/natalia/natalia-lafourcade.webp',
+				strip: '/images/projects/natalia/natalia-lafourcade-strip.webp',
 				bigWidth: '1280',
 				bigHeight: '5296'
 			}
@@ -61,6 +67,7 @@
 			image: {
 				preview: '/images/projects/codigital/codigital-preview.webp',
 				big: '/images/projects/codigital/codigital.webp',
+				strip: '/images/projects/codigital/codigital-strip.webp',
 				bigWidth: '5120',
 				bigHeight: '11462'
 			},
@@ -72,6 +79,7 @@
 			image: {
 				preview: '/images/projects/ostinatta/ostinatta-preview.webp',
 				big: '/images/projects/ostinatta/ostinatta.webp',
+				strip: '/images/projects/ostinatta/ostinatta-strip.webp',
 				bigWidth: '1400',
 				bigHeight: '10686'
 			},
@@ -83,6 +91,7 @@
 			image: {
 				preview: '/images/projects/todo-en-artes/todoenartes-preview.webp',
 				big: '/images/projects/todo-en-artes/todoenartes.webp',
+				strip: '/images/projects/todo-en-artes/todoenartes-strip.webp',
 				bigWidth: '1916',
 				bigHeight: '8169'
 			}
@@ -93,6 +102,7 @@
 			image: {
 				preview: '/images/projects/el-bellanita/el-bellanita-preview.webp',
 				big: '/images/projects/el-bellanita/el-bellanita.webp',
+				strip: '/images/projects/el-bellanita/el-bellanita-strip.webp',
 				bigWidth: '2000',
 				bigHeight: '4683'
 			}
@@ -103,12 +113,25 @@
 			image: {
 				preview: '/images/projects/comodisimos/comodisimos-pos-preview.webp',
 				big: '/images/projects/comodisimos/comodisimos-pos.webp',
+				strip: '/images/projects/comodisimos/comodisimos-pos-strip.webp',
 				bigWidth: '1920',
 				bigHeight: '9032'
 			},
 			youtubeId: 'HPCiw_y72M4'
 		}
 	];
+
+	const readerItems: ReaderItem[] = items.map((item) => ({
+		name: item.name,
+		tags: item.tags,
+		full: {
+			src: item.image.big,
+			width: Number(item.image.bigWidth),
+			height: Number(item.image.bigHeight)
+		},
+		strip: item.image.strip,
+		youtubeId: item.youtubeId
+	}));
 </script>
 
 <section id="portfolio">
@@ -122,8 +145,8 @@
 				</p>
 			</article>
 
-			{#each items as item, index (item.name)}
-				<PortforlioItem {item} {index} />
+			{#each readerItems as item, index (item.name)}
+				<PortforlioItem items={readerItems} {index} />
 			{/each}
 		</section>
 	</div>
