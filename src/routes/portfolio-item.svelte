@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { getI18n } from '$lib/i18n';
 	import Icon from '$lib/project-reader/Icon.svelte';
 	import ScrollFrame from '$lib/project-reader/ScrollFrame.svelte';
 	import { openReader, type ReaderItem } from '$lib/project-reader/reader';
 
 	let { items, index }: { items: ReaderItem[]; index: number } = $props();
 
+	const i18n = getI18n();
 	const item = $derived(items[index]);
 
 	function openFromFrame(progress: number, origin: HTMLElement) {
@@ -32,7 +34,7 @@
 	<div class="meta">
 		<h3 class="name">{item.name}</h3>
 
-		<ul class="tags" aria-label="Technologies">
+		<ul class="tags" aria-label={i18n.t.reader.technologies}>
 			{#each item.tags as tag (tag)}
 				<li class="tag">{tag}</li>
 			{/each}
@@ -41,7 +43,8 @@
 
 	<div class="actions">
 		<a class="btn" href={item.full.src} onclick={openSite}>
-			<Icon name="page" size={18} /> Read site
+			<Icon name="page" size={18} />
+			{i18n.t.reader.readSite}
 		</a>
 
 		{#if item.youtubeId}
@@ -52,7 +55,8 @@
 				rel="noopener"
 				onclick={openVideo}
 			>
-				<Icon name="play" size={18} /> Video
+				<Icon name="play" size={18} />
+				{i18n.t.reader.video}
 			</a>
 		{/if}
 	</div>

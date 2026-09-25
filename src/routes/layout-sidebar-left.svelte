@@ -1,6 +1,12 @@
+<script lang="ts">
+	import { getI18n } from '$lib/i18n';
+
+	const i18n = getI18n();
+</script>
+
 <sidebar class="left-side">
 	<div class="link-content">
-		<a href="mailto:hi@wfelipe.com" class="link-email" aria-label="mail to wfelipe">
+		<a href="mailto:hi@wfelipe.com" class="link-email" aria-label={i18n.t.social.mail}>
 			hi@wfelipe.com
 		</a>
 	</div>

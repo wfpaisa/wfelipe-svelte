@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { getI18n } from '$lib/i18n';
 	import ImgMe from '$lib/images/me.jpg';
+
+	const i18n = getI18n();
 </script>
 
 <section id="about">
@@ -8,20 +11,11 @@
 	<div class="container">
 		<div class="flex-center">
 			<div>
-				<h2 class="scroll-view sv-grow-up"><span class="number">01.</span> About me</h2>
+				<h2 class="scroll-view sv-grow-up"><span class="number">01.</span> {i18n.t.about.title}</h2>
 
-				<p class="scroll-view sv-grow-up">
-					Since I was very young, I have always been a curious person and I have loved understanding
-					how things work. Later, when I discovered the world of computers and familiarized myself
-					with the philosophy of "I am because we all are" (Ubuntu), my interest in open-source
-					software became a true passion. I love the idea of being able to modify and adapt
-					technology to my needs and preferences, and that drives me to continue learning and
-					exploring in this field.
-				</p>
+				<p class="scroll-view sv-grow-up">{i18n.t.about.body}</p>
 
-				<p class="scroll-view sv-grow-up">
-					Here are a few *technologies I have been working with recently.
-				</p>
+				<p class="scroll-view sv-grow-up">{i18n.t.about.stack}</p>
 				<ul class="scroll-view sv-grow-up">
 					<li><span class="tag">CSS/Sass</span></li>
 					<li><span class="tag">Javascript/NodeJs</span></li>

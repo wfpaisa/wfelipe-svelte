@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { getI18n } from '$lib/i18n';
 	import type { ReaderItem } from './reader';
+
+	const i18n = getI18n();
 
 	let {
 		item,
@@ -18,7 +21,7 @@
 	const ratio = $derived(item.full.height / item.full.width);
 	/** How many full-size pixels the frame shows at once */
 	const visible = $derived(Math.min(item.full.width * aspect, item.full.height));
-	const format = (n: number) => n.toLocaleString('en-US');
+	const format = (n: number) => n.toLocaleString(i18n.locale);
 
 	const readout = $derived(
 		scrub === null
@@ -58,7 +61,7 @@
 	style:--aspect={aspect}
 	style:--ratio={ratio}
 	style:--hp={scrub ?? 0}
-	aria-label="Read the full {item.name} site"
+	aria-label={i18n.t.reader.readFull(item.name)}
 	{onpointermove}
 	{onpointerleave}
 	{onclick}

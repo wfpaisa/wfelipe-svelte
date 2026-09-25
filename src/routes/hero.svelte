@@ -1,15 +1,18 @@
+<script lang="ts">
+	import { getI18n } from '$lib/i18n';
+
+	const i18n = getI18n();
+</script>
+
 <section id="intro" class="bg-color">
 	<article class="container">
 		<div class="intro-info">
-			<span class="name animated fadeInLeft delay-2"> Hi, my name is </span>
+			<span class="name animated fadeInLeft delay-2"> {i18n.t.hero.greeting} </span>
 			<h1 class="animated fadeInLeft2 delay-3">
-				<b>Felipe Uribe</b>. Bringing ideas to life on the web through coding and design.
+				<b>Felipe Uribe</b>. {i18n.t.hero.title}
 			</h1>
 			<p class="animated fadeInLeft2 delay-4">
-				As a developer who enjoys creating digital experiences in both design and development, I am
-				constantly working on building products that are accessible and human-centered. I firmly
-				believe in the power of technology to improve people's lives, and I always strive to make it
-				more inclusive and user-friendly.
+				{i18n.t.hero.intro}
 			</p>
 		</div>
 	</article>

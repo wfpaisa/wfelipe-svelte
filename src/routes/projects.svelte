@@ -1,26 +1,28 @@
 <script lang="ts">
+	import { getI18n } from '$lib/i18n';
 	import type { ReaderItem } from '$lib/project-reader/reader';
 	import ProjectItem from './project-item.svelte';
 	import type { IProject } from './types';
 
-	const projects: IProject[] = [
+	const i18n = getI18n();
+
+	const projects: IProject[] = $derived([
 		// --- Plane icons
 		{
 			name: 'Icon theme',
 			position: 'dir-lf',
-			description:
-				'A simple and modern set of icons, designed in Inkscape in the sizes: 16px, 24px, 32px, 48px, 64p 96px, 128px, uses JavaScript to generate each file in different sizes.',
+			description: i18n.t.projects.iconTheme,
 			links: [
 				{
 					link: 'https://github.com/wfpaisa/plane-icon-theme',
 					target: '_blank',
-					aria: 'repo plane theme link',
+					aria: i18n.t.projects.github('Icon theme'),
 					icon: 'icon-logo-github'
 				},
 				{
 					link: 'https://www.gnome-look.org/p/1178976/',
 					target: '_blank',
-					aria: 'open project in gnome-look',
+					aria: i18n.t.projects.gnomeLook('Icon theme'),
 					icon: 'icon-logo-tux'
 				}
 			],
@@ -45,8 +47,7 @@
 		{
 			name: 'Plane GTK theme',
 			position: 'dir-rl',
-			description:
-				'A beautiful dark theme for Gnome Linux with a modern and minimalistic design, making it easy the eyes and providing a sleek look for your desktop.',
+			description: i18n.t.projects.planeTheme,
 			tags: ['CSS', 'SASS', 'Javascript', 'Svg', 'Design'],
 			images: {
 				small: {
@@ -67,31 +68,33 @@
 				{
 					link: 'https://github.com/wfpaisa/plane-theme',
 					target: '_blank',
-					aria: 'repo plane theme link',
+					aria: i18n.t.projects.github('Plane GTK theme'),
 					icon: 'icon-logo-github'
 				},
 				{
 					link: 'https://www.gnome-look.org/p/1198768/',
 					target: '_blank',
-					aria: 'open project in gnome-look',
+					aria: i18n.t.projects.gnomeLook('Plane GTK theme'),
 					icon: 'icon-logo-tux'
 				}
 			]
 		}
-	];
+	]);
 
-	const readerItems: ReaderItem[] = projects.map((project) => ({
-		name: project.name,
-		tags: project.tags,
-		full: {
-			src: project.images.fullscreen.src,
-			width: Number(project.images.fullscreen.width),
-			height: Number(project.images.fullscreen.height)
-		},
-		strip: project.images.strip,
-		description: project.description,
-		links: project.links
-	}));
+	const readerItems: ReaderItem[] = $derived(
+		projects.map((project) => ({
+			name: project.name,
+			tags: project.tags,
+			full: {
+				src: project.images.fullscreen.src,
+				width: Number(project.images.fullscreen.width),
+				height: Number(project.images.fullscreen.height)
+			},
+			strip: project.images.strip,
+			description: project.description,
+			links: project.links
+		}))
+	);
 </script>
 
 <section id="projects">

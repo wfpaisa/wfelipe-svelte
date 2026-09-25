@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="%lang%">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -34,6 +34,26 @@
 		<link rel="stylesheet" href="%sveltekit.assets%/fonts/font.css" />
 		<link rel="stylesheet" href="%sveltekit.assets%/fonts/font-icon.css" />
 		<link rel="stylesheet" href="%sveltekit.assets%/styles/animated.css" />
+
+		<script>
+			// First visit to "/": use the saved choice, otherwise the browser's language.
+			// Runs before paint so Spanish visitors never see the English page.
+			(function () {
+				if (location.pathname !== '/') return;
+				var lang = null;
+				try {
+					lang = localStorage.getItem('lang');
+				} catch (e) {}
+				if (!lang) {
+					var langs =
+						navigator.languages && navigator.languages.length
+							? navigator.languages
+							: [navigator.language || 'en'];
+					lang = String(langs[0]).toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+				}
+				if (lang === 'es') location.replace('/es' + location.search + location.hash);
+			})();
+		</script>
 
 		%sveltekit.head%
 	</head>

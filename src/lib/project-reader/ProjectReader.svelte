@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { flushSync, onMount } from 'svelte';
 	import Icon from './Icon.svelte';
+	import { getI18n } from '$lib/i18n';
 	import { registerReader, type OpenOptions, type ReaderItem, type ReaderTab } from './reader';
+
+	const i18n = getI18n();
+	const t = $derived(i18n.t.reader);
 
 	let dialog: HTMLDialogElement | undefined = $state();
 	let stage: HTMLElement | undefined = $state();
@@ -193,7 +197,7 @@
 <dialog
 	bind:this={dialog}
 	class="reader"
-	aria-label={item ? `${item.name}, project ${index + 1} of ${count}` : 'Project'}
+	aria-label={item ? t.dialog(item.name, index + 1, count) : undefined}
 	{oncancel}
 	{onkeydown}
 >
@@ -203,7 +207,7 @@
 				<span class="count">[{pad(index + 1)}/{pad(count)}]</span>
 				<span class="name">{item.name}</span>
 			</p>
-			<ul class="bar-tags" aria-label="Technologies">
+			<ul class="bar-tags" aria-label={t.technologies}>
 				{#each item.tags as tag (tag)}
 					<li class="tag">{tag}</li>
 				{/each}
@@ -212,12 +216,14 @@
 
 		<div class="controls">
 			{#if item.youtubeId}
-				<div class="tabs" role="group" aria-label="View">
+				<div class="tabs" role="group" aria-label={t.view}>
 					<button type="button" aria-pressed={tab === 'site'} onclick={() => setTab('site')}>
-						<Icon name="page" size={18} /> Site
+						<Icon name="page" size={18} />
+						{t.site}
 					</button>
 					<button type="button" aria-pressed={tab === 'video'} onclick={() => setTab('video')}>
-						<Icon name="play" size={18} /> Video
+						<Icon name="play" size={18} />
+						{t.video}
 					</button>
 				</div>
 			{/if}
@@ -227,8 +233,8 @@
 					<button
 						type="button"
 						class="icon-btn"
-						aria-label="Previous project: {prevItem.name}"
-						title="Previous (←)"
+						aria-label={t.previous(prevItem.name)}
+						title={t.previousHint}
 						onclick={() => go(-1)}
 					>
 						<Icon name="arrow-left" />
@@ -236,8 +242,8 @@
 					<button
 						type="button"
 						class="icon-btn"
-						aria-label="Next project: {nextItem.name}"
-						title="Next (→)"
+						aria-label={t.next(nextItem.name)}
+						title={t.nextHint}
 						onclick={() => go(1)}
 					>
 						<Icon name="arrow-right" />
@@ -246,7 +252,7 @@
 			{/if}
 		</div>
 
-		<button type="button" class="close" aria-label="Close project" onclick={close}>
+		<button type="button" class="close" aria-label={t.close} onclick={close}>
 			<span class="close-key" aria-hidden="true">Esc</span>
 			<Icon name="close" />
 		</button>
@@ -260,7 +266,7 @@
 					class="stage"
 					tabindex="0"
 					role="region"
-					aria-label="{item.name}, full page screenshot"
+					aria-label={t.stage(item.name)}
 					{onscroll}
 				>
 					{#key item.full.src}
@@ -275,7 +281,7 @@
 							<img
 								class="shot-full"
 								src={item.full.src}
-								alt="Full page screenshot of {item.name}"
+								alt={t.screenshot(item.name)}
 								width={item.full.width}
 								height={item.full.height}
 								decoding="async"
@@ -287,7 +293,7 @@
 
 					{#if failed}
 						<p class="notice" role="status">
-							The full-resolution screenshot did not load. You are seeing a lighter version.
+							{t.failed}
 						</p>
 					{/if}
 
@@ -308,14 +314,14 @@
 							</ul>
 						{/if}
 
-						<p class="outro-title">Want a site like this one?</p>
+						<p class="outro-title">{t.cta}</p>
 						<div class="outro-actions">
 							<a class="btn" href="mailto:hi@wfelipe.com">
 								<Icon name="mail" size={18} /> hi@wfelipe.com
 							</a>
 							{#if count > 1}
 								<button type="button" class="btn ghost" onclick={() => go(1)}>
-									Next: {nextItem.name}
+									{t.nextShort(nextItem.name)}
 									<Icon name="arrow-right" size={18} />
 								</button>
 							{/if}
@@ -348,7 +354,7 @@
 				<div class="video">
 					<iframe
 						src="https://www.youtube-nocookie.com/embed/{item.youtubeId}?autoplay=1&rel=0"
-						title="{item.name} video walkthrough"
+						title={t.videoTitle(item.name)}
 						allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
 						allowfullscreen
 					></iframe>

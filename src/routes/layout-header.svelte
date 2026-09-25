@@ -1,27 +1,14 @@
 <script lang="ts">
-	const linksList = [
-		{
-			title: 'About',
-			caption: 'Felipe Uribe',
-			icon: 'sym_r_fingerprint',
-			link: '#about'
-		},
+	import { getI18n, localePath } from '$lib/i18n';
+	import LanguageSwitcher from './language-switcher.svelte';
 
-		{
-			title: 'Work',
-			caption: 'My history',
-			icon: 'sym_r_business_center',
-			link: '#work'
-		},
+	const i18n = getI18n();
 
-		{
-			title: 'Projects',
-			caption: 'All projects',
-			icon: 'sym_r_code_blocks',
-			link: '#portfolio',
-			external: false
-		}
-	];
+	const linksList = $derived([
+		{ title: i18n.t.nav.about, link: '#about' },
+		{ title: i18n.t.nav.work, link: '#work' },
+		{ title: i18n.t.nav.projects, link: '#portfolio' }
+	]);
 
 	const goHome = (e: MouseEvent) => {
 		e.preventDefault();
@@ -34,18 +21,28 @@
 </script>
 
 <header>
-	<div class="logo">
-		<a href="/" class="icon-logo" title="Change color" onclick={goHome}>
-			<span class="path1"></span>
-			<span class="path2"></span>
-		</a>
+	<div class="start">
+		<div class="logo">
+			<a
+				href={localePath(i18n.locale)}
+				class="icon-logo"
+				title={i18n.t.nav.home}
+				aria-label={i18n.t.nav.home}
+				onclick={goHome}
+			>
+				<span class="path1"></span>
+				<span class="path2"></span>
+			</a>
+		</div>
+
+		<LanguageSwitcher />
 	</div>
 
 	<nav>
 		<!-- eslint-disable svelte/no-useless-mustaches -- explicit trailing space keeps the original link width (Svelte 5 trims whitespace) -->
 		[{#each linksList as link, index (link.link)}<a
 				href={link.link}
-				aria-label="link to section {link.title}"><span>0{index + 1}.</span> {link.title}{' '}</a
+				aria-label={i18n.t.nav.goTo(link.title)}><span>0{index + 1}.</span> {link.title}{' '}</a
 			>{/each}]
 		<!-- eslint-enable svelte/no-useless-mustaches -->
 	</nav>
@@ -69,6 +66,12 @@
 		@media (prefers-color-scheme: light) {
 			background-color: rgba(255, 255, 255, 0.4);
 		}
+	}
+
+	.start {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
 	}
 
 	.logo {

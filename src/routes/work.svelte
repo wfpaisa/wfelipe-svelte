@@ -1,48 +1,20 @@
+<script lang="ts">
+	import { getI18n } from '$lib/i18n';
+
+	const i18n = getI18n();
+</script>
+
 <section id="work">
 	<div class="container">
 		<div class="flex-center">
-			<h2><span class="number">02.</span> Work</h2>
+			<h2><span class="number">02.</span> {i18n.t.work.title}</h2>
 
-			<p>
-				<i>05</i>
-				<span class="scroll-view sv-grow-up-inline">
-					Currently, in my free time, I experiment with new technologies, decorate interfaces and
-					iconography for Linux operating systems, and contribute to open-source. Professionally, I
-					contribute to the development of web application interfaces for PuntosColombia.
-				</span>
-			</p>
-			<p>
-				<i>04</i>
-				<span class="scroll-view sv-grow-up-inline">
-					Previously, I created the design for the web, implemented servers in containers, and
-					created the design and front-end development for the sales and commercial management
-					system for Comodisimos.
-				</span>
-			</p>
-			<p>
-				<i>03</i>
-				<span class="scroll-view sv-grow-up-inline">
-					Before that, I created the design, strategy, development, server implementation, and
-					production launch for the website for Todo en Artes.
-				</span>
-			</p>
-			<p>
-				<i>02</i>
-				<span class="scroll-view sv-grow-up-inline">
-					Before all of this, I worked at two digital marketing agencies: the first, "WebCreativa,"
-					where I honed my web development skills, discovered my passion for user interfaces, and
-					learned a lot about design and user experience. At the second agency I worked at,
-					"CoDigital," I was able to apply much of my knowledge by developing products in more
-					detail and focusing on experiences.
-				</span>
-			</p>
-			<p>
-				<i>01</i>
-				<span class="scroll-view sv-grow-up-inline">
-					However, during these 14 years, when work allowed me, I have worked as a freelancer,
-					discovering and applying all my motivation in the projects I have been involved in.
-				</span>
-			</p>
+			{#each i18n.t.work.items as text, index (index)}
+				<p>
+					<i>{String(i18n.t.work.items.length - index).padStart(2, '0')}</i>
+					<span class="scroll-view sv-grow-up-inline">{text}</span>
+				</p>
+			{/each}
 		</div>
 	</div>
 </section>

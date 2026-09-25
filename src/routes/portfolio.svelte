@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { getI18n } from '$lib/i18n';
 	import type { ReaderItem } from '$lib/project-reader/reader';
 	import PortforlioItem from './portfolio-item.svelte';
 	import type { IPortfolioItem } from './types';
+
+	const i18n = getI18n();
 
 	const items: IPortfolioItem[] = [
 		{
@@ -138,11 +141,8 @@
 	<div class="container">
 		<section class="items">
 			<article class="item intro">
-				<h2><span class="number">03.</span> Projects</h2>
-				<p>
-					In these 14 years, I have helped bring to life more than 300 websites, here are some of
-					the highlights.
-				</p>
+				<h2><span class="number">03.</span> {i18n.t.projects.title}</h2>
+				<p>{i18n.t.projects.intro}</p>
 			</article>
 
 			{#each readerItems as item, index (item.name)}
