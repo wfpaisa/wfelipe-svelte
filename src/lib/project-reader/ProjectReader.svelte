@@ -37,6 +37,13 @@
 		);
 	}
 
+	/** Runs a view transition; a skipped one (hidden tab, rapid clicks) is not an error */
+	function transition(update: () => void) {
+		const t = document.startViewTransition(update);
+		t.ready.catch(() => {});
+		return t.finished.catch(() => {});
+	}
+
 	function updateLens() {
 		if (!stage || !shot || !shot.offsetHeight) return;
 		lens = {
@@ -79,7 +86,7 @@
 		if (origin && canAnimate()) {
 			// The card's frame morphs into the reader's stage
 			origin.style.viewTransitionName = 'reader-shot';
-			document.startViewTransition(() => show(list, i, options));
+			transition(() => show(list, i, options));
 		} else {
 			show(list, i, options);
 		}
@@ -96,13 +103,10 @@
 		};
 
 		if (target && tab === 'site' && canAnimate()) {
-			document
-				.startViewTransition(hide)
-				.finished.catch(() => {})
-				.finally(() => {
-					target.style.viewTransitionName = '';
-					target.focus({ preventScroll: true });
-				});
+			transition(hide).finally(() => {
+				target.style.viewTransitionName = '';
+				target.focus({ preventScroll: true });
+			});
 		} else {
 			hide();
 			if (target) target.style.viewTransitionName = '';
@@ -119,7 +123,7 @@
 			if (stage) stage.scrollTop = 0;
 			updateLens();
 		};
-		if (canAnimate()) document.startViewTransition(run);
+		if (canAnimate()) transition(run);
 		else run();
 	}
 
