@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import PortforlioItem from './portfolio-item.svelte';
 	import type { IPortfolioItem } from './types';
 
@@ -123,7 +122,7 @@
 				</p>
 			</article>
 
-			{#each items as item, index}
+			{#each items as item, index (item.name)}
 				<PortforlioItem {item} {index} />
 			{/each}
 		</section>

@@ -1,7 +1,6 @@
 <script lang="ts">
-	import PortforlioItem from './portfolio-item.svelte';
 	import ProjectItem from './project-item.svelte';
-	import type { IPortfolioItem, IProject } from './types';
+	import type { IProject } from './types';
 
 	const projects: IProject[] = [
 		// --- Plane icons
@@ -81,7 +80,7 @@
 
 <section id="projects">
 	<div class="container">
-		{#each projects as project, index}
+		{#each projects as project, index (project.name)}
 			<ProjectItem {project} {index} />
 		{/each}
 	</div>

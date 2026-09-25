@@ -6,7 +6,7 @@
 			aria-label="Felipe Uribe Github profile"
 			title="Felipe Uribe Github profile"
 		>
-			<i class="icon-logo-github" />
+			<i class="icon-logo-github"></i>
 		</a>
 
 		<a
@@ -15,7 +15,7 @@
 			aria-label="Felipe Uribe Linkedin profile"
 			title="Felipe Uribe Linkedin profile"
 		>
-			<i class="icon-logo-linkedin" />
+			<i class="icon-logo-linkedin"></i>
 		</a>
 
 		<a
@@ -24,7 +24,7 @@
 			aria-label="Felipe Uribe OpenDesktop profile"
 			title="Felipe Uribe OpenDesktop profile"
 		>
-			<i class="icon-logo-tux" />
+			<i class="icon-logo-tux"></i>
 		</a>
 	</div>
 </sidebar>

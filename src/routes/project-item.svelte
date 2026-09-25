@@ -1,17 +1,13 @@
 <script lang="ts">
 	import type { IProject } from './types';
 
-	export let project: IProject;
-
-	export let index: number;
+	let { project, index }: { project: IProject; index: number } = $props();
 
 	import type { BiggerPictureInstance } from 'bigger-picture';
 	import { loadBp } from '$lib/bigger-picture/load-bp';
 	import { onMount } from 'svelte';
 
 	let bp: BiggerPictureInstance;
-
-	let previewElement: HTMLElement;
 
 	/**
 	 * Preview from image
@@ -41,10 +37,10 @@
 			data-caption={project.name}
 			data-width={project.images.fullscreen.width}
 			data-height={project.images.fullscreen.height}
-			on:click={openBiggerPicture}
+			onclick={openBiggerPicture}
 			role="button"
 			tabindex="0"
-			on:keydown={(e) => e.key === 'Enter' && openBiggerPicture}
+			onkeydown={(e) => e.key === 'Enter' && openBiggerPicture(e)}
 		>
 			<!-- Preview image -->
 			<img
@@ -67,15 +63,15 @@
 			<div class="project-desc">
 				{project.description}
 				<br />
-				{#each project.links as link}
+				{#each project.links as link (link.link)}
 					<a href={link.link} target={link.target} aria-label={link.aria}>
-						<i class={link.icon} />
+						<i class={link.icon}></i>
 					</a>
 				{/each}
 			</div>
 
 			<div class="tags">
-				{#each project.tags as tag}
+				{#each project.tags as tag (tag)}
 					<span class="tag">
 						{tag}
 					</span>

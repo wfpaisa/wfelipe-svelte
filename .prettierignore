@@ -9,5 +9,7 @@ node_modules
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
+bun.lock
 package-lock.json
 yarn.lock
+/static

@@ -6,33 +6,33 @@ Free software - MIT licensed. Do whatever you want with it, just don't be an ass
 
 ## Install the dependencies
 
-Node verision: v18.16.0
+Node version: >= 22.12 (required by Vite 8)
 
 ```bash
-pnpm i
+bun install
 ```
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
-pnpm l
+bun run l
 
 ```
 
 ### Lint the files
 
 ```bash
-pnpm lint
+bun run lint
 ```
 
 ### Format the files
 
 ```bash
-pnpm format
+bun run format
 ```
 
 ### Build the app for production
 
 ```bash
-pnpm build
+bun run build
 ```

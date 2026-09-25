@@ -3,7 +3,7 @@
 </script>
 
 <section id="about">
-	<div class="preloadimage" />
+	<div class="preloadimage"></div>
 
 	<div class="container">
 		<div class="flex-center">

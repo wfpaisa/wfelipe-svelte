@@ -1,9 +1,7 @@
 <script lang="ts">
 	import type { IPortfolioItem } from './types';
 
-	export let item: IPortfolioItem;
-
-	export let index: number;
+	let { item, index }: { item: IPortfolioItem; index: number } = $props();
 
 	import type { BiggerPictureInstance } from 'bigger-picture';
 	import { loadBp } from '$lib/bigger-picture/load-bp';
@@ -11,7 +9,7 @@
 
 	let bp: BiggerPictureInstance;
 
-	let previewElement: HTMLElement;
+	let previewElement: HTMLElement | undefined = $state();
 
 	/**
 	 * Preview from image
@@ -53,10 +51,10 @@
 		data-caption={item.name}
 		data-width={item.image.bigWidth}
 		data-height={item.image.bigHeight}
-		on:click={openBiggerPicture}
+		onclick={openBiggerPicture}
 		role="button"
 		tabindex="0"
-		on:keydown={(e) => e.key === 'Enter' && openBiggerPicture()}
+		onkeydown={(e) => e.key === 'Enter' && openBiggerPicture()}
 		style:background-image="url({item.image.preview})"
 	>
 		<!-- <img src={item.image.preview} alt={item.name} width="1000" height="1200" /> -->
@@ -65,7 +63,7 @@
 	<h1 class="name">{item.name}</h1>
 
 	<div class="tags">
-		{#each item.tags as tag}
+		{#each item.tags as tag (tag)}
 			<div class="tag">{tag}</div>
 		{/each}
 	</div>
@@ -73,10 +71,10 @@
 	<div class="actions">
 		<div
 			class="btn"
-			on:click={openBiggerPicture}
+			onclick={openBiggerPicture}
 			role="button"
 			tabindex="0"
-			on:keydown={(e) => e.key === 'Enter' && openBiggerPicture()}
+			onkeydown={(e) => e.key === 'Enter' && openBiggerPicture()}
 		>
 			Preview
 		</div>
@@ -91,7 +89,7 @@
 				data-height="1080"
 				data-thumb="/images/no-img.png"
 				data-iframe="https://www.youtube.com/embed/{item.youtubeId}"
-				on:click={openVideo}
+				onclick={openVideo}
 			>
 				Video
 			</a>

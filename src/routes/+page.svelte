@@ -15,11 +15,11 @@
 
 <About />
 
-<div class="dots" />
+<div class="dots"></div>
 
 <Work />
 
-<div class="dots" />
+<div class="dots"></div>
 
 <Portfolio />
 

@@ -1,8 +1,10 @@
-<script>
+<script lang="ts">
 	import LayoutHeader from './layout-header.svelte';
 	import LayoutSidebarLeft from './layout-sidebar-left.svelte';
 	import LayoutSidebarRight from './layout-sidebar-right.svelte';
 	import '$lib/styles/styles.css';
+
+	let { children } = $props();
 </script>
 
 <LayoutHeader />
@@ -11,7 +13,7 @@
 	<LayoutSidebarLeft />
 
 	<main>
-		<slot />
+		{@render children()}
 	</main>
 
 	<LayoutSidebarRight />

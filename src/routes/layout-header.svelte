@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-
 	const linksList = [
 		{
 			title: 'About',
@@ -37,18 +35,19 @@
 
 <header>
 	<div class="logo">
-		<a href="/" class="icon-logo" title="Change color" on:click={goHome}>
-			<span class="path1" />
-			<span class="path2" />
+		<a href="/" class="icon-logo" title="Change color" onclick={goHome}>
+			<span class="path1"></span>
+			<span class="path2"></span>
 		</a>
 	</div>
 
 	<nav>
-		[{#each linksList as link, index}
-			<a href={link.link} aria-label="link to section ${link.title}">
-				<span>0{index + 1}.</span>
-				{link.title}
-			</a>{/each}]
+		<!-- eslint-disable svelte/no-useless-mustaches -- explicit trailing space keeps the original link width (Svelte 5 trims whitespace) -->
+		[{#each linksList as link, index (link.link)}<a
+				href={link.link}
+				aria-label="link to section {link.title}"><span>0{index + 1}.</span> {link.title}{' '}</a
+			>{/each}]
+		<!-- eslint-enable svelte/no-useless-mustaches -->
 	</nav>
 </header>
 

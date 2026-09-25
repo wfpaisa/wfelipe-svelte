@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <section id="work">
 	<div class="container">
 		<div class="flex-center">

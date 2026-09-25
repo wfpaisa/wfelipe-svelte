@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <section id="intro" class="bg-color">
 	<article class="container">
 		<div class="intro-info">
@@ -18,7 +15,7 @@
 	</article>
 
 	<div class="mouse">
-		<span class="animated infinite mouse-effect-scrolldown" />
+		<span class="animated infinite mouse-effect-scrolldown"></span>
 	</div>
 </section>
 
