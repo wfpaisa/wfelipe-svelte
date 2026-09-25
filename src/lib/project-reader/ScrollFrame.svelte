@@ -57,6 +57,7 @@
 	bind:this={frame}
 	href={item.full.src}
 	class="frame"
+	data-scroll
 	class:scrubbing={scrub !== null}
 	style:--aspect={aspect}
 	style:--ratio={ratio}
@@ -106,9 +107,10 @@
 
 		/* Ambient drift: a small, fixed movement as the card crosses the viewport.
 		   The full travel through the site only happens under the pointer. */
-		animation: frame-drift linear both;
+		animation: frame-drift 1ms linear both;
 		animation-timeline: view(block);
-		animation-range: entry 60% exit 40%;
+		--scroll-range: entry 60% exit 40%;
+		animation-range: var(--scroll-range);
 	}
 
 	.frame.scrubbing {

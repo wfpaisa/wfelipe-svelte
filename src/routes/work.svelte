@@ -12,7 +12,7 @@
 			{#each i18n.t.work.items as text, index (index)}
 				<p>
 					<i>{String(i18n.t.work.items.length - index).padStart(2, '0')}</i>
-					<span class="scroll-view sv-grow-up-inline">{text}</span>
+					<span data-scroll class="scroll-view sv-grow-up-inline">{text}</span>
 				</p>
 			{/each}
 		</div>

@@ -764,7 +764,7 @@
 		min-height: 4px;
 		border: 1px solid var(--neon-cyan);
 		border-radius: 2px;
-		background-color: oklch(from var(--neon-cyan) l c h / 18%);
+		background-color: color-mix(in oklch, var(--neon-cyan) 18%, transparent);
 		box-shadow: 0 0 0 100vmax oklch(12% 0.04 var(--hue) / 35%);
 		pointer-events: none;
 	}

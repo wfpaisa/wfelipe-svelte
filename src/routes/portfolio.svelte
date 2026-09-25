@@ -19,7 +19,7 @@
 			}
 		},
 		{
-			name: 'Ecomodisimos - landing',
+			name: 'eComodísimos — Landing',
 			tags: ['JavaScript', 'VTEX', 'HTML', 'CSS'],
 			image: {
 				preview: '/images/projects/comodisimos/ecomodisimos-preview.webp',
@@ -31,7 +31,7 @@
 			youtubeId: 'T8f0HNz8K1I'
 		},
 		{
-			name: 'Hogar universal',
+			name: 'Hogar Universal',
 			tags: ['JavaScript', 'Drupal', 'CSS', 'HTML', 'PHP'],
 			image: {
 				preview: '/images/projects/universal/universal-preview.webp',
@@ -42,7 +42,7 @@
 			}
 		},
 		{
-			name: 'Comodisimos - Web',
+			name: 'Comodísimos — Web',
 			tags: ['JavaScript', 'React', 'Design', 'VTEX', 'HTML', 'CSS'],
 			image: {
 				preview: '/images/projects/comodisimos/comodisimos-preview.webp',
@@ -65,7 +65,7 @@
 			}
 		},
 		{
-			name: 'Codigital',
+			name: 'CoDigital',
 			tags: ['JavaScript', 'PrestaShop', 'Drupal', 'CSS', 'HTML', 'Angular'],
 			image: {
 				preview: '/images/projects/codigital/codigital-preview.webp',
@@ -111,7 +111,7 @@
 			}
 		},
 		{
-			name: 'Comodisimos - POS',
+			name: 'Comodísimos — POS',
 			tags: ['Vue', 'JavaScript', 'Docker', 'Design', 'HTML', 'CSS', 'InfluxDB'],
 			image: {
 				preview: '/images/projects/comodisimos/comodisimos-pos-preview.webp',

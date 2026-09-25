@@ -4,7 +4,7 @@
 	const i18n = getI18n();
 </script>
 
-<section id="intro" class="bg-color">
+<section id="intro" class="bg-color" data-scroll="root">
 	<article class="container">
 		<div class="intro-info">
 			<span class="name animated fadeInLeft delay-2"> {i18n.t.hero.greeting} </span>
@@ -38,7 +38,8 @@
 		animation-duration: 1ms;
 		animation-direction: alternate;
 		animation-timeline: scroll(block root);
-		animation-range: 0 100dvh;
+		--scroll-range: 0 100dvh;
+		animation-range: var(--scroll-range);
 	}
 
 	@keyframes zoomAnimation {

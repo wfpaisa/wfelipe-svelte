@@ -28,7 +28,7 @@
 	}
 </script>
 
-<article class="item item-{index}">
+<article class="item item-{index}" data-scroll>
 	<ScrollFrame {item} onopen={openFromFrame} />
 
 	<div class="meta">
@@ -77,7 +77,8 @@
 		animation-fill-mode: both;
 		animation-timing-function: linear;
 		animation-timeline: view(block);
-		animation-range: cover 0 cover 30%;
+		--scroll-range: cover 0% cover 30%;
+		animation-range: var(--scroll-range);
 		animation-duration: 1ms;
 	}
 

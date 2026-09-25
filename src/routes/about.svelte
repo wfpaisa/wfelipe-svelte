@@ -11,12 +11,15 @@
 	<div class="container">
 		<div class="flex-center">
 			<div>
-				<h2 class="scroll-view sv-grow-up"><span class="number">01.</span> {i18n.t.about.title}</h2>
+				<h2 data-scroll class="scroll-view sv-grow-up">
+					<span class="number">01.</span>
+					{i18n.t.about.title}
+				</h2>
 
-				<p class="scroll-view sv-grow-up">{i18n.t.about.body}</p>
+				<p data-scroll class="scroll-view sv-grow-up">{i18n.t.about.body}</p>
 
-				<p class="scroll-view sv-grow-up">{i18n.t.about.stack}</p>
-				<ul class="scroll-view sv-grow-up">
+				<p data-scroll class="scroll-view sv-grow-up">{i18n.t.about.stack}</p>
+				<ul data-scroll class="scroll-view sv-grow-up">
 					<li><span class="tag">CSS/Sass</span></li>
 					<li><span class="tag">JavaScript/Node.js</span></li>
 					<li><span class="tag">Vue/React/Angular</span></li>
@@ -30,7 +33,7 @@
 			</div>
 
 			<div>
-				<div class="me scroll-view">
+				<div class="me scroll-view" data-scroll>
 					<img src={ImgMe} alt="Felipe Uribe" height="341" width="341" />
 				</div>
 			</div>

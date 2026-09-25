@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation';
 	import { getI18n, localePath, locales } from '$lib/i18n';
+	import { scrollTimelineFallback } from '$lib/scroll-timeline';
 	import ProjectReader from '$lib/project-reader/ProjectReader.svelte';
 	import About from '../about.svelte';
 	import Hero from '../hero.svelte';
@@ -9,6 +11,14 @@
 
 	const i18n = getI18n();
 	const site = 'https://wfelipe.com';
+
+	// Scroll animations for browsers without `animation-timeline`; rescans after a language change
+	let stopScrollFallback = () => {};
+	afterNavigate(() => {
+		stopScrollFallback();
+		stopScrollFallback = scrollTimelineFallback();
+	});
+	$effect(() => () => stopScrollFallback());
 </script>
 
 <svelte:head>
@@ -24,11 +34,11 @@
 
 <About />
 
-<div class="dots"></div>
+<div class="dots" data-scroll></div>
 
 <Work />
 
-<div class="dots"></div>
+<div class="dots" data-scroll></div>
 
 <Portfolio />
 
@@ -48,11 +58,10 @@
 		background-image: radial-gradient(circle, var(--dot-color) var(--dot-size), transparent 0);
 		background-position: center 0;
 
-		animation-name: zoomAnimation;
-		animation-duration: 1ms;
-		animation: zoomAnimation linear both;
+		animation: zoomAnimation 1ms linear both;
 		animation-timeline: view(block);
-		animation-range: cover 30 cover 70;
+		--scroll-range: cover 30% cover 70%;
+		animation-range: var(--scroll-range);
 
 		@media (prefers-color-scheme: light) {
 			background-color: black;

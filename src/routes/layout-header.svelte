@@ -13,10 +13,8 @@
 	const goHome = (e: MouseEvent) => {
 		e.preventDefault();
 
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth'
-		});
+		// Follows the html `scroll-behavior`: smooth, or instant with reduced motion
+		window.scrollTo({ top: 0 });
 	};
 </script>
 
