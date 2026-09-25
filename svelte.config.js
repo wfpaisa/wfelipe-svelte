@@ -15,9 +15,20 @@ const config = {
 	kit: {
 		adapter: adapter({
 			// See https://svelte.dev/docs/kit/adapter-cloudflare#Options
+			// Cloudflare allows 100 rules in _routes.json and `<all>` expands to one rule per
+			// file, so it gets truncated. The site is fully prerendered: exclude the build,
+			// the prerendered pages and whole static folders so no request runs the Worker.
 			routes: {
 				include: ['/*'],
-				exclude: ['<all>']
+				exclude: [
+					'<build>',
+					'<prerendered>',
+					'/favicon.png',
+					'/favicon/*',
+					'/fonts/*',
+					'/images/*',
+					'/styles/*'
+				]
 			}
 		})
 	}

@@ -34,5 +34,8 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
-	"type": "module"
+	"type": "module",
+	"engines": {
+		"node": ">=22.13"
+	}
 }
