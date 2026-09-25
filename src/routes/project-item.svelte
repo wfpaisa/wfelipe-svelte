@@ -13,172 +13,108 @@
 	}
 </script>
 
-<article class="project project-{index} {project.position}">
+<article class="project ln {project.position}">
 	<div class="project-img">
-		<div class="project-img-in">
-			<ScrollFrame
-				item={items[index]}
-				aspect={Number(small.height) / Number(small.width)}
-				{onopen}
-			/>
-		</div>
+		<ScrollFrame item={items[index]} aspect={Number(small.height) / Number(small.width)} {onopen} />
 	</div>
 
 	<div class="project-info">
-		<div class="project-info-in">
-			<h2>{project.name}</h2>
+		<h2>{project.name}</h2>
 
-			<div class="project-desc">
-				{project.description}
-				<br />
-				{#each project.links as link (link.link)}
+		<p class="project-desc">{project.description}</p>
+
+		<ul class="tags">
+			{#each project.tags as tag (tag)}
+				<li class="tag">{tag}</li>
+			{/each}
+		</ul>
+
+		<ul class="links">
+			{#each project.links as link (link.link)}
+				<li>
 					<a href={link.link} target={link.target} rel="noopener" aria-label={link.aria}>
-						<i class={link.icon}></i>
+						<i class={link.icon} aria-hidden="true"></i>
+						<span aria-hidden="true">{new URL(link.link).hostname.replace('www.', '')}</span>
 					</a>
-				{/each}
-			</div>
-
-			<div class="tags">
-				{#each project.tags as tag (tag)}
-					<span class="tag">
-						{tag}
-					</span>
-				{/each}
-			</div>
-		</div>
+				</li>
+			{/each}
+		</ul>
 	</div>
 </article>
 
 <style>
 	article {
-		display: flex;
-		gap: 2rem;
-		flex-direction: column;
-		margin-bottom: 4rem;
-		align-items: center;
+		display: grid;
+		gap: 1.5rem;
+		margin-bottom: 5rem;
 	}
 
-	article .project-img {
-		width: 100%;
+	article:last-child {
+		margin-bottom: 0;
 	}
 
-	article .project-img .project-img-in {
-		position: relative;
-		z-index: 1;
-		box-shadow: 0 0 1px 1px oklch(88% 0.04 var(--hue) / 20%);
-		border-radius: var(--border-radius-base);
-		transition: var(--transition);
+	@media (min-width: 768px) {
+		article {
+			grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+			column-gap: 3rem;
+			align-items: center;
+		}
+
+		.dir-rl .project-img {
+			order: 2;
+		}
 	}
 
-	article .project-img .project-img-in::after {
-		content: '';
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		z-index: 1;
-		top: 0%;
-		left: 0%;
-		border-radius: 0.5rem;
-		background-color: oklch(88% 0.04 var(--hue) / 20%);
-		transition: var(--transition);
+	h2 {
+		margin: 0 0 1rem;
+		font-size: var(--font-size-xl);
 	}
 
-	article .project-img:hover .project-img-in::after {
-		transform: rotateZ(-4deg);
-	}
-
-	article .project-img .project-img-in :global(.frame) {
-		position: relative;
-		z-index: 2;
-	}
-
-	article .project-info {
-		width: 100%;
-		position: relative;
-		z-index: 3;
-	}
-
-	article .project-info .project-info-in {
-		padding: 1rem;
-		border-radius: var(--border-radius-base);
-	}
-
-	article .project-info .project-info-in h2 {
-		margin: 1rem 0;
-	}
-
-	article .project-info .project-info-in .project-desc {
+	.project-desc {
+		max-width: 48ch;
+		margin: 0 0 1.5rem;
 		font-size: var(--font-size-sm);
-		line-height: 1.1rem;
+		line-height: var(--font-lineheight-lg);
+		color: var(--color-text-dim);
 	}
 
-	article .project-info .project-info-in .project-desc a {
-		color: var(--color-text-highlight);
-		display: inline-block;
-		font-size: var(--font-size-md);
-		margin: 0.5rem 0;
-	}
-
-	article .project-info .project-info-in .project-desc a:hover {
-		transform: scale(1.2, 1.2);
-	}
-
-	article .project-info .project-info-in .tags {
+	.tags {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.2rem;
+		gap: 0.375rem;
+		margin: 0 0 1.5rem;
+		padding: 0;
+		list-style: none;
 	}
 
-	article a {
-		align-items: center;
-		padding: 0.5rem;
-		text-decoration: none;
-		color: inherit;
+	.tag {
+		font-size: 0.75rem;
+	}
+
+	.links {
 		display: flex;
-		flex-direction: row;
-		gap: 1rem;
+		flex-wrap: wrap;
+		gap: 0.25rem 1.25rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: var(--font-size-sm);
 	}
 
-	.dir-lf .project-info-in {
-		/* border-bottom: 1px solid rgba(18, 3, 3); */
-		/* box-shadow: 0 0.2rem 0.5rem var(--color-8); */
+	.links a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.25rem 0;
+		color: var(--color-text-highlight);
 	}
 
-	.dir-rl {
-		flex-direction: column;
+	.links i {
+		font-size: 1.25rem;
 	}
 
-	.dir-rl .project-info-in {
-		text-align: right;
-		/* border-bottom: 1px solid rgba(18, 3, 3); */
-		/* box-shadow: 0 0.2rem 0.5rem var(--color-8); */
-	}
-
-	.dir-rl .project-info-in .tags {
-		width: 100%;
-		justify-content: flex-end;
-	}
-
-	@media (min-width: 480px) {
-		article {
-			gap: 1rem;
-			flex-direction: row;
-		}
-
-		.dir-lf .project-info-in {
-			/* border-left: 1px solid rgba(18, 3, 3); */
-			border-bottom: none;
-			/* box-shadow: 0 0 1px 1px oklch(88% 0.04 var(--hue) / 20%); */
-		}
-
-		.dir-rl {
-			flex-direction: row-reverse;
-		}
-
-		.dir-rl .project-info-in {
-			/* border-right: 1px solid rgba(18, 3, 3); */
-			border-bottom: none;
-			/* box-shadow: 0 0 1px 1px oklch(88% 0.04 var(--hue) / 20%); */
-		}
+	.links a:hover span {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
 	}
 </style>

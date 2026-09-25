@@ -1,7 +1,5 @@
 <script lang="ts">
 	import LayoutHeader from './layout-header.svelte';
-	import LayoutSidebarLeft from './layout-sidebar-left.svelte';
-	import LayoutSidebarRight from './layout-sidebar-right.svelte';
 	import '$lib/styles/styles.css';
 	import { page } from '$app/state';
 	import { messages, setI18n, toLocale } from '$lib/i18n';
@@ -27,38 +25,26 @@
 
 <LayoutHeader />
 
-<div class="layout">
-	<LayoutSidebarLeft />
-
-	<main>
-		{@render children()}
-	</main>
-
-	<LayoutSidebarRight />
-</div>
+<main class="log">
+	{@render children()}
+</main>
 
 <style>
-	.layout {
-		background-image: radial-gradient(
-			500px 200px at 50% 0%,
-			oklch(22% 0.08 var(--hue)) 0%,
-			transparent 100%
-		);
-
-		@media (prefers-color-scheme: light) {
-			background-image: radial-gradient(
-				500px 200px at 50% 0%,
-				oklch(96% 0.02 var(--hue)) 0%,
-				transparent 100%
-			);
-		}
-
-		display: flex;
-		flex-direction: column;
-		padding: 0rem;
+	/* One session, one line count; the gutter rule runs the whole page */
+	.log {
+		position: relative;
+		counter-reset: line;
 	}
 
-	main {
-		grid-area: main;
+	.log::before {
+		content: '';
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		bottom: 0;
+		left: calc(max(var(--pad), (100% - var(--col)) / 2) + var(--gutter) * 0.72 - 0.25rem);
+		width: 1px;
+		background-color: var(--border-color-1);
+		pointer-events: none;
 	}
 </style>

@@ -1,150 +1,167 @@
 <script lang="ts">
 	import { getI18n } from '$lib/i18n';
+	import Prompt from '$lib/log/Prompt.svelte';
 	import ImgMe from '$lib/images/me.jpg';
 
 	const i18n = getI18n();
+
+	const stack = [
+		'CSS/Sass',
+		'JavaScript/Node.js',
+		'Vue/React/Angular',
+		'Strapi',
+		'HTML',
+		'Linux/Docker',
+		'Inkscape/Figma/SVG',
+		'UX/UI',
+		'PostgreSQL/InfluxDB'
+	];
 </script>
 
 <section id="about">
-	<div class="preloadimage"></div>
+	<div class="col">
+		<Prompt path="~" cmd="cat about.md" />
 
-	<div class="container">
-		<div class="flex-center">
-			<div>
-				<h2 data-scroll class="scroll-view sv-grow-up">
+		<div class="grid">
+			<div class="text">
+				<h2 class="ln scroll-view sv-grow-up" data-scroll>
 					<span class="number">01.</span>
 					{i18n.t.about.title}
 				</h2>
 
-				<p data-scroll class="scroll-view sv-grow-up">{i18n.t.about.body}</p>
+				<p class="body ln scroll-view sv-grow-up" data-scroll>{i18n.t.about.body}</p>
 
-				<p data-scroll class="scroll-view sv-grow-up">{i18n.t.about.stack}</p>
-				<ul data-scroll class="scroll-view sv-grow-up">
-					<li><span class="tag">CSS/Sass</span></li>
-					<li><span class="tag">JavaScript/Node.js</span></li>
-					<li><span class="tag">Vue/React/Angular</span></li>
-					<li><span class="tag">Strapi</span></li>
-					<li><span class="tag">HTML</span></li>
-					<li><span class="tag">Linux/Docker</span></li>
-					<li><span class="tag">Inkscape/Figma/SVG</span></li>
-					<li><span class="tag">UX/UI</span></li>
-					<li><span class="tag">PostgreSQL/InfluxDB</span></li>
+				<p class="ln scroll-view sv-grow-up" data-scroll>{i18n.t.about.stack}</p>
+
+				<!-- `ls` output: plain columns, the way the shell prints a directory -->
+				<ul class="stack ln scroll-view sv-grow-up" data-scroll>
+					{#each stack as item (item)}
+						<li>{item}</li>
+					{/each}
 				</ul>
 			</div>
 
-			<div>
-				<div class="me scroll-view" data-scroll>
+			<figure class="me scroll-view" data-scroll>
+				<div class="frame">
 					<img src={ImgMe} alt="Felipe Uribe" height="341" width="341" />
 				</div>
-			</div>
+				<figcaption aria-hidden="true">me.jpg <span>341 × 341</span></figcaption>
+			</figure>
 		</div>
 	</div>
 </section>
 
 <style>
 	#about {
-		display: flex;
-		align-items: center;
-		min-height: 100dvh;
-		padding: var(--layout-header) 2rem 2rem 2rem;
-		position: relative;
+		padding: clamp(5rem, 10vw, 9rem) 0 clamp(4rem, 8vw, 7rem);
 	}
 
-	.container {
-		display: flex;
+	.grid {
+		display: grid;
+		gap: 3rem;
 	}
 
-	.flex-center {
-		display: flex;
-		gap: 2rem;
-		align-items: start;
-		flex-direction: column-reverse;
-		justify-content: center;
-	}
-
-	@media (min-width: 600px) {
-		.flex-center {
-			flex-direction: row;
+	@media (min-width: 820px) {
+		.grid {
+			grid-template-columns: minmax(0, 1fr) 17rem;
+			column-gap: 4rem;
+			align-items: start;
 		}
 	}
 
+	h2 {
+		margin: 0 0 2.5rem;
+	}
+
+	h2.ln::before {
+		top: 0.6em;
+	}
+
+	p {
+		max-width: 62ch;
+		margin: 0 0 1.5rem;
+		line-height: var(--font-lineheight-lg);
+	}
+
+	.body {
+		font-family: var(--font-family-title);
+		font-size: var(--font-size-md);
+		font-weight: 100;
+		line-height: 1.45;
+		margin-bottom: 2.5rem;
+	}
+
+	.stack {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+		gap: 0.375rem 1.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: var(--font-size-sm);
+		color: var(--color-text-highlight);
+	}
+
+	/* Photo: a duotone that turns to color on hover */
 	.me {
-		background-color: var(--color-text-highlight);
-		display: inline-block;
-		opacity: 0.4;
-		border-radius: 0.5rem;
-		position: relative;
-		transition: var(--transition);
+		margin: 0;
 		animation-name: sv-fade-in-right;
 	}
 
-	.me:hover {
-		transform: scale(1.1, 1.1) translate(0.5rem, -0.5rem);
+	.frame {
+		position: relative;
+		border-radius: var(--border-radius-base);
+		overflow: hidden;
+		background-color: oklch(48% 0.2 var(--hue));
+		box-shadow: 0 0 0 1px var(--border-color-1);
+	}
+
+	.frame img {
+		display: block;
+		width: 100%;
+		height: auto;
+		filter: grayscale(100%);
+		mix-blend-mode: multiply;
+		opacity: 0.85;
+		transition:
+			filter 0.5s var(--ease-out),
+			opacity 0.5s var(--ease-out);
+	}
+
+	.me:hover img {
+		filter: grayscale(0%);
+		mix-blend-mode: normal;
 		opacity: 1;
 	}
 
-	.me img {
-		max-width: 16rem;
-		filter: grayscale(100%);
-		display: block;
-		mix-blend-mode: multiply;
-		border-radius: 0.5rem;
-		height: auto;
+	figcaption {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 0.625rem;
+		font-size: 0.75rem;
+		color: var(--color-text-dim);
+		font-variant-numeric: tabular-nums;
 	}
 
-	.me img:hover {
-		mix-blend-mode: normal;
-		filter: grayscale(0%);
+	figcaption span {
+		color: var(--color-gutter);
 	}
 
-	ul {
-		font-size: var(--font-size-sm);
-		color: var(--color-text-highlight);
-		list-style: none;
-		padding: 0px;
-		margin: 0px;
-	}
-
-	li {
-		margin-bottom: 0.5rem;
+	@media (max-width: 819px) {
+		.me {
+			max-width: 14rem;
+		}
 	}
 
 	@keyframes sv-fade-in-right {
 		from {
 			opacity: 0;
-			transform: translateX(-100px) scale(1.4);
+			transform: translateX(2rem) scale(0.96);
 		}
 
 		to {
 			opacity: 1;
 			transform: translateX(0) scale(1);
 		}
-	}
-
-	@media (min-width: 900px) {
-		ul {
-			column-count: 2;
-		}
-
-		/* @keyframes sv-fade-in-right {
-			from {
-				opacity: 0;
-				transform: translate3d(50px, -140px, 0) rotateZ(-10deg) scale(0.9);
-			}
-
-			to {
-				opacity: 1;
-				transform: translate3d(0, 0, 0) rotateZ(0deg) scale(1);
-			}
-		} */
-	}
-
-	h2 + p::first-letter {
-		font-size: 3.5rem;
-		font-weight: bold;
-		/* color: var(--neon-pink); */
-		float: left;
-		line-height: 3rem;
-		margin-right: 0.25rem;
 	}
 </style>

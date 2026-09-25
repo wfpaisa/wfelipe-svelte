@@ -32,7 +32,10 @@
 	<ScrollFrame {item} onopen={openFromFrame} />
 
 	<div class="meta">
-		<h3 class="name">{item.name}</h3>
+		<h3 class="name">
+			<span class="idx" aria-hidden="true">[{String(index + 1).padStart(2, '0')}]</span>
+			{item.name}
+		</h3>
 
 		<ul class="tags" aria-label={i18n.t.reader.technologies}>
 			{#each item.tags as tag (tag)}
@@ -108,6 +111,15 @@
 		font-size: var(--font-size-lg);
 		font-weight: 300;
 		line-height: var(--font-lineheight-md);
+	}
+
+	.idx {
+		display: block;
+		margin-bottom: 0.375rem;
+		font-family: var(--font-family-body);
+		font-size: 0.75rem;
+		color: var(--color-text-highlight);
+		font-variant-numeric: tabular-nums;
 	}
 
 	.tags {

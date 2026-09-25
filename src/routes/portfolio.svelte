@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getI18n } from '$lib/i18n';
 	import type { ReaderItem } from '$lib/project-reader/reader';
+	import Prompt from '$lib/log/Prompt.svelte';
 	import PortforlioItem from './portfolio-item.svelte';
 	import type { IPortfolioItem } from './types';
 
@@ -138,47 +139,54 @@
 </script>
 
 <section id="portfolio">
-	<div class="container">
-		<section class="items">
-			<article class="item intro">
-				<h2><span class="number">03.</span> {i18n.t.projects.title}</h2>
-				<p>{i18n.t.projects.intro}</p>
-			</article>
+	<div class="col">
+		<Prompt path="~" cmd="ls -l projects/" />
 
+		<h2 class="ln"><span class="number">03.</span> {i18n.t.projects.title}</h2>
+		<p class="intro ln">{i18n.t.projects.intro}</p>
+
+		<p class="total ln" aria-hidden="true">total {readerItems.length}</p>
+
+		<div class="items ln">
 			{#each readerItems as item, index (item.name)}
 				<PortforlioItem items={readerItems} {index} />
 			{/each}
-		</section>
+		</div>
 	</div>
 </section>
 
 <style>
 	#portfolio {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		min-height: 100dvh;
-		padding: calc(var(--layout-header) + 4rem) 2rem;
-		position: relative;
+		padding: clamp(4rem, 8vw, 7rem) 0 4rem;
 	}
 
-	.container {
-		display: flex;
-		flex-direction: column;
+	h2 {
+		margin: 0 0 1.5rem;
 	}
 
-	.items {
-		width: 100%;
+	h2.ln::before {
+		top: 0.6em;
 	}
 
-	.item.intro {
-		padding: 2rem 0;
-		margin-bottom: 1rem;
+	.intro {
+		max-width: 52ch;
+		margin: 0 0 3rem;
+		font-family: var(--font-family-title);
+		font-size: var(--font-size-md);
+		font-weight: 100;
+		line-height: 1.45;
+	}
+
+	.total {
+		margin: 0 0 1rem;
+		font-size: var(--font-size-sm);
+		color: var(--color-text-dim);
 	}
 
 	@media (min-width: 668px) {
 		.items {
 			columns: 2;
+			column-gap: 1rem;
 		}
 	}
 </style>

@@ -62,6 +62,21 @@
 	--dot-container: 6rem;
 	--dot-size: 3px;
 	--dot-color: oklch(26% 0.04 var(--hue));
+
+	/* Session log: content column and the line-number gutter on its left */
+	--col: 68rem;
+	--pad: 1rem;
+	--gutter: 2.75rem;
+	--color-text-dim: oklch(72% 0.04 var(--hue));
+	--color-gutter: oklch(42% 0.05 var(--hue));
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 768px) {
+	:root {
+		--pad: 2rem;
+		--gutter: 4.5rem;
+	}
 }
 
 /* Dark screen */
@@ -84,6 +99,9 @@
 		--border-color-1: oklch(92% 0.02 var(--hue) / 80%);
 
 		--dot-color: oklch(94% 0.04 var(--hue));
+
+		--color-text-dim: oklch(42% 0.04 var(--hue));
+		--color-gutter: oklch(70% 0.04 var(--hue));
 	}
 }
 
@@ -338,4 +356,102 @@ a.link:hover::after {
 .tag:hover {
 	transform: scale(1.1);
 	z-index: 1;
+}
+
+/* ---- Session log ----
+   The page reads as one terminal session. `.col` is the content column, with the
+   gutter on its left; every `.ln` is one (soft-wrapped) line and gets its number
+   there. The line crossing the middle of the viewport lights up: where you are. */
+.col {
+	position: relative;
+	width: min(100% - 2 * var(--pad), var(--col));
+	margin-inline: auto;
+	padding-inline-start: var(--gutter);
+	box-sizing: border-box;
+}
+
+.ln {
+	position: relative;
+	counter-increment: line;
+	view-timeline: --ln block;
+}
+
+.ln::before {
+	content: counter(line, decimal-leading-zero) / '';
+	position: absolute;
+	top: 0;
+	right: calc(100% + var(--gutter) * 0.28 + 0.75rem);
+	font-family: var(--font-family-body);
+	font-size: 0.75rem;
+	font-weight: 300;
+	font-style: normal;
+	line-height: 2;
+	letter-spacing: 0.04em;
+	font-variant-numeric: tabular-nums;
+	color: var(--color-gutter);
+	pointer-events: none;
+
+	animation: ln-here 1ms linear none;
+	animation-timeline: --ln;
+	animation-range: cover 50vh cover calc(100% - 50vh);
+}
+
+@keyframes ln-here {
+	from,
+	to {
+		color: var(--neon-cyan);
+	}
+}
+
+/* Shell prompt that opens each section: user@host:path$ command */
+.prompt {
+	margin: 0 0 2.5rem;
+	font-family: var(--font-family-body);
+	font-size: var(--font-size-sm);
+	font-weight: 300;
+	line-height: 1.5;
+	color: var(--color-text-dim);
+	white-space: nowrap;
+	overflow-wrap: normal;
+}
+
+.prompt .path {
+	color: var(--color-text-highlight);
+}
+
+.prompt .cmd {
+	color: var(--color-text);
+}
+
+/* Blinking block caret */
+.caret {
+	display: inline-block;
+	width: 0.6em;
+	height: 1.15em;
+	vertical-align: -0.2em;
+	margin-left: 0.15em;
+	background-color: var(--color-text-highlight);
+	animation: caret-blink 1.1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.caret {
+		animation: none;
+	}
+}
+
+:focus-visible {
+	outline: 2px solid var(--neon-cyan);
+	outline-offset: 3px;
+	border-radius: var(--border-radius-sm);
+}
+
+a {
+	text-underline-offset: 0.25em;
 }

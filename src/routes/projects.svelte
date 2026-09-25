@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getI18n } from '$lib/i18n';
 	import type { ReaderItem } from '$lib/project-reader/reader';
+	import Prompt from '$lib/log/Prompt.svelte';
 	import ProjectItem from './project-item.svelte';
 	import type { IProject } from './types';
 
@@ -98,7 +99,11 @@
 </script>
 
 <section id="projects">
-	<div class="container">
+	<div class="col">
+		<Prompt path="~" cmd="ls open-source/" />
+
+		<p class="total ln" aria-hidden="true">total {projects.length}</p>
+
 		{#each projects as project, index (project.name)}
 			<ProjectItem {project} items={readerItems} {index} />
 		{/each}
@@ -107,36 +112,12 @@
 
 <style>
 	#projects {
-		margin-bottom: 0rem;
-		padding: 8rem 2rem 15rem 2rem;
-		position: relative;
-		z-index: 1;
+		padding: 5rem 0 3rem;
+	}
 
-		&::before {
-			content: '';
-			position: absolute;
-			z-index: -2;
-			top: 0px;
-			width: 100%;
-			height: 90%;
-			left: 0px;
-			line-break: anywhere;
-			background-color: oklch(48% 0.04 var(--hue) / 10%);
-			transform: skew(0, 3deg);
-		}
-
-		& h1 {
-			position: relative;
-			margin-bottom: 6rem;
-		}
-
-		& .projects-list {
-			display: flex;
-			flex-direction: row;
-			align-items: flex-start;
-			padding: 7px 1px;
-			gap: 1rem;
-			flex-wrap: wrap;
-		}
+	.total {
+		margin: 0 0 2rem;
+		font-size: var(--font-size-sm);
+		color: var(--color-text-dim);
 	}
 </style>
