@@ -1,4 +1,4 @@
-# Product
+# Producto
 
 <!-- impeccable:product-schema 1 -->
 
@@ -6,32 +6,58 @@
 
 web
 
+## Stack
+
+Svelte, elegido por el usuario. Reconstrucción desde cero en este repositorio.
+SvelteKit con prerender y adapter-static. Destino de despliegue pendiente.
+
 ## Users
 
-Primary: potential clients looking for someone to design and build their website. They visit the portfolio to decide whether Felipe's previous work matches their needs and whether to get in touch.
+Personas que evalúan el perfil profesional de Felipe Uribe para oportunidades laborales en dirección frontend o arquitectura frontend. Los tipos de empresas prioritarios están pendientes de definir.
 
 ## Product Purpose
 
-Felipe Uribe's personal portfolio (wfelipe.com). Felipe is a web developer and designer who handles both design and development. Success means a potential client contacts him at hi@wfelipe.com after reviewing his work.
+Portafolio profesional de Felipe Uribe. Su objetivo principal es conseguir oportunidades laborales, mostrando su trabajo en diseño de interfaces y desarrollo web, su experiencia y sus proyectos.
 
-## Positioning
+El usuario quiere orientar su presentación a cargos de director o arquitecto frontend. Es un objetivo profesional confirmado, no evidencia de que haya ocupado esos cargos. Las responsabilidades y resultados de liderazgo o arquitectura requieren ejemplos verificables antes de presentarlos como logros.
 
-One person who handles the entire process: interface design, front-end development, servers, and launch. His experience spans 14 years and more than 300 websites, as stated on the site, plus open-source desktop design projects such as Plane Icon Theme and Plane GTK Theme.
+## Operating Context
+
+El sitio existente, https://wfelipe.com/, es la fuente inicial de contenido. El usuario confirmó que su contenido sigue vigente y autorizó mejorarlo. El sitio ofrece versiones en español e inglés; ambas se conservan como base del rediseño.
 
 ## Capabilities and Constraints
 
-- Single-page SvelteKit 2 / Svelte 5 site, prerendered, deployed on Cloudflare.
-- Sections: hero, 01. About, 02. Work, 03. Projects (client work), open-source projects.
-- Content is available in English and Spanish.
+- Presentar el perfil, la experiencia profesional, los proyectos web y los aportes a código abierto.
+- Mantener vías de contacto y enlaces a perfiles profesionales existentes.
+- Mejorar la redacción y organización del contenido conservando los hechos y el sentido original.
+- Reconstruir el sitio desde cero con Svelte.
+- No inventar logros, métricas, responsabilidades ni resultados de proyectos.
+- Dirección visual aprobada: núcleo tipográfico claro, construido con Svelte y partículas de letras en movimiento.
+
+## Brand Commitments
+
+Nombre profesional: Felipe Uribe. Dominio existente: wfelipe.com.
+El perfil reúne diseño de interfaces y desarrollo de productos web, con interés en Linux y el código abierto.
+
+El usuario rechazó la dirección editorial y todas sus composiciones el 1 de octubre de 2026. El rediseño debe explorar otro concepto; no reutilizar esa dirección como identidad aprobada.
+
+Referencias de gusto aportadas por el usuario: seis imágenes de muestra (eliminadas del repositorio). Debían guiar la nueva exploración visual. El usuario también rechazó Mesa de sistemas. Después aprobó núcleo tipográfico: `.impeccable/mocks/campo-exploracion/nucleo-tipografico.png`, con fondo claro glaciar, azul y violeta y letras del titular formando un núcleo.
 
 ## Evidence on Hand
 
-- 10 client projects, each with a name, technology tags, a preview crop, and a full-page screenshot (`static/images/projects/*`; some are very tall, such as 1878 × 12857). Five projects also include a YouTube walkthrough video.
-- 2 open-source projects (Icon Theme and Plane GTK Theme), each with a description, tags, preview and full-size images, and links to GitHub and GNOME-Look.org.
-- Not available, do not fabricate: project year, role per project, live URLs, client names beyond project names, testimonials, results or metrics.
+Fuente revisada: https://wfelipe.com/, el 30 de septiembre de 2026. Su contenido fue confirmado como vigente por el usuario.
+
+- Biografía, tecnologías utilizadas y trayectoria profesional.
+- Diez proyectos: Monte, eComodísimos — Landing, Hogar Universal, Comodísimos — Web, Natalia Lafourcade, CoDigital, Ostinata, Todo en Artes, El Bellanita y Comodísimos — POS.
+- Capturas de proyectos y enlaces a videos en algunos casos.
+- Proyectos de código abierto: un tema de iconos y Plane GTK theme.
+- Fotografía personal y enlaces a GitHub, LinkedIn y OpenDesktop.
+
+Estos recursos están en el sitio publicado; aún no se han incorporado al repositorio. No se han proporcionado resultados cuantificados ni casos de estudio detallados adicionales.
 
 ## Product Principles
 
-- The work itself is the proof; show the real screenshots as much as possible.
-- One person, design and code: surface both sides where the content supports it.
-- Every project view should keep the path to contact close.
+- Priorizar la evaluación del perfil para oportunidades laborales.
+- Mostrar evidencia real del trabajo y de las capacidades de diseño y desarrollo.
+- Facilitar la comprensión de la experiencia y el acceso al contacto profesional.
+- Conservar la fidelidad de los datos al mejorar el contenido en ambos idiomas.

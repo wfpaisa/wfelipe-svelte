@@ -1,11 +1,21 @@
-.DS_Store
-node_modules
-/build
-/.svelte-kit
-/package
+# Dependencias y salida de build
+node_modules/
+.svelte-kit/
+build/
+vite.config.js.timestamp-*
+
+# Variables de entorno
 .env
 .env.*
 !.env.example
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
-.wrangler
+
+# Sistema y registros
+.DS_Store
+*.log
+
+# Skills y agentes instalados por herramientas (se reinstalan por equipo)
+.claude/
+.agents/
+
+# Impeccable: estado local y salidas generadas (`npm run verify` escribe en review/)
+.impeccable/

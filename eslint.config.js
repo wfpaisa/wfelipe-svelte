@@ -1,41 +1,27 @@
-import { fileURLToPath } from 'node:url';
-import { includeIgnoreFile } from '@eslint/compat';
 import js from '@eslint/js';
-import prettier from 'eslint-config-prettier';
 import svelte from 'eslint-plugin-svelte';
+import prettier from 'eslint-config-prettier';
 import globals from 'globals';
-import ts from 'typescript-eslint';
 import svelteConfig from './svelte.config.js';
 
-const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
-
-export default ts.config(
-	includeIgnoreFile(gitignorePath),
+export default [
 	js.configs.recommended,
-	...ts.configs.recommended,
 	...svelte.configs.recommended,
 	prettier,
 	...svelte.configs.prettier,
 	{
-		languageOptions: {
-			globals: { ...globals.browser, ...globals.node }
-		},
+		languageOptions: { globals: { ...globals.browser, ...globals.node } },
 		rules: {
-			// typescript-eslint recommends disabling this for TS projects
-			'no-undef': 'off',
-			// Single-page site: links are in-page anchors or external URLs
+			'no-empty': ['error', { allowEmptyCatch: true }],
+			// Links here are in-page anchors or external sites, not app routes
 			'svelte/no-navigation-without-resolve': 'off'
 		}
 	},
 	{
-		files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
-		languageOptions: {
-			parserOptions: {
-				projectService: true,
-				extraFileExtensions: ['.svelte'],
-				parser: ts.parser,
-				svelteConfig
-			}
-		}
+		files: ['**/*.svelte', '**/*.svelte.js'],
+		languageOptions: { parserOptions: { svelteConfig } }
+	},
+	{
+		ignores: ['build/', '.svelte-kit/', 'static/', '.impeccable/', '.agents/', '.claude/']
 	}
-);
+];

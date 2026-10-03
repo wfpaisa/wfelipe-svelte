@@ -1,0 +1,62 @@
+{
+	"comodisimos": {
+		"full": "/projects/comodisimos-full.webp",
+		"fullWidth": 3072,
+		"fullHeight": 16153
+	},
+	"todo-artes": {
+		"full": "/projects/todo-artes-full.webp",
+		"fullWidth": 1916,
+		"fullHeight": 8169
+	},
+	"pos": {
+		"full": "/projects/pos-full.webp",
+		"fullWidth": 1920,
+		"fullHeight": 9032
+	},
+	"monte": {
+		"full": "/projects/monte-full.webp",
+		"fullWidth": 1878,
+		"fullHeight": 12857
+	},
+	"ecomodisimos": {
+		"full": "/projects/ecomodisimos-full.webp",
+		"fullWidth": 5120,
+		"fullHeight": 9072
+	},
+	"universal": {
+		"full": "/projects/universal-full.webp",
+		"fullWidth": 1400,
+		"fullHeight": 9732
+	},
+	"natalia": {
+		"full": "/projects/natalia-full.webp",
+		"fullWidth": 1280,
+		"fullHeight": 5296
+	},
+	"codigital": {
+		"full": "/projects/codigital-full.webp",
+		"fullWidth": 5120,
+		"fullHeight": 11462
+	},
+	"ostinata": {
+		"full": "/projects/ostinata-full.webp",
+		"fullWidth": 1400,
+		"fullHeight": 10686
+	},
+	"bellanita": {
+		"full": "/projects/bellanita-full.webp",
+		"fullWidth": 2000,
+		"fullHeight": 4683
+	},
+	"plane": {
+		"full": "/projects/plane-full.webp",
+		"fullWidth": 1920,
+		"fullHeight": 5325
+	},
+	"icons": {
+		"full": "/projects/icons-full.webp",
+		"fullWidth": 1920,
+		"fullHeight": 8219
+	}
+}

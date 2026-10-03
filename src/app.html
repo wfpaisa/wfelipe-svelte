@@ -2,62 +2,31 @@
 <html lang="%lang%">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="128x128"
-			href="%sveltekit.assets%/favicon/favicon-128x128.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="96x96"
-			href="%sveltekit.assets%/favicon/favicon-96x96.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="32x32"
-			href="%sveltekit.assets%/favicon/favicon-32x32.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="16x16"
-			href="%sveltekit.assets%/favicon/favicon-16x16.png"
-		/>
-		<link rel="icon" type="image/ico" href="%sveltekit.assets%/favicon/favicon.ico" />
-
-		<link rel="stylesheet" href="%sveltekit.assets%/styles/normalize.css" />
-		<link rel="stylesheet" href="%sveltekit.assets%/fonts/font.css" />
-		<link rel="stylesheet" href="%sveltekit.assets%/fonts/font-icon.css" />
-		<link rel="stylesheet" href="%sveltekit.assets%/styles/animated.css" />
-
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script>
-			// First visit to "/": use the saved choice, otherwise the browser's language.
-			// Runs before paint so Spanish visitors never see the English page.
-			(function () {
-				if (location.pathname !== '/') return;
-				var lang = null;
-				try {
-					lang = localStorage.getItem('lang');
-				} catch (e) {}
-				if (!lang) {
-					var langs =
-						navigator.languages && navigator.languages.length
-							? navigator.languages
-							: [navigator.language || 'en'];
-					lang = String(langs[0]).toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+			try {
+				const saved = localStorage.getItem('theme');
+				document.documentElement.dataset.theme =
+					saved === 'dark' || saved === 'light'
+						? saved
+						: matchMedia('(prefers-color-scheme: dark)').matches
+							? 'dark'
+							: 'light';
+			} catch {}
+			// The headline is drawn in particles once the fonts load; until then its solid text stays hidden.
+			document.documentElement.classList.add('headline-pending');
+			setTimeout(() => document.documentElement.classList.remove('headline-pending'), 3000);
+			try {
+				if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+					document.documentElement.classList.add('story-pending');
+					setTimeout(() => document.documentElement.classList.remove('story-pending'), 4000);
 				}
-				if (lang === 'es') location.replace('/es' + location.search + location.hash);
-			})();
+			} catch {}
 		</script>
-
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div id="app" style="display: contents">%sveltekit.body%</div>
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
