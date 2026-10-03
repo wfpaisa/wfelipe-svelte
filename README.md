@@ -14,7 +14,7 @@ npm run check
 npm run build
 ```
 
-Publicar el directorio `build/` en un servidor de archivos estáticos que sirva `index.html` dentro de cada directorio. No necesita un servidor Node en producción. Configurar una redirección permanente del antiguo `/es` a `/` en el proveedor de alojamiento. El dominio canónico, los idiomas alternos y el sitemap usan `https://wfelipe.com/`.
+Se despliega en Cloudflare Pages con `@sveltejs/adapter-cloudflare`: comando de build `npm run build` y directorio de salida `.svelte-kit/cloudflare`. Todas las páginas se prerenderizan y `_routes.json` las excluye del Worker, así que se sirven como archivos estáticos. El build genera en `_redirects` la redirección permanente (308) de `/es/` a `/`. El dominio canónico, los idiomas alternos y el sitemap usan `https://wfelipe.com/`.
 
 ## Contenido
 
