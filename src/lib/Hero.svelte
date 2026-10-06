@@ -89,7 +89,7 @@
 		></button
 	>
 </header>
-<section class="hero" aria-labelledby="hero-title">
+<section class="hero" class:spins={!playing && !reduced} aria-labelledby="hero-title">
 	<canvas bind:this={canvas} class="nucleus" aria-hidden="true"></canvas>
 	<div class="hero-copy">
 		<h1 id="hero-title" tabindex="-1" bind:this={headline}>

@@ -243,16 +243,20 @@ export const experience = [
 	}
 ];
 export const skills = [
-	'JavaScript / Node.js',
-	'Angular / Vue / React',
+	'JavaScript / TypeScript / jQuery',
+	'Angular / AngularJS / Vue / React',
+	'Node.js / Express / Sails / Strapi',
 	'CSS / Sass',
 	'HTML',
-	'Jasmine',
-	'Strapi',
-	'Drupal / PrestaShop / WordPress',
-	'Linux / Docker',
-	'Git',
-	'Inkscape / Figma / SVG',
+	'PHP',
+	'Drupal / PrestaShop / WordPress / Grav',
+	'VTEX',
+	'Jasmine / Vitest',
+	'Webpack / Gulp',
+	'Linux / Docker / Git',
+	'AWS / DigitalOcean',
+	'Inkscape / Figma / Photoshop / SVG',
 	'UX / UI',
-	'PostgreSQL / InfluxDB'
+	'PostgreSQL / InfluxDB',
+	'IA'
 ];

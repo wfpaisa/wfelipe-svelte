@@ -1815,12 +1815,9 @@ export function createNucleus(canvas, headline, onState, { lang = 'es' } = {}) {
 	// The gate: before anything else the particles gather into a play symbol, hold it, and break up toward the
 	// «Watch evolution» control. A click anywhere sends a ripple through the hero; when it dies, the story starts.
 	let gate = null,
-		gateInk = '#000',
 		gateAccent = '#c00';
 	function readGateColors() {
-		const style = getComputedStyle(hero);
-		gateInk = style.getPropertyValue('--ink').trim() || gateInk;
-		gateAccent = style.getPropertyValue('--primary').trim() || gateAccent;
+		gateAccent = getComputedStyle(hero).getPropertyValue('--primary').trim() || gateAccent;
 	}
 	function buildGate() {
 		const cx = width / 2,
@@ -1855,16 +1852,13 @@ export function createNucleus(canvas, headline, onState, { lang = 'es' } = {}) {
 				c.stroke();
 			}, step);
 		const reach = Math.max(width, height) * 0.7;
-		gate.dots = [
-			...ring.map((q) => ({ ...q, accent: false })),
-			...triangle.map((q) => ({ ...q, accent: true }))
-		].map((q) => {
+		// The whole play is in the accent, like the control it flows into.
+		gate.dots = [...ring, ...triangle].map((q) => {
 			const angle = random() * Math.PI * 2,
 				far = reach * (0.55 + random() * 0.6);
 			return {
 				tx: q.x,
 				ty: q.y,
-				accent: q.accent,
 				sx: cx + Math.cos(angle) * far,
 				sy: cy + Math.sin(angle) * far * 0.7,
 				bx: x0 + random() * (x1 - x0),
@@ -1965,43 +1959,40 @@ export function createNucleus(canvas, headline, onState, { lang = 'es' } = {}) {
 			build = 1;
 		}
 		if (!gate.ready) {
-			for (const accent of [false, true]) {
-				ctx.fillStyle = accent ? gateAccent : gateInk;
-				for (const q of gate.dots) {
-					if (q.accent !== accent) continue;
-					let x = q.tx,
-						y = q.ty,
-						scale = 1,
-						alpha = 1;
-					if (e < GATE.form) {
-						const k = clamp((e - q.delay * 0.7) / (GATE.form - 0.7)),
-							f = 1 - Math.pow(1 - k, 3);
-						x = q.sx + (q.tx - q.sx) * f;
-						y = q.sy + (q.ty - q.sy) * f;
-						alpha = Math.min(1, k * 3);
-					} else if (e < d0) {
-						x += Math.sin(time / 600 + q.phase) * 0.7;
-						y += Math.cos(time / 700 + q.phase) * 0.7;
-					} else {
-						const k = clamp((e - d0 - q.pull * (GATE.dissolve - GATE.fall)) / GATE.fall);
-						if (k > 0) {
-							genie(q, k);
-							x = lamp.x;
-							y = lamp.y;
-							scale = 1 - 0.5 * k;
-							alpha = 1 - smooth(clamp((k - 0.9) / 0.1));
-						}
+			ctx.fillStyle = gateAccent;
+			for (const q of gate.dots) {
+				let x = q.tx,
+					y = q.ty,
+					scale = 1,
+					alpha = 1;
+				if (e < GATE.form) {
+					const k = clamp((e - q.delay * 0.7) / (GATE.form - 0.7)),
+						f = 1 - Math.pow(1 - k, 3);
+					x = q.sx + (q.tx - q.sx) * f;
+					y = q.sy + (q.ty - q.sy) * f;
+					alpha = Math.min(1, k * 3);
+				} else if (e < d0) {
+					x += Math.sin(time / 600 + q.phase) * 0.7;
+					y += Math.cos(time / 700 + q.phase) * 0.7;
+				} else {
+					const k = clamp((e - d0 - q.pull * (GATE.dissolve - GATE.fall)) / GATE.fall);
+					if (k > 0) {
+						genie(q, k);
+						x = lamp.x;
+						y = lamp.y;
+						scale = 1 - 0.5 * k;
+						alpha = 1 - smooth(clamp((k - 0.9) / 0.1));
 					}
-					if (alpha <= 0.01) continue;
-					if (ripples.length) {
-						const m = displace(x, y, time);
-						x = m.x;
-						y = m.y;
-					}
-					const px = size * scale;
-					ctx.globalAlpha = alpha;
-					ctx.fillRect(x - px / 2, y - px / 2, px, px);
 				}
+				if (alpha <= 0.01) continue;
+				if (ripples.length) {
+					const m = displace(x, y, time);
+					x = m.x;
+					y = m.y;
+				}
+				const px = size * scale;
+				ctx.globalAlpha = alpha;
+				ctx.fillRect(x - px / 2, y - px / 2, px, px);
 			}
 			ctx.globalAlpha = 1;
 		}

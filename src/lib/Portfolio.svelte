@@ -324,7 +324,7 @@
 			</p>
 			<h3>{en ? 'Tools I work with' : 'Herramientas con las que trabajo'}</h3>
 			<ul class="skills">
-				{#each skills as skill (skill)}<li>{skill}</li>{/each}
+				{#each skills as skill (skill)}<li>{skill === 'IA' && en ? 'AI' : skill}</li>{/each}
 			</ul>
 		</div>
 	</section>

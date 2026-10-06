@@ -40,32 +40,21 @@
 		mini.releasePointerCapture(e.pointerId);
 	}
 
-	// With a mouse, the pointer's height over the screenshot sets how far down it is, eased so it never jumps.
-	// Touch keeps its own native scrolling; the wheel and the keyboard take over until the mouse moves again.
-	const LAG = 460;
-	let aim = 0;
-	let glide = 0;
-	let before = 0;
-	// The image trails the pointer: each frame it closes a share of the gap, the same at any refresh rate
-	function follow(now = performance.now()) {
-		const gap = aim - stage.scrollTop;
-		if (Math.abs(gap) < 0.5) return;
-		const step = Math.min(64, now - (before || now - 16));
-		before = now;
-		stage.scrollTop += gap * (1 - Math.exp(-step / LAG));
-		glide = requestAnimationFrame(follow);
+	// With a mouse, dragging the screenshot scrolls it like a hand; touch, the wheel and the keyboard scroll natively.
+	let pan = $state(null);
+	function grab(e) {
+		if (e.pointerType !== 'mouse' || e.button !== 0) return;
+		pan = { y: e.clientY, top: stage.scrollTop };
+		stage.setPointerCapture(e.pointerId);
 	}
-	function hover(e) {
-		if (e.pointerType !== 'mouse') return;
-		const rect = stage.getBoundingClientRect();
-		// A margin at both ends so the very top and bottom can be reached
-		const fraction = Math.min(1, Math.max(0, ((e.clientY - rect.top) / rect.height - 0.08) / 0.84));
-		aim = fraction * (stage.scrollHeight - stage.clientHeight);
-		cancelAnimationFrame(glide);
-		before = 0;
-		follow();
+	function pull(e) {
+		if (pan) stage.scrollTop = pan.top - (e.clientY - pan.y);
 	}
-	const stop = () => cancelAnimationFrame(glide);
+	function release(e) {
+		if (!pan) return;
+		pan = null;
+		stage.releasePointerCapture(e.pointerId);
+	}
 
 	$effect(() => {
 		if (!active || !stage) return;
@@ -74,7 +63,6 @@
 		observer.observe(stage);
 		return () => {
 			observer.disconnect();
-			stop();
 		};
 	});
 </script>
@@ -95,15 +83,17 @@
 		<div
 			bind:this={stage}
 			class="stage"
+			class:grabbing={pan}
 			tabindex="0"
 			role="region"
 			aria-label={en
 				? 'Full screenshot of ' + name + ', scroll to explore'
 				: 'Captura completa de ' + name + ', desplázate para explorarla'}
 			{onscroll}
-			onpointermove={hover}
-			onpointerleave={stop}
-			onwheel={stop}
+			onpointerdown={grab}
+			onpointermove={pull}
+			onpointerup={release}
+			onpointercancel={release}
 			ondragstart={(e) => e.preventDefault()}
 		>
 			<figure class="shot" class:loaded>
