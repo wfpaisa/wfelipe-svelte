@@ -18,6 +18,32 @@
 			: ['Proyectos', 'Trayectoria', 'Sobre mí', 'Contacto']
 	);
 	const ids = ['proyectos', 'trayectoria', 'sobre-mi', 'contacto'];
+	// The icon is pressed in, springs back a little larger, then turns two and a half times to the other half.
+	function spinIcon(icon) {
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		const from = theme === 'dark' ? 180 : 0,
+			turn = (deg, scale) => `rotate(${deg}deg) scale(${scale})`;
+		icon.animate(
+			[
+				// Pressed in
+				{ transform: turn(from, 1), easing: 'cubic-bezier(0.3, 0, 0.2, 1)' },
+				{ transform: turn(from, 0.45), offset: 0.18, easing: 'cubic-bezier(0.2, 1.8, 0.4, 1)' },
+				// Springs out larger, then turns two and a half times while it settles
+				{ transform: turn(from, 1.6), offset: 0.36, easing: 'cubic-bezier(0.65, 0, 0.35, 1)' },
+				{ transform: turn(from + 900, 1.15), offset: 0.9, easing: 'ease-out' },
+				{ transform: turn(from + 900, 1) }
+			],
+			{ duration: 1500 }
+		);
+	}
+	function toggleTheme(e) {
+		const box = e.currentTarget.getBoundingClientRect();
+		spinIcon(e.currentTarget.querySelector('svg'));
+		setTheme(theme === 'dark' ? 'light' : 'dark', {
+			x: box.left + box.width / 2,
+			y: box.top + box.height / 2
+		});
+	}
 	onMount(() => {
 		theme = currentTheme();
 		syncThemeColor();
@@ -83,7 +109,7 @@
 		class="theme-toggle"
 		aria-pressed={theme === 'dark'}
 		aria-label={en ? 'Dark mode' : 'Modo oscuro'}
-		onclick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+		onclick={toggleTheme}
 		><svg viewBox="0 0 20 20" aria-hidden="true"
 			><circle cx="10" cy="10" r="8.5" /><path d="M10 1.5a8.5 8.5 0 0 1 0 17z" /></svg
 		></button
