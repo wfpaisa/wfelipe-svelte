@@ -990,6 +990,19 @@ h1 span + span {
 .experience .section-intro {
 	align-items: start;
 }
+/* On wide screens the text sits over the timeline's detail column and grows with the heading, so both columns
+   start and end at the same height. The first column is the timeline's rail plus its 1fr of 2.25fr. */
+@media (min-width: 1001px) {
+	.experience .section-intro {
+		grid-template-columns: calc(3.5rem + (100% - 8.5rem) * 4 / 9) 1fr;
+	}
+	.experience .section-intro > p {
+		max-width: 42.5rem;
+		margin-top: min(0.5vw, 0.476rem);
+		font-size: clamp(0.9375rem, 1.55vw, 1.4764rem);
+		line-height: 1.35;
+	}
+}
 .experience-row {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
