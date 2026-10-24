@@ -58,5 +58,15 @@
 		"full": "/projects/icons-full.webp",
 		"fullWidth": 1920,
 		"fullHeight": 8219
+	},
+	"tablet": {
+		"full": "/projects/tablet-full.webp",
+		"fullWidth": 1300,
+		"fullHeight": 4920
+	},
+	"finanzas": {
+		"full": "/projects/finanzas-full.webp",
+		"fullWidth": 1440,
+		"fullHeight": 8690
 	}
 }

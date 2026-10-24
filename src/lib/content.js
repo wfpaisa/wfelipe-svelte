@@ -119,6 +119,22 @@ export const openSource = [
 		en: 'I designed the icons in Inkscape and built a JavaScript tool to export them at seven sizes, from 16 to 128 pixels.',
 		repo: 'https://github.com/wfpaisa/plane-icon-theme',
 		download: 'https://www.gnome-look.org/p/1178976/'
+	},
+	{
+		id: 'tablet',
+		name: 'Tablet Center',
+		tags: ['Rust', 'Tauri', 'JavaScript', 'HTML', 'CSS', 'GNOME'],
+		es: 'Creé una app de ajustes y un servicio para tabletas Wacom en GNOME que suman lo que le falta al controlador de Linux: desplazamiento con el lápiz como en macOS, gestos, menús radiales en pantalla, curvas de presión y mapeo por monitor, en 14 idiomas.',
+		en: 'I built a settings app and a daemon for Wacom tablets on GNOME that add what the Linux driver lacks: macOS-style pen pan scroll, gestures, on-screen radial menus, pressure curves and per-monitor mapping, in 14 languages.',
+		repo: 'https://github.com/wfpaisa/tablet'
+	},
+	{
+		id: 'finanzas',
+		name: 'Plane Finanzas',
+		tags: ['Svelte', 'TypeScript', 'PocketBase', 'Chart.js', 'Docker', 'PWA'],
+		es: 'Diseñé y desarrollé una app web para las finanzas de la casa: cuentas, movimientos, pagos programados, ahorros con metas y análisis del mes. Se instala en el celular, funciona sin internet, admite varios usuarios por invitación y un asistente de IA puede registrar movimientos por API.',
+		en: 'I designed and built a web app for household finances: accounts, transactions, scheduled payments, savings goals and a monthly analysis. It installs on the phone, works offline, supports multiple users by invitation, and an AI assistant can log transactions through its API.',
+		repo: 'https://github.com/wfpaisa/plane-finanzas'
 	}
 ];
 /** Career, newest first. Dates are [year, month]; end null means current */

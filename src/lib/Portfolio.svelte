@@ -333,8 +333,8 @@
 			<h2 id="open-title">{en ? 'Built to share.' : 'Crear para compartir.'}</h2>
 			<p>
 				{en
-					? 'Outside my day-to-day work, I explore tools and design themes and icons for Linux.'
-					: 'Fuera del trabajo diario exploro herramientas y diseño temas e iconos para Linux.'}
+					? 'Outside my day-to-day work, I explore tools, build apps, and design themes and icons for Linux.'
+					: 'Fuera del trabajo diario exploro herramientas, creo aplicaciones y diseño temas e iconos para Linux.'}
 			</p>
 		</div>
 		{#each openSource as project (project.id)}<details
