@@ -68,5 +68,15 @@
 		"full": "/projects/finanzas-full.webp",
 		"fullWidth": 1440,
 		"fullHeight": 8690
+	},
+	"planer": {
+		"full": "/projects/planer-full.webp",
+		"fullWidth": 1920,
+		"fullHeight": 11167
+	},
+	"vacaciones": {
+		"full": "/projects/vacaciones-full.webp",
+		"fullWidth": 1600,
+		"fullHeight": 8000
 	}
 }

@@ -1,5 +1,14 @@
 export const projects = [
 	{
+		id: 'planer',
+		name: 'Planer',
+		site: {
+			es: 'Plataforma para crear aplicaciones web desde un chat con IA: pantallas, bases de datos a partir de un Excel y dashboards, con publicación en el servidor propio, usuarios, roles y versiones.',
+			en: 'Platform for building web apps from an AI chat: screens, databases from an Excel file and dashboards, published on your own server with users, roles and versions.'
+		},
+		tags: ['Svelte', 'JavaScript', 'CSS', 'IA', 'Diseño / Design', 'HTML']
+	},
+	{
 		id: 'monte',
 		name: 'Monte',
 		site: {
@@ -135,6 +144,14 @@ export const openSource = [
 		es: 'Diseñé y desarrollé una app web para las finanzas de la casa: cuentas, movimientos, pagos programados, ahorros con metas y análisis del mes. Se instala en el celular, funciona sin internet, admite varios usuarios por invitación y un asistente de IA puede registrar movimientos por API.',
 		en: 'I designed and built a web app for household finances: accounts, transactions, scheduled payments, savings goals and a monthly analysis. It installs on the phone, works offline, supports multiple users by invitation, and an AI assistant can log transactions through its API.',
 		repo: 'https://github.com/wfpaisa/plane-finanzas'
+	},
+	{
+		id: 'vacaciones',
+		name: 'Plane Vacaciones',
+		tags: ['Svelte', 'TypeScript', 'Bun', 'PocketBase', 'MapLibre', 'MCP'],
+		es: 'Diseñé y desarrollé un planeador de viajes en familia por varias ciudades, con el mapa como lienzo: ruta y transporte, lugares por día, gastos compartidos, checklist, documentos y un servidor MCP para que un agente de IA arme el viaje.',
+		en: 'I designed and built a multi-city family trip planner with the map as its canvas: route and transport, places by day, shared expenses, checklists, documents and an MCP server so an AI agent can plan the trip.',
+		repo: 'https://github.com/wfpaisa/plane-vacaciones'
 	}
 ];
 /** Career, newest first. Dates are [year, month]; end null means current */

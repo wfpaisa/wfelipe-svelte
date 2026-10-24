@@ -240,7 +240,13 @@
 							{#if project.es}<p>{en ? project.en : project.es}</p>{/if}
 							<ul class="tags" aria-label={en ? 'Technologies' : 'Tecnologías'}>
 								{#each project.tags as tag (tag)}<li>
-										{tag === 'Diseño / Design' ? (en ? 'Design' : 'Diseño') : tag}
+										{tag === 'Diseño / Design'
+											? en
+												? 'Design'
+												: 'Diseño'
+											: tag === 'IA' && en
+												? 'AI'
+												: tag}
 									</li>{/each}
 							</ul>
 							{#if project.video}<div
