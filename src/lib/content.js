@@ -112,6 +112,14 @@ export const projects = [
 ];
 export const openSource = [
 	{
+		id: 'colorshot',
+		name: 'ColorShot',
+		tags: ['Rust', 'egui', 'GNOME', 'Wayland', 'OCR'],
+		es: 'Creé una herramienta de capturas de pantalla para Linux, hecha en Rust para GNOME en Wayland: captura de área, ventana o pantalla, editor con anotaciones, fijado de capturas, lectura de texto y QR, selector de color con paletas y atajos globales, en 8 idiomas.',
+		en: 'I built a screenshot tool for Linux, written in Rust for GNOME on Wayland: area, window or full-screen capture, an annotation editor, pinned captures, text and QR reading, a color picker with palettes and global shortcuts, in 8 languages.',
+		repo: 'https://github.com/wfpaisa/colorshot'
+	},
+	{
 		id: 'plane',
 		name: 'Plane GTK',
 		tags: ['CSS', 'Sass', 'JavaScript', 'SVG'],

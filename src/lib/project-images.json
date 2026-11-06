@@ -64,6 +64,11 @@
 		"fullWidth": 1300,
 		"fullHeight": 4920
 	},
+	"colorshot": {
+		"full": "/projects/colorshot-full.webp",
+		"fullWidth": 1300,
+		"fullHeight": 4486
+	},
 	"finanzas": {
 		"full": "/projects/finanzas-full.webp",
 		"fullWidth": 1440,
