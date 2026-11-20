@@ -112,6 +112,14 @@ export const projects = [
 ];
 export const openSource = [
 	{
+		id: 'magnifico',
+		name: 'Magnífico',
+		tags: ['Rust', 'GTK 4', 'libadwaita', 'GNOME'],
+		es: 'Creé, con la ayuda de una IA y tomando conceptos de Purge, un limpiador de espacio en disco nativo para GNOME, hecho en Rust con GTK 4 y libadwaita: cachés de apps y herramientas de desarrollo, archivos grandes, restos de apps desinstaladas, modelos de IA y juegos, con confirmación previa, limpieza programada y 6 idiomas.',
+		en: 'I built, with the help of an AI and borrowing concepts from Purge, a native disk space cleaner for GNOME, written in Rust with GTK 4 and libadwaita: app and dev tool caches, large files, leftovers of uninstalled apps, AI models and games, with confirmation before removal, scheduled cleanup and 6 languages.',
+		repo: 'https://github.com/wfpaisa/Magnifico'
+	},
+	{
 		id: 'colorshot',
 		name: 'ColorShot',
 		tags: ['Rust', 'egui', 'GNOME', 'Wayland', 'OCR'],

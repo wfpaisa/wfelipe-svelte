@@ -64,6 +64,11 @@
 		"fullWidth": 1300,
 		"fullHeight": 4920
 	},
+	"magnifico": {
+		"full": "/projects/magnifico-full.webp",
+		"fullWidth": 1300,
+		"fullHeight": 3500
+	},
 	"colorshot": {
 		"full": "/projects/colorshot-full.webp",
 		"fullWidth": 1300,
